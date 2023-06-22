@@ -1,0 +1,429 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" name="USERAPI" targetNamespace="http://tempuri.org/">
+<wsp:Policy wsu:Id="WSHttpBinding_IUSERAPI_policy">
+<wsp:ExactlyOne>
+<wsp:All>
+<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+<wsp:Policy>
+<sp:TransportToken>
+<wsp:Policy>
+<sp:HttpsToken RequireClientCertificate="false"/>
+</wsp:Policy>
+</sp:TransportToken>
+<sp:AlgorithmSuite>
+<wsp:Policy>
+<sp:Basic256/>
+</wsp:Policy>
+</sp:AlgorithmSuite>
+<sp:Layout>
+<wsp:Policy>
+<sp:Strict/>
+</wsp:Policy>
+</sp:Layout>
+</wsp:Policy>
+</sp:TransportBinding>
+<wsaw:UsingAddressing/>
+</wsp:All>
+</wsp:ExactlyOne>
+</wsp:Policy>
+<wsdl:types>
+<xsd:schema targetNamespace="http://tempuri.org/Imports">
+<xsd:import schemaLocation="https://ug.ezeemoney.biz/EZB2BCPApi/USERAPI.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
+<xsd:import schemaLocation="https://ug.ezeemoney.biz/EZB2BCPApi/USERAPI.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+<xsd:import schemaLocation="https://ug.ezeemoney.biz/EZB2BCPApi/USERAPI.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EZB2BCPWS"/>
+</xsd:schema>
+</wsdl:types>
+<wsdl:message name="IUSERAPI_Register_InputMessage">
+<wsdl:part name="parameters" element="tns:Register"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_Register_OutputMessage">
+<wsdl:part name="parameters" element="tns:RegisterResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetAccountInfo_InputMessage">
+<wsdl:part name="parameters" element="tns:GetAccountInfo"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetAccountInfo_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetAccountInfoResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_SetAccountStatus_InputMessage">
+<wsdl:part name="parameters" element="tns:SetAccountStatus"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_SetAccountStatus_OutputMessage">
+<wsdl:part name="parameters" element="tns:SetAccountStatusResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_CheckBal_InputMessage">
+<wsdl:part name="parameters" element="tns:CheckBal"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_CheckBal_OutputMessage">
+<wsdl:part name="parameters" element="tns:CheckBalResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetAccountTransDetail_InputMessage">
+<wsdl:part name="parameters" element="tns:GetAccountTransDetail"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetAccountTransDetail_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetAccountTransDetailResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_EditAccountInfo_InputMessage">
+<wsdl:part name="parameters" element="tns:EditAccountInfo"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_EditAccountInfo_OutputMessage">
+<wsdl:part name="parameters" element="tns:EditAccountInfoResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_AccountTermination_InputMessage">
+<wsdl:part name="parameters" element="tns:AccountTermination"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_AccountTermination_OutputMessage">
+<wsdl:part name="parameters" element="tns:AccountTerminationResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_TopUp_InputMessage">
+<wsdl:part name="parameters" element="tns:TopUp"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_TopUp_OutputMessage">
+<wsdl:part name="parameters" element="tns:TopUpResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_AddCARD_InputMessage">
+<wsdl:part name="parameters" element="tns:AddCARD"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_AddCARD_OutputMessage">
+<wsdl:part name="parameters" element="tns:AddCARDResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_RemoveCARD_InputMessage">
+<wsdl:part name="parameters" element="tns:RemoveCARD"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_RemoveCARD_OutputMessage">
+<wsdl:part name="parameters" element="tns:RemoveCARDResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetCARDInfoList_InputMessage">
+<wsdl:part name="parameters" element="tns:GetCARDInfoList"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetCARDInfoList_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetCARDInfoListResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetCARDTransDetail_InputMessage">
+<wsdl:part name="parameters" element="tns:GetCARDTransDetail"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetCARDTransDetail_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetCARDTransDetailResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayBillConfirmCustomerAccount_InputMessage">
+<wsdl:part name="parameters" element="tns:PayBillConfirmCustomerAccount"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayBillConfirmCustomerAccount_OutputMessage">
+<wsdl:part name="parameters" element="tns:PayBillConfirmCustomerAccountResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayBillDSTVGetCustomerDetail_InputMessage">
+<wsdl:part name="parameters" element="tns:PayBillDSTVGetCustomerDetail"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayBillDSTVGetCustomerDetail_OutputMessage">
+<wsdl:part name="parameters" element="tns:PayBillDSTVGetCustomerDetailResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayBillMakePayment_InputMessage">
+<wsdl:part name="parameters" element="tns:PayBillMakePayment"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayBillMakePayment_OutputMessage">
+<wsdl:part name="parameters" element="tns:PayBillMakePaymentResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayCollectionConfirm_InputMessage">
+<wsdl:part name="parameters" element="tns:PayCollectionConfirm"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayCollectionConfirm_OutputMessage">
+<wsdl:part name="parameters" element="tns:PayCollectionConfirmResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayCollectionMakePayment_InputMessage">
+<wsdl:part name="parameters" element="tns:PayCollectionMakePayment"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayCollectionMakePayment_OutputMessage">
+<wsdl:part name="parameters" element="tns:PayCollectionMakePaymentResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayBillTransDetail_InputMessage">
+<wsdl:part name="parameters" element="tns:PayBillTransDetail"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_PayBillTransDetail_OutputMessage">
+<wsdl:part name="parameters" element="tns:PayBillTransDetailResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_ChangeCardPIN_InputMessage">
+<wsdl:part name="parameters" element="tns:ChangeCardPIN"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_ChangeCardPIN_OutputMessage">
+<wsdl:part name="parameters" element="tns:ChangeCardPINResponse"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetSpecifyAccountTransDetail_InputMessage">
+<wsdl:part name="parameters" element="tns:GetSpecifyAccountTransDetail"/>
+</wsdl:message>
+<wsdl:message name="IUSERAPI_GetSpecifyAccountTransDetail_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetSpecifyAccountTransDetailResponse"/>
+</wsdl:message>
+<wsdl:portType name="IUSERAPI">
+<wsdl:operation name="Register">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/Register" message="tns:IUSERAPI_Register_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/RegisterResponse" message="tns:IUSERAPI_Register_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetAccountInfo">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/GetAccountInfo" message="tns:IUSERAPI_GetAccountInfo_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/GetAccountInfoResponse" message="tns:IUSERAPI_GetAccountInfo_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="SetAccountStatus">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/SetAccountStatus" message="tns:IUSERAPI_SetAccountStatus_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/SetAccountStatusResponse" message="tns:IUSERAPI_SetAccountStatus_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CheckBal">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/CheckBal" message="tns:IUSERAPI_CheckBal_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/CheckBalResponse" message="tns:IUSERAPI_CheckBal_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetAccountTransDetail">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/GetAccountTransDetail" message="tns:IUSERAPI_GetAccountTransDetail_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/GetAccountTransDetailResponse" message="tns:IUSERAPI_GetAccountTransDetail_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="EditAccountInfo">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/EditAccountInfo" message="tns:IUSERAPI_EditAccountInfo_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/EditAccountInfoResponse" message="tns:IUSERAPI_EditAccountInfo_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AccountTermination">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/AccountTermination" message="tns:IUSERAPI_AccountTermination_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/AccountTerminationResponse" message="tns:IUSERAPI_AccountTermination_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="TopUp">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/TopUp" message="tns:IUSERAPI_TopUp_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/TopUpResponse" message="tns:IUSERAPI_TopUp_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="AddCARD">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/AddCARD" message="tns:IUSERAPI_AddCARD_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/AddCARDResponse" message="tns:IUSERAPI_AddCARD_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="RemoveCARD">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/RemoveCARD" message="tns:IUSERAPI_RemoveCARD_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/RemoveCARDResponse" message="tns:IUSERAPI_RemoveCARD_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetCARDInfoList">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/GetCARDInfoList" message="tns:IUSERAPI_GetCARDInfoList_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/GetCARDInfoListResponse" message="tns:IUSERAPI_GetCARDInfoList_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetCARDTransDetail">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/GetCARDTransDetail" message="tns:IUSERAPI_GetCARDTransDetail_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/GetCARDTransDetailResponse" message="tns:IUSERAPI_GetCARDTransDetail_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="PayBillConfirmCustomerAccount">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/PayBillConfirmCustomerAccount" message="tns:IUSERAPI_PayBillConfirmCustomerAccount_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/PayBillConfirmCustomerAccountResponse" message="tns:IUSERAPI_PayBillConfirmCustomerAccount_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="PayBillDSTVGetCustomerDetail">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/PayBillDSTVGetCustomerDetail" message="tns:IUSERAPI_PayBillDSTVGetCustomerDetail_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/PayBillDSTVGetCustomerDetailResponse" message="tns:IUSERAPI_PayBillDSTVGetCustomerDetail_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="PayBillMakePayment">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/PayBillMakePayment" message="tns:IUSERAPI_PayBillMakePayment_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/PayBillMakePaymentResponse" message="tns:IUSERAPI_PayBillMakePayment_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="PayCollectionConfirm">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/PayCollectionConfirm" message="tns:IUSERAPI_PayCollectionConfirm_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/PayCollectionConfirmResponse" message="tns:IUSERAPI_PayCollectionConfirm_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="PayCollectionMakePayment">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/PayCollectionMakePayment" message="tns:IUSERAPI_PayCollectionMakePayment_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/PayCollectionMakePaymentResponse" message="tns:IUSERAPI_PayCollectionMakePayment_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="PayBillTransDetail">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/PayBillTransDetail" message="tns:IUSERAPI_PayBillTransDetail_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/PayBillTransDetailResponse" message="tns:IUSERAPI_PayBillTransDetail_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="ChangeCardPIN">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/ChangeCardPIN" message="tns:IUSERAPI_ChangeCardPIN_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/ChangeCardPINResponse" message="tns:IUSERAPI_ChangeCardPIN_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetSpecifyAccountTransDetail">
+<wsdl:input wsaw:Action="http://tempuri.org/IUSERAPI/GetSpecifyAccountTransDetail" message="tns:IUSERAPI_GetSpecifyAccountTransDetail_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/IUSERAPI/GetSpecifyAccountTransDetailResponse" message="tns:IUSERAPI_GetSpecifyAccountTransDetail_OutputMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="WSHttpBinding_IUSERAPI" type="tns:IUSERAPI">
+<wsp:PolicyReference URI="#WSHttpBinding_IUSERAPI_policy"/>
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="Register">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/Register" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetAccountInfo">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/GetAccountInfo" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="SetAccountStatus">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/SetAccountStatus" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CheckBal">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/CheckBal" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetAccountTransDetail">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/GetAccountTransDetail" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="EditAccountInfo">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/EditAccountInfo" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="AccountTermination">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/AccountTermination" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="TopUp">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/TopUp" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="AddCARD">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/AddCARD" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="RemoveCARD">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/RemoveCARD" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetCARDInfoList">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/GetCARDInfoList" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetCARDTransDetail">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/GetCARDTransDetail" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="PayBillConfirmCustomerAccount">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/PayBillConfirmCustomerAccount" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="PayBillDSTVGetCustomerDetail">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/PayBillDSTVGetCustomerDetail" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="PayBillMakePayment">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/PayBillMakePayment" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="PayCollectionConfirm">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/PayCollectionConfirm" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="PayCollectionMakePayment">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/PayCollectionMakePayment" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="PayBillTransDetail">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/PayBillTransDetail" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="ChangeCardPIN">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/ChangeCardPIN" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetSpecifyAccountTransDetail">
+<soap12:operation soapAction="http://tempuri.org/IUSERAPI/GetSpecifyAccountTransDetail" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="USERAPI">
+<wsdl:port name="WSHttpBinding_IUSERAPI" binding="tns:WSHttpBinding_IUSERAPI">
+<soap12:address location="https://ug.ezeemoney.biz/EZB2BCPApi/USERAPI.svc"/>
+<wsa10:EndpointReference>
+<wsa10:Address>https://ug.ezeemoney.biz/EZB2BCPApi/USERAPI.svc</wsa10:Address>
+</wsa10:EndpointReference>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

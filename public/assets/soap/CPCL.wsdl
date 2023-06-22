@@ -1,0 +1,793 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CPCL" targetNamespace="http://tempuri.org/">
+<wsp:Policy wsu:Id="WSHttpBinding_ICPCL_policy">
+<wsp:ExactlyOne>
+<wsp:All>
+<sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+<wsp:Policy>
+<sp:TransportToken>
+<wsp:Policy>
+<sp:HttpsToken RequireClientCertificate="true"/>
+</wsp:Policy>
+</sp:TransportToken>
+<sp:AlgorithmSuite>
+<wsp:Policy>
+<sp:Basic256/>
+</wsp:Policy>
+</sp:AlgorithmSuite>
+<sp:Layout>
+<wsp:Policy>
+<sp:Strict/>
+</wsp:Policy>
+</sp:Layout>
+</wsp:Policy>
+</sp:TransportBinding>
+<wsaw:UsingAddressing/>
+</wsp:All>
+</wsp:ExactlyOne>
+</wsp:Policy>
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+<xs:import namespace="http://schemas.datacontract.org/2004/07/EZB2BWS"/>
+<xs:element name="RegisterUSER">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q1:RequestRegisterUSER"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="RegisterUSERResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="RegisterUSERResult" nillable="true" type="q2:ResponseRegisterUSER"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetUSERProfile">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q3:RequestGetUSERProfile"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetUSERProfileResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="GetUSERProfileResult" nillable="true" type="q4:ResponseGetUSERProfile"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SetUSERAccountStatus">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q5:RequestSetUSERAccountStatus"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SetUSERAccountStatusResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="SetUSERAccountStatusResult" nillable="true" type="q6:ResponseSetUSERAccountStatus"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetAccountBal">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q7:RequestGetAccountBal"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetAccountBalResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="GetAccountBalResult" nillable="true" type="q8:ResponseGetAccountBal"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetAccountTransDetails">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q9:RequestGetAccountTransDetails"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetAccountTransDetailsResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="GetAccountTransDetailsResult" nillable="true" type="q10:ResponseGetAccountTransDetails"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="InformTopUpFromBank">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q11:RequestInformTopUpFromBank"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="InformTopUpFromBankResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="InformTopUpFromBankResult" nillable="true" type="q12:ResponseInformTopUpFromBank"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SendHelp">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q13:RequestSendHelp"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="SendHelpResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="SendHelpResult" nillable="true" type="q14:ResponseSendHelp"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="USERMakeTxfTo">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q15:RequestUSERMakeTxfTo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="USERMakeTxfToResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="USERMakeTxfToResult" nillable="true" type="q16:ResponseUSERMakeTxfTo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="MERCHANTMakeTxfTo">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q17:RequestMERCHANTMakeTxfTo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="MERCHANTMakeTxfToResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="MERCHANTMakeTxfToResult" nillable="true" type="q18:ResponseMERCHANTMakeTxfTo"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CancelTransactionMake">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q19:RequestCancelTransactionMake"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CancelTransactionMakeResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="CancelTransactionMakeResult" nillable="true" type="q20:ResponseCancelTransactioMake"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CashoutToBank">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q21:RequestCashoutToBank"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="CashoutToBankResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="CashoutToBankResult" nillable="true" type="q22:ResponseCashoutToBank"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetJomPayTopUpRefKey">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="request" nillable="true" type="q23:RequestGetJomPayTopUpRefKey"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="GetJomPayTopUpRefKeyResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/EZB2BWS" minOccurs="0" name="GetJomPayTopUpRefKeyResult" nillable="true" type="q24:ResponseGetJomPayTopUpRefKey"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/">
+<xs:element name="anyType" nillable="true" type="xs:anyType"/>
+<xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+<xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+<xs:element name="boolean" nillable="true" type="xs:boolean"/>
+<xs:element name="byte" nillable="true" type="xs:byte"/>
+<xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+<xs:element name="decimal" nillable="true" type="xs:decimal"/>
+<xs:element name="double" nillable="true" type="xs:double"/>
+<xs:element name="float" nillable="true" type="xs:float"/>
+<xs:element name="int" nillable="true" type="xs:int"/>
+<xs:element name="long" nillable="true" type="xs:long"/>
+<xs:element name="QName" nillable="true" type="xs:QName"/>
+<xs:element name="short" nillable="true" type="xs:short"/>
+<xs:element name="string" nillable="true" type="xs:string"/>
+<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+<xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+<xs:element name="char" nillable="true" type="tns:char"/>
+<xs:simpleType name="char">
+<xs:restriction base="xs:int"/>
+</xs:simpleType>
+<xs:element name="duration" nillable="true" type="tns:duration"/>
+<xs:simpleType name="duration">
+<xs:restriction base="xs:duration">
+<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+<xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+<xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="guid" nillable="true" type="tns:guid"/>
+<xs:simpleType name="guid">
+<xs:restriction base="xs:string">
+<xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:attribute name="FactoryType" type="xs:QName"/>
+<xs:attribute name="Id" type="xs:ID"/>
+<xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/EZB2BWS" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EZB2BWS">
+<xs:complexType name="RequestRegisterUSER">
+<xs:sequence>
+<xs:element minOccurs="0" name="CASHOUT_BANKACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CASHOUT_BANKCODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="USER_HP" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="USER_IC" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="USER_NAME" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestRegisterUSER" nillable="true" type="tns:RequestRegisterUSER"/>
+<xs:complexType name="ResponseRegisterUSER">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_USER_CARDID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseRegisterUSER" nillable="true" type="tns:ResponseRegisterUSER"/>
+<xs:complexType name="RequestGetUSERProfile">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_USER_CARDID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestGetUSERProfile" nillable="true" type="tns:RequestGetUSERProfile"/>
+<xs:complexType name="ResponseGetUSERProfile">
+<xs:sequence>
+<xs:element minOccurs="0" name="ACCOUNT_STATUS" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CASHOUT_BANKACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CASHOUT_BANKCODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_BAL" type="xs:decimal"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_USER_CARDID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="USER_HP" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="USER_IC" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="USER_NAME" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseGetUSERProfile" nillable="true" type="tns:ResponseGetUSERProfile"/>
+<xs:complexType name="RequestSetUSERAccountStatus">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_SETSTATUS" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_USER_CARDID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestSetUSERAccountStatus" nillable="true" type="tns:RequestSetUSERAccountStatus"/>
+<xs:complexType name="ResponseSetUSERAccountStatus">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseSetUSERAccountStatus" nillable="true" type="tns:ResponseSetUSERAccountStatus"/>
+<xs:complexType name="RequestGetAccountBal">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_TYPE" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestGetAccountBal" nillable="true" type="tns:RequestGetAccountBal"/>
+<xs:complexType name="ResponseGetAccountBal">
+<xs:sequence>
+<xs:element minOccurs="0" name="ACCOUNT_STATUS" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_BAL" type="xs:decimal"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_PendingBAL" type="xs:decimal"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseGetAccountBal" nillable="true" type="tns:ResponseGetAccountBal"/>
+<xs:complexType name="RequestGetAccountTransDetails">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_TYPE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="FROM_TRANS_DATETIME" nillable="true" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="SETMAX_RECORD_LIMIT" type="xs:int"/>
+<xs:element minOccurs="0" name="TO_TRANS_DATETIME" nillable="true" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestGetAccountTransDetails" nillable="true" type="tns:RequestGetAccountTransDetails"/>
+<xs:complexType name="ResponseGetAccountTransDetails">
+<xs:sequence>
+<xs:element minOccurs="0" name="AccountTransDetails" nillable="true" type="tns:ArrayOfEZAccountTransDetail"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseGetAccountTransDetails" nillable="true" type="tns:ResponseGetAccountTransDetails"/>
+<xs:complexType name="ArrayOfEZAccountTransDetail">
+<xs:sequence>
+<xs:element minOccurs="0" maxOccurs="unbounded" name="EZAccountTransDetail" nillable="true" type="tns:EZAccountTransDetail"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ArrayOfEZAccountTransDetail" nillable="true" type="tns:ArrayOfEZAccountTransDetail"/>
+<xs:complexType name="EZAccountTransDetail">
+<xs:sequence>
+<xs:element minOccurs="0" name="Balance" type="xs:decimal"/>
+<xs:element minOccurs="0" name="Card_ID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Credit" type="xs:decimal"/>
+<xs:element minOccurs="0" name="Debit" type="xs:decimal"/>
+<xs:element minOccurs="0" name="Terminal" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Transaction_DateTime" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="Transaction_Description" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Transaction_ID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="Transaction_Type" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="EZAccountTransDetail" nillable="true" type="tns:EZAccountTransDetail"/>
+<xs:complexType name="RequestInformTopUpFromBank">
+<xs:sequence>
+<xs:element minOccurs="0" name="BANKIN_AMOUNT" type="xs:decimal"/>
+<xs:element minOccurs="0" name="BANKIN_BANKCODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BANKIN_DAY" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="BANKIN_TIME" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_TYPE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="RHBSEQNO" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestInformTopUpFromBank" nillable="true" type="tns:RequestInformTopUpFromBank"/>
+<xs:complexType name="ResponseInformTopUpFromBank">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseInformTopUpFromBank" nillable="true" type="tns:ResponseInformTopUpFromBank"/>
+<xs:complexType name="RequestSendHelp">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_TYPE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="HELP_MESSAGE" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestSendHelp" nillable="true" type="tns:RequestSendHelp"/>
+<xs:complexType name="ResponseSendHelp">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseSendHelp" nillable="true" type="tns:ResponseSendHelp"/>
+<xs:complexType name="RequestUSERMakeTxfTo">
+<xs:sequence>
+<xs:element minOccurs="0" name="AMOUNT" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_USER_CARDID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PAYTO_EZACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PAYTO_EZACCOUNT_TYPE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="TXN_DESCRIPTION" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestUSERMakeTxfTo" nillable="true" type="tns:RequestUSERMakeTxfTo"/>
+<xs:complexType name="ResponseUSERMakeTxfTo">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PAYBY_EZACCOUNT_BAL" type="xs:decimal"/>
+<xs:element minOccurs="0" name="PAYTO_EZACCOUNT_BAL" type="xs:decimal"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseUSERMakeTxfTo" nillable="true" type="tns:ResponseUSERMakeTxfTo"/>
+<xs:complexType name="RequestMERCHANTMakeTxfTo">
+<xs:sequence>
+<xs:element minOccurs="0" name="AMOUNT" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_MERCHANTCODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PAYTO_EZACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PAYTO_EZACCOUNT_TYPE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="TXN_DESCRIPTION" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestMERCHANTMakeTxfTo" nillable="true" type="tns:RequestMERCHANTMakeTxfTo"/>
+<xs:complexType name="ResponseMERCHANTMakeTxfTo">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="PAYBY_EZACCOUNT_BAL" type="xs:decimal"/>
+<xs:element minOccurs="0" name="PAYTO_EZACCOUNT_BAL" type="xs:decimal"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseMERCHANTMakeTxfTo" nillable="true" type="tns:ResponseMERCHANTMakeTxfTo"/>
+<xs:complexType name="RequestCancelTransactionMake">
+<xs:sequence>
+<xs:element minOccurs="0" name="CANCEL_EZ_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestCancelTransactionMake" nillable="true" type="tns:RequestCancelTransactionMake"/>
+<xs:complexType name="ResponseCancelTransactioMake">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseCancelTransactioMake" nillable="true" type="tns:ResponseCancelTransactioMake"/>
+<xs:complexType name="RequestCashoutToBank">
+<xs:sequence>
+<xs:element minOccurs="0" name="CASHOUT_AMOUNT" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_TYPE" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestCashoutToBank" nillable="true" type="tns:RequestCashoutToBank"/>
+<xs:complexType name="ResponseCashoutToBank">
+<xs:sequence>
+<xs:element minOccurs="0" name="CASHOUT_AMOUNT" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CASHOUT_CHARGES" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CASHOUT_GST" type="xs:decimal"/>
+<xs:element minOccurs="0" name="CASHOUT_TaxInvoiceNo" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZACCOUNT_BAL" type="xs:decimal"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_TXNID" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseCashoutToBank" nillable="true" type="tns:ResponseCashoutToBank"/>
+<xs:complexType name="RequestGetJomPayTopUpRefKey">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_PASSWORD" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="CP_USERID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_NO" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_ACCOUNT_TYPE" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RequestGetJomPayTopUpRefKey" nillable="true" type="tns:RequestGetJomPayTopUpRefKey"/>
+<xs:complexType name="ResponseGetJomPayTopUpRefKey">
+<xs:sequence>
+<xs:element minOccurs="0" name="CP_TXNID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_JomPayTopUpRefKey" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_REQID" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_CODE" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="EZ_RESP_MSG" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="ResponseGetJomPayTopUpRefKey" nillable="true" type="tns:ResponseGetJomPayTopUpRefKey"/>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="ICPCL_RegisterUSER_InputMessage">
+<wsdl:part name="parameters" element="tns:RegisterUSER"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_RegisterUSER_OutputMessage">
+<wsdl:part name="parameters" element="tns:RegisterUSERResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_GetUSERProfile_InputMessage">
+<wsdl:part name="parameters" element="tns:GetUSERProfile"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_GetUSERProfile_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetUSERProfileResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_SetUSERAccountStatus_InputMessage">
+<wsdl:part name="parameters" element="tns:SetUSERAccountStatus"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_SetUSERAccountStatus_OutputMessage">
+<wsdl:part name="parameters" element="tns:SetUSERAccountStatusResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_GetAccountBal_InputMessage">
+<wsdl:part name="parameters" element="tns:GetAccountBal"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_GetAccountBal_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetAccountBalResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_GetAccountTransDetails_InputMessage">
+<wsdl:part name="parameters" element="tns:GetAccountTransDetails"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_GetAccountTransDetails_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetAccountTransDetailsResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_InformTopUpFromBank_InputMessage">
+<wsdl:part name="parameters" element="tns:InformTopUpFromBank"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_InformTopUpFromBank_OutputMessage">
+<wsdl:part name="parameters" element="tns:InformTopUpFromBankResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_SendHelp_InputMessage">
+<wsdl:part name="parameters" element="tns:SendHelp"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_SendHelp_OutputMessage">
+<wsdl:part name="parameters" element="tns:SendHelpResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_USERMakeTxfTo_InputMessage">
+<wsdl:part name="parameters" element="tns:USERMakeTxfTo"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_USERMakeTxfTo_OutputMessage">
+<wsdl:part name="parameters" element="tns:USERMakeTxfToResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_MERCHANTMakeTxfTo_InputMessage">
+<wsdl:part name="parameters" element="tns:MERCHANTMakeTxfTo"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_MERCHANTMakeTxfTo_OutputMessage">
+<wsdl:part name="parameters" element="tns:MERCHANTMakeTxfToResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_CancelTransactionMake_InputMessage">
+<wsdl:part name="parameters" element="tns:CancelTransactionMake"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_CancelTransactionMake_OutputMessage">
+<wsdl:part name="parameters" element="tns:CancelTransactionMakeResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_CashoutToBank_InputMessage">
+<wsdl:part name="parameters" element="tns:CashoutToBank"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_CashoutToBank_OutputMessage">
+<wsdl:part name="parameters" element="tns:CashoutToBankResponse"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_GetJomPayTopUpRefKey_InputMessage">
+<wsdl:part name="parameters" element="tns:GetJomPayTopUpRefKey"/>
+</wsdl:message>
+<wsdl:message name="ICPCL_GetJomPayTopUpRefKey_OutputMessage">
+<wsdl:part name="parameters" element="tns:GetJomPayTopUpRefKeyResponse"/>
+</wsdl:message>
+<wsdl:portType name="ICPCL">
+<wsdl:operation name="RegisterUSER">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/RegisterUSER" message="tns:ICPCL_RegisterUSER_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/RegisterUSERResponse" message="tns:ICPCL_RegisterUSER_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetUSERProfile">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/GetUSERProfile" message="tns:ICPCL_GetUSERProfile_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/GetUSERProfileResponse" message="tns:ICPCL_GetUSERProfile_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="SetUSERAccountStatus">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/SetUSERAccountStatus" message="tns:ICPCL_SetUSERAccountStatus_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/SetUSERAccountStatusResponse" message="tns:ICPCL_SetUSERAccountStatus_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetAccountBal">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/GetAccountBal" message="tns:ICPCL_GetAccountBal_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/GetAccountBalResponse" message="tns:ICPCL_GetAccountBal_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetAccountTransDetails">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/GetAccountTransDetails" message="tns:ICPCL_GetAccountTransDetails_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/GetAccountTransDetailsResponse" message="tns:ICPCL_GetAccountTransDetails_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="InformTopUpFromBank">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/InformTopUpFromBank" message="tns:ICPCL_InformTopUpFromBank_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/InformTopUpFromBankResponse" message="tns:ICPCL_InformTopUpFromBank_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="SendHelp">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/SendHelp" message="tns:ICPCL_SendHelp_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/SendHelpResponse" message="tns:ICPCL_SendHelp_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="USERMakeTxfTo">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/USERMakeTxfTo" message="tns:ICPCL_USERMakeTxfTo_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/USERMakeTxfToResponse" message="tns:ICPCL_USERMakeTxfTo_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="MERCHANTMakeTxfTo">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/MERCHANTMakeTxfTo" message="tns:ICPCL_MERCHANTMakeTxfTo_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/MERCHANTMakeTxfToResponse" message="tns:ICPCL_MERCHANTMakeTxfTo_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CancelTransactionMake">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/CancelTransactionMake" message="tns:ICPCL_CancelTransactionMake_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/CancelTransactionMakeResponse" message="tns:ICPCL_CancelTransactionMake_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="CashoutToBank">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/CashoutToBank" message="tns:ICPCL_CashoutToBank_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/CashoutToBankResponse" message="tns:ICPCL_CashoutToBank_OutputMessage"/>
+</wsdl:operation>
+<wsdl:operation name="GetJomPayTopUpRefKey">
+<wsdl:input wsaw:Action="http://tempuri.org/ICPCL/GetJomPayTopUpRefKey" message="tns:ICPCL_GetJomPayTopUpRefKey_InputMessage"/>
+<wsdl:output wsaw:Action="http://tempuri.org/ICPCL/GetJomPayTopUpRefKeyResponse" message="tns:ICPCL_GetJomPayTopUpRefKey_OutputMessage"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="WSHttpBinding_ICPCL" type="tns:ICPCL">
+<wsp:PolicyReference URI="#WSHttpBinding_ICPCL_policy"/>
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="RegisterUSER">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/RegisterUSER" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetUSERProfile">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/GetUSERProfile" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="SetUSERAccountStatus">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/SetUSERAccountStatus" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetAccountBal">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/GetAccountBal" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetAccountTransDetails">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/GetAccountTransDetails" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="InformTopUpFromBank">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/InformTopUpFromBank" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="SendHelp">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/SendHelp" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="USERMakeTxfTo">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/USERMakeTxfTo" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="MERCHANTMakeTxfTo">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/MERCHANTMakeTxfTo" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CancelTransactionMake">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/CancelTransactionMake" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="CashoutToBank">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/CashoutToBank" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="GetJomPayTopUpRefKey">
+<soap12:operation soapAction="http://tempuri.org/ICPCL/GetJomPayTopUpRefKey" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="CPCL">
+<wsdl:port name="WSHttpBinding_ICPCL" binding="tns:WSHttpBinding_ICPCL">
+<soap12:address location="https://mmpuchong.mobile-money.com:1443/TestCert/CPCL.svc"/>
+<wsa10:EndpointReference>
+<wsa10:Address>
+https://mmpuchong.mobile-money.com:1443/TestCert/CPCL.svc
+</wsa10:Address>
+</wsa10:EndpointReference>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,69 @@
+.auth-page .auth-header-box {
+    background-color: #000000 !important;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #230134 !important;
+    border-color: #000 !important;
+}
+
+body.dark-sidebar .left-sidebar .menu-body .nav-item .nav-link.active {
+    color: #ffffff;
+}
+
+body.dark-sidebar .left-sidebar {
+    background-color: #230134;
+}
+
+body.dark-sidebar .left-sidebar .menu-body .nav-item .nav-link .menu-icon {
+    color: #ffffff;
+}
+
+body.dark-sidebar .left-sidebar .menu-body .nav-item .nav-link {
+    color: #f7c3ba;
+}
+
+body.dark-sidebar .left-sidebar .brand {
+    background-color: #000000;
+    border-bottom: 1px solid #131d35;
+}
+
+.logo-sm {
+    height: 50px !important;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.table-bordered {
+    border: 1px solid #bcbad9;
+}
+
+.table-bordered>tbody>tr>td,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>td,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th {
+    border: 1px solid #bcbad9;
+}

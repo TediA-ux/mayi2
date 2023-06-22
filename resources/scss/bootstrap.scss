@@ -1,0 +1,16 @@
+/*
+Template Name: Unikit - Admin & Dashboard Template
+Author: Mannatthemes
+Version: 1.0
+File: App Css
+*/
+
+
+@import "../plugins/bootstrap/functions";
+@import "../plugins/bootstrap/variables";
+@import "variables";
+@import "../plugins/bootstrap/bootstrap";
+
+// Components
+@import "components/card";
+@import "components/type";
