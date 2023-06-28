@@ -21,6 +21,7 @@ class CreateAdminUserSeeder extends Seeder
             'name' => 'Super Admin',
             'email' => 'admin@parliament.com',
             'password' => bcrypt('password'),
+            'status' => "1",
             'role' => 'Admin',
         ]);
 

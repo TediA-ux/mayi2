@@ -7,6 +7,13 @@ use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PartyController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\HobbyController;
+use App\Http\Controllers\CommitteeController;
+use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\ProfessionalBodyController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +47,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/profile/view', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile/update', [ProfileController::class, 'update']);
     Route::post('/profile/password', [ProfileController::class, 'password']);
-
+    Route::resource('parties', PartyController::class);
+    Route::resource('districts', DistrictController::class);
+    Route::get('/add/district/constituency/{id}', [DistrictController::class, 'addConstituency']);
+    Route::post('/post/district/constituency', [DistrictController::class, 'postConstituency']);
+    Route::get('/edit/constituency/{id}', [DistrictController::class, 'editConstituency']);
+    Route::post('/update/district/constituency{id}', [DistrictController::class, 'updateConstituency']);
+    Route::resource('hobbies', HobbyController::class);
+    Route::resource('committees', CommitteeController::class);
+    Route::resource('professions', ProfessionController::class);
+    Route::resource('professional-bodies', ProfessionalBodyController::class);
+    Route::resource('members', MemberController::class);
+    Route::get('/district-constituencies/{id}', [MemberController::class, 'get_district_constituencies']);
 
 });
 

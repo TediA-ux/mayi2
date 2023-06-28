@@ -88,7 +88,7 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-12 ms-auto align-self-center">
-                                    <h3 class="text-dark my-0 font-22 fw-bold">{{ number_format($usersCount) }}</h3>
+                                    <h3 class="text-dark my-0 font-22 fw-bold"></h3>
                                     <p class="text-muted mb-0 fw-semibold">Users</p>
                                 </div>
                                 <!--end col-->
@@ -114,7 +114,7 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-12 ms-auto align-self-center">
-                                    <h3 class="text-dark my-0 font-22 fw-bold">{{ number_format($transactionsCount) }}</h3>
+                                    <h3 class="text-dark my-0 font-22 fw-bold"></h3>
                                     <p class="text-muted mb-0 fw-semibold">Total Transactions</p>
                                 </div>
                                 <!--end col-->
@@ -139,7 +139,7 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-12 ms-auto align-self-center">
-                                    <h3 class="text-dark my-0 font-22 fw-bold">UGX {{ number_format($GivingsSum) }}</h3>
+                                    <h3 class="text-dark my-0 font-22 fw-bold"></h3>
                                     <p class="text-muted mb-0 fw-semibold">Total Amount Given</p>
                                 </div>
                                 <!--end col-->
@@ -173,7 +173,7 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-12 ms-auto align-self-center">
-                                    <h3 class="text-dark my-0 font-22 fw-bold">UGX {{ number_format($topUpsSum) }}</h3>
+                                    <h3 class="text-dark my-0 font-22 fw-bold"></h3>
                                     <p class="text-muted mb-0 fw-semibold">Total Amount Topped up</p>
                                 </div>
                                 <!--end col-->
@@ -193,7 +193,7 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h4 class="card-title">Transactions Overview</h4>
+                                    <h4 class="card-title">parliament</h4>
                                 </div>
                                 <!--end col-->
 
@@ -228,8 +228,7 @@
 <script type="text/javascript">
 
 
-var labels =  {{ Js::from($dates) }};
-var users =  {{ Js::from($counts) }};
+
 
 var ctx = document.getElementById("lineChart").getContext('2d');
 

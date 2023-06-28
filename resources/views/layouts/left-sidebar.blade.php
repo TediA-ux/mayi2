@@ -3,7 +3,7 @@
     <div class="brand">
         <a href="/dashboard" class="logo">
             <span>
-                <img src="{{URL::asset('assets/images/logo-sm.png')}}" alt="logo-small" class="logo-sm">
+                <img src="{{URL::asset('assets/images/court-of-arms.png')}}" alt="logo-small" class="logo-sm">
             </span>
             <span>
             </span>
@@ -37,18 +37,18 @@
                     </li><!--end nav-item-->
 
 
-                    @can('edit-company')
+                    @can('edit-party')
                     <li class="nav-item">
-                        <a class="nav-link" href="#sidebarCompanies" data-bs-toggle="collapse" role="button"
-                            aria-expanded="false" aria-controls="sidebarCompanies">
+                        <a class="nav-link" href="#sidebarParties" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarParties">
                             <i class="ti ti-shield-lock menu-icon"></i>
-                            <span>Company Data</span>
+                            <span>Party Data</span>
                         </a>
-                        <div class="collapse " id="sidebarCompanies">
+                        <div class="collapse " id="sidebarParties">
                             <ul class="nav flex-column">
-                                @can('create-company')
+                                @can('create-party')
                                <li class="nav-item">
-                                    <a class="nav-link" href="/companies">Companies</a>
+                                    <a class="nav-link" href="/parties">Political Parties</a>
                                 </li><!--end nav-item-->
                                 @endcan
 
@@ -118,17 +118,17 @@
 
                     @endcan
 
-                    @can('view-sections')
+                    @can('view-districts')
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarSections" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarSections">
                             <i class="ti ti-shield-lock menu-icon"></i>
-                            <span>Manage Sections</span>
+                            <span>Manage Districts</span>
                         </a>
                         <div class="collapse " id="sidebarSections">
                             <ul class="nav flex-column">
                                <li class="nav-item">
-                                    <a class="nav-link" href="/sections">View All</a>
+                                    <a class="nav-link" href="/districts">View All</a>
                                 </li><!--end nav-item-->
 
 
@@ -137,17 +137,93 @@
                     </li><!--end nav-item-->
                     @endcan
 
-                    @can('view-groups')
+                    @can('view-hobbies')
                     <li class="nav-item">
-                        <a class="nav-link" href="#sidebarGroups" data-bs-toggle="collapse" role="button"
-                            aria-expanded="false" aria-controls="sidebarGroups">
+                        <a class="nav-link" href="#sidebarHobbies" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarHobbies">
                             <i class="ti ti-shield-lock menu-icon"></i>
-                            <span>Manage Groups</span>
+                            <span>Manage Hobbies</span>
                         </a>
-                        <div class="collapse " id="sidebarGroups">
+                        <div class="collapse " id="sidebarHobbies">
                             <ul class="nav flex-column">
                                <li class="nav-item">
-                                    <a class="nav-link" href="/groups">View All</a>
+                                    <a class="nav-link" href="/hobbies">View All</a>
+                                </li><!--end nav-item-->
+
+
+                            </ul><!--end nav-->
+                        </div><!--end sidebarAuthentication-->
+                    </li><!--end nav-item-->
+                    @endcan
+
+                    @can('view-committees')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarCommittees" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarCommittees">
+                            <i class="ti ti-shield-lock menu-icon"></i>
+                            <span>Manage Committees</span>
+                        </a>
+                        <div class="collapse " id="sidebarCommittees">
+                            <ul class="nav flex-column">
+                               <li class="nav-item">
+                                    <a class="nav-link" href="/committees">View All</a>
+                                </li><!--end nav-item-->
+
+
+                            </ul><!--end nav-->
+                        </div><!--end sidebarAuthentication-->
+                    </li><!--end nav-item-->
+                    @endcan
+
+                    @can('view-professions')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarProfessions" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarProfessions">
+                            <i class="ti ti-shield-lock menu-icon"></i>
+                            <span>Manage Professions</span>
+                        </a>
+                        <div class="collapse " id="sidebarProfessions">
+                            <ul class="nav flex-column">
+                               <li class="nav-item">
+                                    <a class="nav-link" href="/professions">View All</a>
+                                </li><!--end nav-item-->
+
+
+                            </ul><!--end nav-->
+                        </div><!--end sidebarAuthentication-->
+                    </li><!--end nav-item-->
+                    @endcan
+
+                    @can('view-professional-bodies')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarProfessionalBodies" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarProfessionalBodies">
+                            <i class="ti ti-shield-lock menu-icon"></i>
+                            <span>Manage Professional Bodies</span>
+                        </a>
+                        <div class="collapse " id="sidebarProfessionalBodies">
+                            <ul class="nav flex-column">
+                               <li class="nav-item">
+                                    <a class="nav-link" href="/professional-bodies">View All</a>
+                                </li><!--end nav-item-->
+
+
+                            </ul><!--end nav-->
+                        </div><!--end sidebarAuthentication-->
+                    </li><!--end nav-item-->
+                    @endcan
+
+                    @can('view-members')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarMembers" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarMembers">
+                            <i class="ti ti-shield-lock menu-icon"></i>
+                            <span>Manage MPs</span>
+                        </a>
+                        <div class="collapse " id="sidebarMembers">
+                            <ul class="nav flex-column">
+                               <li class="nav-item">
+                                    <a class="nav-link" href="/members">View All</a>
                                 </li><!--end nav-item-->
 
 
