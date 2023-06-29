@@ -36,21 +36,42 @@
 
                     </li><!--end nav-item-->
 
+                    
+
+                    @can('view-parliaments')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarParliaments" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarParliaments">
+                            <i class="ti ti-shield-lock menu-icon"></i>
+                            <span>Parliament Data</span>
+                        </a>
+                        <div class="collapse " id="sidebarParliaments">
+                            <ul class="nav flex-column">
+                                @can('create-parliament')
+                               <li class="nav-item">
+                                    <a class="nav-link" href="/parliaments">Parliament Types</a>
+                                </li><!--end nav-item-->
+                                @endcan
+
+
+                            </ul><!--end nav-->
+                        </div><!--end sidebarAuthentication-->
+                    </li><!--end nav-item-->
+                    @endcan
+
 
                     @can('edit-party')
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarParties" data-bs-toggle="collapse" role="button"
                             aria-expanded="false" aria-controls="sidebarParties">
                             <i class="ti ti-shield-lock menu-icon"></i>
-                            <span>Party Data</span>
+                            <span>Manage Parties</span>
                         </a>
                         <div class="collapse " id="sidebarParties">
                             <ul class="nav flex-column">
-                                @can('create-party')
                                <li class="nav-item">
-                                    <a class="nav-link" href="/parties">Political Parties</a>
+                                    <a class="nav-link" href="/parties">View All</a>
                                 </li><!--end nav-item-->
-                                @endcan
 
 
                             </ul><!--end nav-->
@@ -194,6 +215,25 @@
                     </li><!--end nav-item-->
                     @endcan
 
+                    @can('view-qualifications')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebarQualifications" data-bs-toggle="collapse" role="button"
+                            aria-expanded="false" aria-controls="sidebarQualifications">
+                            <i class="ti ti-shield-lock menu-icon"></i>
+                            <span>Manage Qualifications</span>
+                        </a>
+                        <div class="collapse " id="sidebarQualifications">
+                            <ul class="nav flex-column">
+                               <li class="nav-item">
+                                    <a class="nav-link" href="/qualifications">View All</a>
+                                </li><!--end nav-item-->
+
+
+                            </ul><!--end nav-->
+                        </div><!--end sidebarAuthentication-->
+                    </li><!--end nav-item-->
+                    @endcan
+
                     @can('view-professional-bodies')
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarProfessionalBodies" data-bs-toggle="collapse" role="button"
@@ -245,10 +285,7 @@
                                <li class="nav-item">
                                     <a class="nav-link" href="/users">List</a>
                                 </li><!--end nav-item-->
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/messages">Broadcast Messages</a>
-                                </li><!--end nav-item-->
-
+                                
 
                             </ul><!--end nav-->
                         </div><!--end sidebarAuthentication-->

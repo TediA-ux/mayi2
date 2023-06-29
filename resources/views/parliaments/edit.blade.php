@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title')Political Party @endsection
+@section('title')Parliament @endsection
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
 @endsection
@@ -8,7 +8,7 @@
     <!-- page title-->
     @section('breadcrumb')
     @component('components.breadcrumb')
-    @slot('title') Party @endslot
+    @slot('title') Parliament @endslot
     @endcomponent
     @endsection
     <div class="card">
@@ -28,10 +28,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Party</h2>
+            <h2>Edit Parliament</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('parties.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('parliaments.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -49,18 +49,12 @@
 @endif
 
 
-{!! Form::model($party, ['method' => 'PATCH','route' => ['parties.update', $party->id]]) !!}
+{!! Form::model($parliament, ['method' => 'PATCH','route' => ['parliaments.update', $parliament->id]]) !!}
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
-            <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Enter Name','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>Color:</strong>
-            {!! Form::text('color', null, array('placeholder' => 'Enter Color','class' => 'form-control')) !!}
+            <strong>Parliament Type:</strong>
+            {!! Form::text('type', null, array('placeholder' => 'Enter Parliament','class' => 'form-control')) !!}
         </div>
     </div>
     

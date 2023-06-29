@@ -45,8 +45,8 @@
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
-            <strong>Account Holder Name:</strong>
-            {!! Form::text('accountholdername', null, array('placeholder' => 'Enter  Name','class' => 'form-control')) !!}
+            <strong>Full Name:</strong>
+            {!! Form::text('name', null, array('placeholder' => 'Enter  Name','class' => 'form-control')) !!}
         </div>
     </div>
 
@@ -61,54 +61,6 @@
         <div class="form-group">
             <strong>Email:</strong>
             {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>NIN Number:</strong>
-            {!! Form::text('nin', null, array('placeholder' => 'NIN','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>Section:</strong>
-            {!! Form::text('section', null, array('placeholder' => 'Enter Section','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>Group:</strong>
-            {!! Form::text('group', null, array('placeholder' => 'Enter Group','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>Card Number:</strong>
-            {!! Form::text('cardnumber', null, array('placeholder' => 'Enter Card Number','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>Card Pin:</strong>
-            {!! Form::password('card_pin',  array('placeholder' => 'Password','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>DOB:</strong>
-            {!! Form::text('dob', null, array('placeholder' => 'Enter D.O.B','class' => 'form-control','type'=> 'date')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>Gender:</strong> (Male/Female)
-            {!! Form::text('gender', null, array('placeholder' => 'Enter Gender','class' => 'form-control')) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>Address:</strong>
-            {!! Form::text('address', null, array('placeholder' => 'Enter Address','class' => 'form-control')) !!}
         </div>
     </div>
 
@@ -130,36 +82,8 @@
             {!! Form::select('roles', $roles,$userRole, array('class' => 'form-control')) !!}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 mb-2">
-        <div class="form-group">
-            <strong>Identification Photo Front:</strong>
-            <input type="file" name="id_front" class="form-control" placeholder="image">
-            <br>
-            @if (isset($user->id_front))
-            <img width="250px" src="{{ asset('identification_photos/'. $user->id_front) }}" alt="">
+    
 
-        @else
-            no.image.png
-        @endif
-        <a href="{{ asset('identification_photos/'. $user->id_front) }}" class="btn btn-primary float-end" >Download</a>
-
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-6 col-md-6 mb-2">
-        <div class="form-group">
-            <strong>Identification Photo Back:</strong>
-            <input type="file" name="id_back" class="form-control" placeholder="image">
-
-            <br>
-            @if (isset($user->id_back))
-            <img width="250px" src="{{ asset('identification_photos/'. $user->id_back) }}" alt="">
-
-        @else
-            no.image.png
-        @endif
-        <a href="{{ asset('identification_photos/'. $user->id_back) }}" class="btn btn-primary float-end" >Download</a>
-        </div>
-    </div>
     <br> </br>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center mb-2">
         <button type="submit" class="btn btn-danger float-end">Submit</button>

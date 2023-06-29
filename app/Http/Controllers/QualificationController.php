@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\PoliticalParty;
+use App\Models\Qualification;
 use DB;
 use Hash;
 use Validator;
@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Spatie\Permission\Models\Role;
 
-class PartyController extends Controller
+class QualificationController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('permission:list-party|create-party|edit-party|delete-party', ['only' => ['index', 'store']]);
-        $this->middleware('permission:create-party', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit-party', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete-party', ['only' => ['destroy']]);
+        $this->middleware('permission:list-qualifications|create-qualification|edit-qualification|delete-qualification', ['only' => ['index', 'store']]);
+        $this->middleware('permission:create-qualification', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit-qualification', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete-qualification', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -32,8 +31,8 @@ class PartyController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $data = PoliticalParty::orderBy('id', 'DESC')->paginate(5);
-        return view('parties.index', compact('data', 'user_role', 'log_user', 'roles'))
+        $data = Qualification::orderBy('id', 'DESC')->paginate(5);
+        return view('qualifications.index', compact('data', 'user_role', 'log_user', 'roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -46,8 +45,8 @@ class PartyController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $parties = PoliticalParty::pluck('name', 'name')->all();
-        return view('parties.create', compact('parties', 'user_role', 'log_user', 'roles'));
+        $qualifications = Qualification::all();
+        return view('qualifications.create', compact('qualifications', 'user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -56,8 +55,7 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         $validator = $request->validate([
-            'name' => 'required',
-            'color' => 'required',
+            'award_type' => 'required',
             
         ]);
 
@@ -65,10 +63,10 @@ class PartyController extends Controller
 
         //return $input;
 
-        $party = PoliticalParty::create($input);
+        $qualification = Qualification::create($input);
 
-        return redirect()->route('parties.index')
-            ->with('success', 'Party created successfully');
+        return redirect()->route('qualifications.index')
+            ->with('success', 'Qualification created successfully');
     }
 
     /**
@@ -89,8 +87,8 @@ class PartyController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $party = PoliticalParty::find($id);
-        return view('parties.edit', compact('party', 'user_role', 'log_user', 'roles'));
+        $qualification = Qualification::find($id);
+        return view('qualifications.edit', compact('qualification', 'user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -100,18 +98,17 @@ class PartyController extends Controller
     {
         
         $this->validate($request, [
-            'name' => 'required',
-            'color' => 'required',
+            'award_type' => 'required',
 
         ]);
 
         $input = $request->all();
 
-        $party = PoliticalParty::find($id);
-        $party->update($input);
+        $qualification = Qualification::find($id);
+        $qualification->update($input);
 
-        return redirect()->route('parties.index')
-            ->with('success', 'Party updated successfully');
+        return redirect()->route('qualifications.index')
+            ->with('success', 'Qualification updated successfully');
 
         
     }
@@ -122,8 +119,8 @@ class PartyController extends Controller
     public function destroy($id)
     {
        
-        PoliticalParty::find($id)->delete();
-        return redirect()->route('parties.index')
-            ->with('success', 'Party deleted successfully');
+        Qualification::find($id)->delete();
+        return redirect()->route('qualifications.index')
+            ->with('success', 'Qualification deleted successfully');
     }
 }

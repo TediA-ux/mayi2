@@ -114,6 +114,15 @@
             {!! Form::text('phone_number', null, array('placeholder' => 'Enter Contact','class' => 'form-control')) !!}
         </div>
     </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>Other Contact:</strong>
+            {!! Form::text('alt_contact',  null,array('placeholder' => 'Other Contact','class' => 'form-control')) !!}
+        </div>
+    </div>
+    
+</div>
+<div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6 mb-2">
         <div class="form-group">
             <strong>Marital Status:</strong>
@@ -126,6 +135,12 @@
              <option value="Widowed">Widowed</option>
 
             </select>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>Photo:</strong><br>
+            <input type="file" name="photo" class="form-group" placeholder="image">
         </div>
     </div>
 </div>
@@ -171,6 +186,49 @@
             </select>
         </div>
     </div>
+
+    <div class='qualifications'>
+
+    <div id="container">
+    <!-- Initially, there can be some input fields -->
+    <div>
+        <h4>Qualifications/Education</h4>
+    </div>
+    <div class="input-container form-group" style='margin-bottom: 10px;' name='qualifications[]'>
+      <label>Add Qualifications</label>
+ 
+</div>
+  </div>
+  <div onclick="addInputField()" style='border: 1px solid; width: 50px; border-radius: 5px; padding: 5px;background-color: black; color: white;'>
+    <label >More</label>
+  </div>
+  <br>
+<hr>
+</div>
+
+<div class='hobby'>
+
+<div id="hobby-container">
+<!-- Initially, there can be some input fields -->
+<div>
+    <h4>Special Interests/Hobbies</h4>
+</div>
+<div class="hobby-input-container form-group" style='margin-bottom: 10px;' name='hobby_id[]'>
+  <label>Add Hobbies</label>
+ 
+ 
+</div>
+
+</div>
+<div onclick="addHobbyInputField()" style='border: 1px solid; width: 50px; border-radius: 5px; padding: 5px; background-color: black; color: white;'>
+<label >More</label>
+</div>
+
+</div>
+
+
+
+  
     <br>
     <br> <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-danger float-end">Submit</button>
@@ -213,6 +271,146 @@
           .catch(error => console.error(error));
   });
 </script>
+
+<script>
+    function addInputField() {
+      var container = document.getElementById("container");
+
+      var inputContainer = document.createElement("div");
+      inputContainer.className = "input-container";
+
+      var awardTypeLabel = document.createElement("label");
+      awardTypeLabel.textContent = "Award Type:";
+      var awardTypeInput = document.createElement("input");
+      awardTypeInput.type = "text";
+      inputContainer.appendChild(awardTypeLabel);
+      inputContainer.appendChild(awardTypeInput);
+
+      var awardLabel = document.createElement("label");
+      awardLabel.textContent = "Award:";
+      var awardInput = document.createElement("input");
+      awardInput.type = "text";
+      inputContainer.appendChild(awardLabel);
+      inputContainer.appendChild(awardInput);
+
+      var institutionLabel = document.createElement("label");
+      institutionLabel.textContent = "Institution:";
+      var institutionInput = document.createElement("input");
+      institutionInput.type = "text";
+      inputContainer.appendChild(institutionLabel);
+      inputContainer.appendChild(institutionInput);
+
+      var yearLabel = document.createElement("label");
+      yearLabel.textContent = "Year Attained:";
+      var yearInput = document.createElement("input");
+      yearInput.type = "text";
+      inputContainer.appendChild(yearLabel);
+      inputContainer.appendChild(yearInput);
+
+      var removeButton = document.createElement("button");
+      removeButton.textContent = "Remove";
+      removeButton.onclick = function() {
+        container.removeChild(inputContainer);
+      };
+      inputContainer.appendChild(removeButton);
+
+      container.appendChild(inputContainer);
+    }
+  </script>
+
+  <!-- hobby script -->
+
+  <script>
+     var hobbies = <?php echo json_encode($hobbies); ?>;
+    function addHobbyInputField() {
+      var hobbyContainer = document.getElementById("hobby-container");
+
+      var hobbyInputContainer = document.createElement("div");
+      hobbyInputContainer.className = "hobby-input-container form-group";
+      hobbyInputContainer.style.marginBottom = "10px";
+
+      var hobbyLabel = document.createElement("label");
+      hobbyLabel.textContent = "Hobby:";
+      hobbyInputContainer.appendChild(hobbyLabel);
+
+      var hobbySelect = document.createElement("select");
+      hobbySelect.id = "hobby";
+      hobbySelect.className = "form-select";
+      hobbySelect.name = "hobbies[]";
+
+      var defaultOption = document.createElement("option");
+      defaultOption.value = "";
+      defaultOption.text = "Select";
+      defaultOption.selected = true;
+      hobbySelect.appendChild(defaultOption);
+
+
+    hobbies.forEach(function(hobby) {
+        var hobbyOption = document.createElement("option");
+        hobbyOption.value = hobby.id;
+        hobbyOption.text = hobby.hobbies;
+        hobbySelect.appendChild(hobbyOption);
+      });
+
+      hobbyInputContainer.appendChild(hobbySelect);
+
+      var removeButton = document.createElement("button");
+      removeButton.textContent = "Remove";
+      removeButton.onclick = function() {
+        hobbyContainer.removeChild(hobbyInputContainer);
+      };
+      hobbyInputContainer.appendChild(removeButton);
+
+      hobbyContainer.appendChild(hobbyInputContainer);
+    }
+  </script>
+
+    <!-- committee script -->
+
+  <script>
+     var committees = <?php echo json_encode($committees); ?>;
+    function addCommitteeInputField() {
+      var committeeContainer = document.getElementById("committee-container");
+
+      var committeeInputContainer = document.createElement("div");
+      committeeInputContainer.className = "committees-input-container form-group";
+      committeeInputContainer.style.marginBottom = "10px";
+
+      var committeeLabel = document.createElement("label");
+      committeeLabel.textContent = "Committee:";
+      hobbyInputContainer.appendChild(committeeLabel);
+
+      var committeeSelect = document.createElement("select");
+      committeeSelect.id = "hobby";
+      committeeSelect.className = "form-select";
+      committeeSelect.name = "hobbies[]";
+
+      var defaultOption = document.createElement("option");
+      defaultOption.value = "";
+      defaultOption.text = "Select";
+      defaultOption.selected = true;
+      committeeSelect.appendChild(defaultOption);
+
+
+    committees.forEach(function(committee) {
+        var committeeOption = document.createElement("option");
+        committeeOption.value = committee.id;
+        committeeOption.text = committee.committee_name;
+        committeeSelect.appendChild(committeeOption);
+      });
+
+      committeeInputContainer.appendChild(committeeSelect);
+
+      var removeButton = document.createElement("button");
+      removeButton.textContent = "Remove";
+      removeButton.onclick = function() {
+        committeeContainer.removeChild(committeeInputContainer);
+      };
+      committeeInputContainer.appendChild(removeButton);
+
+      committeeContainer.appendChild(committeeInputContainer);
+    }
+  </script>
 
 
     @endsection

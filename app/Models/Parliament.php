@@ -7,15 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class PoliticalParty extends Model
+class Parliament extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
-        'color',
+        'type',
         'created_by',
         'updated_by'
     ];
-    protected $table = 'political_party';
+    protected $table = 'parliaments';
 }

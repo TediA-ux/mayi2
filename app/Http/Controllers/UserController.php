@@ -54,18 +54,18 @@ class UserController extends Controller
         return view('users.create', compact('roles', 'user_role', 'log_user'));
     }
 
-    public function sendmail(Request $request)
-    {
+    // public function sendmail(Request $request)
+    // {
 
-        $user = User::find($request->id);
-        \Mail::to($user->email)
-        ->send(
-            new SFMail($request->subject, 'Code 3:16', 'no-reply@prophetelvis.com', $request->message)
-        );
+    //     $user = User::find($request->id);
+    //     \Mail::to($user->email)
+    //     ->send(
+    //         new SFMail($request->subject, 'Code 3:16', 'no-reply@prophetelvis.com', $request->message)
+    //     );
 
-        return redirect()->route('users.index')
-            ->with('success', 'Message Sent Successfully');
-    }
+    //     return redirect()->route('users.index')
+    //         ->with('success', 'Message Sent Successfully');
+    // }
     /**
      * Store a newly created resource in storage.
      *
@@ -75,7 +75,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'accountholdername' => 'required',
+            'name' => 'required',
+            'contact' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
             'roles' => 'required',
@@ -136,7 +137,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'accountholdername' => 'required',
+            'name' => 'required',
+            'contact' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'roles' => 'required',

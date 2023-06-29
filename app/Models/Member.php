@@ -16,6 +16,8 @@ class Member extends Model
         'email',
         'dob',
         'religion',
+        'photo',
+        'alt_contact',
         'marital_status',
         'phone_number',
         'postal_address',

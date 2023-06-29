@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title')Manage Parties @endsection
+@section('title')Manage Qualification Types @endsection
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
 @endsection
@@ -9,7 +9,7 @@
     @section('breadcrumb')
     @component('components.breadcrumb')
     @slot('li_1') Tables @endslot
-    @slot('title') Political Party @endslot
+    @slot('title') Qualification Types @endslot
     @endcomponent
     @endsection
     <div class="card">
@@ -29,10 +29,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Manage Parties</h2>
+            <h2>Manage Qualifications</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-danger" href="{{ route('parties.create') }}"> Create New Party</a>
+            <a class="btn btn-danger" href="{{ route('qualifications.create') }}"> Create New Qualification</a>
         </div>
     </div>
 </div>
@@ -51,25 +51,24 @@
                             <thead class="table-dark">
  <tr>
    <th>No</th>
-   <th>Name</th>
-   <th>Color</th>
+   <th>Award Type</th>
+  
 
 
    <th width="280px">Action</th>
  </tr>
 </thead>
- @foreach ($data as $key => $party)
+ @foreach ($data as $key => $qualification)
   <tr>
     <td>{{ ++$i }}</td>
-    <td>{{ $party->name }}</td>
-    <td>{{ $party->color }}</td>
+    <td>{{ $qualification->award_type }}</td>
  
 
     <td>
       
-       <a class="btn btn-sm btn-primary" href="{{ route('parties.edit',Crypt::encrypt($party->id)) }}"><i class="fas fa-pencil-alt"></i></a>
-       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$party->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
-                                            <form method="POST" action="{{ route('parties.index', $party->id) }}" class="pull-right" id="delete-form-{{ $party->id }}" >
+       <a class="btn btn-sm btn-primary" href="{{ route('qualifications.edit',Crypt::encrypt($qualification->id)) }}"><i class="fas fa-pencil-alt"></i></a>
+       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$qualification->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+                                            <form method="POST" action="{{ route('qualifications.index', $qualification->id) }}" class="pull-right" id="delete-form-{{ $qualification->id }}" >
                                             {{ csrf_field() }}
                                             <input name="_method" type="hidden" value="POST" /></form>
     </td>

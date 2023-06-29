@@ -53,7 +53,7 @@
     <div class="col-xs-6 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>Acoount Holder Name:</strong>
-            {!! Form::text('accountholdername', null, array('placeholder' => 'Enter  Name','class' => 'form-control')) !!}
+            {!! Form::text('name', null, array('placeholder' => 'Enter  Name','class' => 'form-control')) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">

@@ -112,6 +112,14 @@
             {!! Form::text('phone_number', null, array('placeholder' => 'Enter Contact','class' => 'form-control')) !!}
         </div>
     </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>Other Contact:</strong>
+            {!! Form::text('alt_contact',  null,array('placeholder' => 'Other Contact','class' => 'form-control')) !!}
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6 mb-2">
         <div class="form-group">
             <strong>Marital Status:</strong>
@@ -124,6 +132,12 @@
              <option value="Widowed">Widowed</option>
 
             </select>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>Photo:</strong><br>
+            <input type="file" name="photo" class="form-group" placeholder="image">
         </div>
     </div>
 </div>

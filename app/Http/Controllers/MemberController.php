@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Member;
 use App\Models\District;
+use App\Models\Hobby;
+use App\Models\Committee;
 use App\Models\Constituency;
+use App\Models\Qualification;
 use App\Models\PoliticalParty;
 use DB;
 use Hash;
@@ -51,7 +54,9 @@ class MemberController extends Controller
         $members = Member::all();
         $parties = PoliticalParty::all();
         $districts = District::all();
-        return view('members.create', compact('members','parties','districts', 'user_role', 'log_user', 'roles'));
+        $hobbies = Hobby::all();
+        $committees = Committee::all();
+        return view('members.create', compact('members','parties','districts','committees','hobbies', 'user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -83,6 +88,8 @@ class MemberController extends Controller
 
         $member = Member::create($input);
 
+
+
         return redirect()->route('members.index')
             ->with('success', 'Member created successfully');
     }
@@ -90,9 +97,22 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $id = Crypt::decrypt($id);
+        $roles = Role::orderBy('id', 'DESC')->paginate(5);
+        $roles = Auth::user()->roles()->first();
+        $user_role = $roles->name;
+        $user_id = Auth::user()->id;
+        $log_user = User::find($user_id);
+        $member = Member::find($id);
+        $parties = PoliticalParty::all();
+        $districts = District::all();
+        $hobbies = Hobby::all();
+        $committees = Committee::all();
+        $qualifications = Qualification::all();
+        
+        return view('members.show', compact('member','qualifications','parties','districts','committees','hobbies','user_role', 'log_user', 'roles'))->with('i');
     }
 
     /**

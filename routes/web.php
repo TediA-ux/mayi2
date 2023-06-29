@@ -14,6 +14,8 @@ use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfessionalBodyController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\QualificationController;
+use App\Http\Controllers\ParliamentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,8 @@ Route::post('/user/logout', [UserAuthenticationController::class, 'logOutUser'])
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::post('/user/activate/{id}', [UserController::class, 'activate']);
+    Route::post('/user/deactivate/{id}', [UserController::class, 'deactivate']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/profile/view', [ProfileController::class, 'index'])->name('user.profile');
@@ -59,6 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('professional-bodies', ProfessionalBodyController::class);
     Route::resource('members', MemberController::class);
     Route::get('/district-constituencies/{id}', [MemberController::class, 'get_district_constituencies']);
+    Route::resource('qualifications', QualificationController::class);
+    Route::resource('parliaments', ParliamentController::class);
 
 });
 

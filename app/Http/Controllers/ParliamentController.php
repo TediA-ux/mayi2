@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\PoliticalParty;
+use App\Models\Parliament;
 use DB;
 use Hash;
 use Validator;
@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Spatie\Permission\Models\Role;
 
-class PartyController extends Controller
+class ParliamentController extends Controller
 {
-
     public function __construct()
     {
-        $this->middleware('permission:list-party|create-party|edit-party|delete-party', ['only' => ['index', 'store']]);
-        $this->middleware('permission:create-party', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit-party', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete-party', ['only' => ['destroy']]);
+        $this->middleware('permission:list-parliaments|create-parliament|edit-parliament|delete-parliament', ['only' => ['index', 'store']]);
+        $this->middleware('permission:create-parliament', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit-parliament', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete-parliament', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -32,8 +31,8 @@ class PartyController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $data = PoliticalParty::orderBy('id', 'DESC')->paginate(5);
-        return view('parties.index', compact('data', 'user_role', 'log_user', 'roles'))
+        $data = Parliament::orderBy('id', 'DESC')->paginate(5);
+        return view('parliaments.index', compact('data', 'user_role', 'log_user', 'roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -46,8 +45,8 @@ class PartyController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $parties = PoliticalParty::pluck('name', 'name')->all();
-        return view('parties.create', compact('parties', 'user_role', 'log_user', 'roles'));
+        $parliaments = Parliament::all();
+        return view('parliaments.create', compact('parliaments', 'user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -56,8 +55,7 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         $validator = $request->validate([
-            'name' => 'required',
-            'color' => 'required',
+            'type' => 'required',
             
         ]);
 
@@ -65,10 +63,10 @@ class PartyController extends Controller
 
         //return $input;
 
-        $party = PoliticalParty::create($input);
+        $parliament = Parliament::create($input);
 
-        return redirect()->route('parties.index')
-            ->with('success', 'Party created successfully');
+        return redirect()->route('parliaments.index')
+            ->with('success', 'Parliament created successfully');
     }
 
     /**
@@ -89,8 +87,8 @@ class PartyController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $party = PoliticalParty::find($id);
-        return view('parties.edit', compact('party', 'user_role', 'log_user', 'roles'));
+        $parliament = Parliament::find($id);
+        return view('parliaments.edit', compact('parliament', 'user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -100,18 +98,17 @@ class PartyController extends Controller
     {
         
         $this->validate($request, [
-            'name' => 'required',
-            'color' => 'required',
+            'type' => 'required',
 
         ]);
 
         $input = $request->all();
 
-        $party = PoliticalParty::find($id);
-        $party->update($input);
+        $parliament = Parliament::find($id);
+        $parliament->update($input);
 
-        return redirect()->route('parties.index')
-            ->with('success', 'Party updated successfully');
+        return redirect()->route('parliaments.index')
+            ->with('success', 'Parliament updated successfully');
 
         
     }
@@ -122,8 +119,8 @@ class PartyController extends Controller
     public function destroy($id)
     {
        
-        PoliticalParty::find($id)->delete();
-        return redirect()->route('parties.index')
-            ->with('success', 'Party deleted successfully');
+        Parliament::find($id)->delete();
+        return redirect()->route('parliaments.index')
+            ->with('success', 'Parliament deleted successfully');
     }
 }

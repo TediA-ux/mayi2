@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title')Manage Political Parties @endsection
+@section('title')Manage Qualification Types @endsection
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
 @endsection
@@ -8,13 +8,13 @@
     <!-- page title-->
     @section('breadcrumb')
     @component('components.breadcrumb')
-    @slot('title') Political Party @endslot
+    @slot('title') Qualifications @endslot
     @endcomponent
     @endsection
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Create New Party</h2>
+            <h2>Create New Qualification</h2>
         </div>
         <div class="pull-right">
         </div>
@@ -48,19 +48,12 @@
                 </div>
                 <!--end card-header-->
                 <div class="card-body">
-{!! Form::open(array('route' => 'parties.store','method'=>'POST')) !!}
+{!! Form::open(array('route' => 'qualifications.store','method'=>'POST')) !!}
 <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6">
         <div class="form-group">
-            <strong>Name:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Enter Name','class' => 'form-control')) !!}
-
-        </div>
-    </div>
-    <div class="col-xs-6 col-sm-6 col-md-6">
-        <div class="form-group">
-            <strong>Color:</strong>
-            {!! Form::text('color', null, array('placeholder' => 'Enter Color','class' => 'form-control')) !!}
+            <strong>Award Type:</strong>
+            {!! Form::text('award_type', null, array('placeholder' => 'Enter Name','class' => 'form-control')) !!}
 
         </div>
     </div>

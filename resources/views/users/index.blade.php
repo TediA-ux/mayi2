@@ -40,10 +40,9 @@
                         <table class="table table-striped" id="datatable_1">
                             <thead class="table-dark">
  <tr>
-   <th>Account Holder Name</th>
-   <th>Account Number</th>
-   <th>CARD Number</th>
+   <th>Full Name</th>
    <th>Email</th>
+   <th>Contact</th>
    <th>Role</th>
    <th>Status</th>
    <th>Date Registered</th>
@@ -52,10 +51,9 @@
 </thead>
  @foreach ($data as $key => $user)
   <tr>
-    <td>{{ $user->accountholdername }}</td>
-    <td>{{ $user->ez_account_no }}</td>
-    <td>{{ $user->cardnumber }}</td>
+    <td>{{ $user->name }}</td>
     <td>{{ $user->email }}</td>
+    <td>{{ $user->contact }}</td>
     <td>
       @if(!empty($user->getRoleNames()))
         @foreach($user->getRoleNames() as $v)
