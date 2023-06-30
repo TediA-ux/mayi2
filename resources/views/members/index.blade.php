@@ -3,7 +3,7 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
 @endsection
-@section('body-start') <body id="body" class="dark-sidebar"> @endsection
+@section('body-start') <body id="body" class="dark-sidebar" data-layout="horizontal"> @endsection
     @section('content')
     <!-- page title-->
     @section('breadcrumb')
@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Members of Parliament Management</h2>
+            <h2>Members of Parliament</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-danger" href="{{ route('members.create') }}"> Create New Member</a>
@@ -35,7 +35,7 @@
 @endif
 
 
-<div class="card-body">
+<div class="card-body ">
                     <div class="table-responsive">
                         <table class="table table-striped" id="datatable_1">
                             <thead class="table-dark">

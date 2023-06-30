@@ -1,9 +1,9 @@
 @extends('layouts.master')
-@section('title')Manage Users @endsection
+@section('title')Manage MP @endsection
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
 @endsection
-@section('body-start') <body id="body" class="dark-sidebar"> @endsection
+@section('body-start') <body id="body" class="dark-sidebar" data-layout="horizontal"> @endsection
     @section('content')
     <!-- page title-->
     @section('breadcrumb')
@@ -17,7 +17,12 @@
             <h2> Member Info</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-danger" href="{{ route('members.index') }}"> Back</a>
+            <div style = "display:flex">
+                <a class="btn btn-danger" href="{{ route('members.index') }}"> Back</a>
+                <div class="ms-auto"> 
+                <a class="btn btn-danger" href="{{ route('members.addmore') }}"> Update</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -208,10 +213,15 @@
     </div>
 </div>
 
- 
+@endsection
+    @section('script')
 
+    <!-- Javascript -->
+    <script src="{{ URL::asset('assets/plugins/datatables/simple-datatables.js') }}"></script>
+    <script src="{{ URL::asset('assets/pages/datatable.init.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
 
-  <script>
+    <script>
     // JavaScript code
     function changeContent(option) {
       var dynamicContent = document.getElementById('dynamic-content');
@@ -346,7 +356,15 @@
     }
   </script>
 
+    @endsection
+    @section('body-end')
+</body> @endsection
+
+ 
+
+
+ 
+
   
 
 
-@endsection

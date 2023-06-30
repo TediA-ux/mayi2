@@ -11,6 +11,7 @@ use App\Models\Committee;
 use App\Models\Constituency;
 use App\Models\Qualification;
 use App\Models\PoliticalParty;
+use App\Models\ProfessionalBody;
 use DB;
 use Hash;
 use Validator;
@@ -181,5 +182,19 @@ class MemberController extends Controller
     {
         $constituencies = Constituency::where('district_id', $id)->get();
         return $constituencies;
+    }
+
+    public function add_member_info(){
+        //$id = Crypt::decrypt($id);
+        $roles = Role::orderBy('id', 'DESC')->paginate(5);
+        $roles = Auth::user()->roles()->first();
+        $user_role = $roles->name;
+        $user_id = Auth::user()->id;
+        $log_user = User::find($user_id);
+        $hobbies = Hobby::all();
+        $committees = Committee::all();
+        $qualifications = Qualification::all();
+        $professionalbodies = ProfessionalBody::all();
+        return view('members.addmore', compact('hobbies','professionalbodies','committees','qualifications','user_role', 'log_user', 'roles'));
     }
 }

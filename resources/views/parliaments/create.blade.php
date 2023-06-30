@@ -3,7 +3,7 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
 @endsection
-@section('body-start') <body id="body" class="dark-sidebar"> @endsection
+@section('body-start') <body id="body" class="dark-sidebar" data-layout="horizontal"> @endsection
     @section('content')
     <!-- page title-->
     @section('breadcrumb')

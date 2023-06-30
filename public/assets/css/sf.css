@@ -69,9 +69,10 @@ body.dark-sidebar .left-sidebar .brand {
 }
 
 
-.body {
+.flex-container {
     display: flex;
     height: auto;
+    
     margin: 0;
     padding: 0;
   }
@@ -125,6 +126,7 @@ body.dark-sidebar .left-sidebar .brand {
 
   #dynamic-content {
     padding: 20px;
+    width: 90%;
     background-color: #f9f9f9;
     /* border: 1px solid black; */
     border-radius: 5px;
@@ -150,4 +152,57 @@ body.dark-sidebar .left-sidebar .brand {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  /* membership form */
+  .form-container, .hobby-form-container, .education-form-container{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .form-container:last-child, .hobby-form-container:last-child, .education-form-container:last-child {
+    margin-bottom: 0;
+  }
+  
+  .form-container label, .hobby-form-container label, .eeducation-form-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .form-container input[type="text"],.hobby-form-container input[type="text"],.education-form-container input[type="text"],
+  .form-container select, .hobby-form-container select , .education-form-container select{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .form-container select, .hobby-form-container select, .education-form-container select{
+    height: 36px;
+  }
+  
+  .add-remove-buttons {
+    text-align: right;
+    margin-top: 10px;
+  }
+  
+  .add-remove-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .add-remove-buttons button.remove {
+    background-color: #f44336;
   }

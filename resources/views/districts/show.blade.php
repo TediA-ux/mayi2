@@ -10,7 +10,7 @@
 @endsection
 @section('body-start')
 
-    <body id="body" class="dark-sidebar">
+    <body id="body" class="dark-sidebar" data-layout="horizontal">
     @endsection
     @section('content')
         <!-- page title-->

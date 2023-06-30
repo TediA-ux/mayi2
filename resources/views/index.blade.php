@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')Dashboard @endsection
-@section('body-start') <body id="body" class="dark-sidebar"> @endsection
+@section('body-start') <body id="body" class="dark-sidebar" data-layout="horizontal"> @endsection
     @section('content')
     <!-- page title-->
     @section('breadcrumb')

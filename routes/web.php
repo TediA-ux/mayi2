@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('professional-bodies', ProfessionalBodyController::class);
     Route::resource('members', MemberController::class);
     Route::get('/district-constituencies/{id}', [MemberController::class, 'get_district_constituencies']);
+    Route::get('/add/more-details', [MemberController::class, 'add_member_info'])->name("members.addmore");
     Route::resource('qualifications', QualificationController::class);
     Route::resource('parliaments', ParliamentController::class);
 
