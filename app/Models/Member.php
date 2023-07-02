@@ -30,4 +30,6 @@ class Member extends Model
         'created_by'
     ];
     protected $table = 'member_info';
+
+
 }

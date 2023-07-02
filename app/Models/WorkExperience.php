@@ -7,17 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class Hobby extends Model
+class WorkExperience extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'hobbies',
+        'member_id',
+        'organization',
+        'year_from',
+        'year_to',
         'created_by',
         'updated_by'
     ];
-    protected $table = 'hobbies';
 
-
-
+    protected $table = 'mp_work_experience';
+    public $timestamps = true;
 }

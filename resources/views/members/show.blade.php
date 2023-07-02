@@ -20,7 +20,7 @@
             <div style = "display:flex">
                 <a class="btn btn-danger" href="{{ route('members.index') }}"> Back</a>
                 <div class="ms-auto"> 
-                <a class="btn btn-danger" href="{{ route('members.addmore') }}"> Update</a>
+                <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"> Edit</i></a>
                 </div>
             </div>
         </div>
@@ -192,11 +192,172 @@
     </div>
 </div>
 <br>
-    <div id="dynamic-content">
+<div class="pull-right">
+<a class="btn btn-danger" href="{{ route('members.addmore', Crypt::encrypt($member->id)) }}) }}"> Add Info</a>
+              
+        </div>
+<br>
+    <div id="bio-data">
       <!-- Default dynamic content for the first option -->
-      <h2>Option 1 Content</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <h3>Education Record</h3>
+      <div class="table-responsive">
+                        <table class="table table-striped" id="datatable_1">
+                            <thead class="table-dark">
+ <tr>
+   <th>Year</th>
+   <th>Award</th>
+   <th>Institution</th>
+   <th >Action</th>
+ </tr>
+</thead>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+    
+    <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
+       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+                                            <form method="POST" action="{{ route('members.index', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
+                                            {{ csrf_field() }}
+                                            <input name="_method" type="hidden" value="POST" /></form>
+
+     </td>
+
+  </tr>
+</table>
+
+</div>
     </div>
+
+    <br>
+    <div id="bio-data">
+      <!-- Default dynamic content for the first option -->
+      <h3>Work Experience</h3>
+      <div class="table-responsive">
+                        <table class="table table-striped" id="datatable_1">
+                            <thead class="table-dark">
+ <tr>
+   <th>Profession</th>
+   <th>Organization</th>
+   <th>From</th>
+   <th>To</th>
+ </tr>
+</thead>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+    
+    <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
+       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+                                            <form method="POST" action="{{ route('members.index', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
+                                            {{ csrf_field() }}
+                                            <input name="_method" type="hidden" value="POST" /></form>
+
+     </td>
+
+  </tr>
+</table>
+
+</div>
+    </div>
+ 
+   
+
+
+    <br>
+    <div class="three-sections" style="display:flex">
+        <div class="item">
+      <!-- Default dynamic content for the first option -->
+      <h4>Parliament</h4>
+      <div class="table-responsive">
+                        <table class="table table-striped" id="datatable_1">
+                            <thead class="table-dark">
+ <tr>
+   <th>Types</th>
+ 
+ </tr>
+</thead>
+  <tr>
+    <td></td>
+    <td>
+    
+    <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
+       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+                                            <form method="POST" action="{{ route('members.index', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
+                                            {{ csrf_field() }}
+                                            <input name="_method" type="hidden" value="POST" /></form>
+
+     </td>
+
+  </tr>
+</table>
+
+</div>
+    </div>
+
+    <div class="item">
+      <!-- Default dynamic content for the first option -->
+      <h4>Special Interest</h4>
+      <div class="table-responsive">
+                        <table class="table table-striped" id="datatable_1">
+                            <thead class="table-dark">
+ <tr>
+   <th>Hobbies</th>
+ </tr>
+</thead>
+  <tr>
+    <td></td>
+    <td>
+    
+    <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
+       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+                                            <form method="POST" action="{{ route('members.index', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
+                                            {{ csrf_field() }}
+                                            <input name="_method" type="hidden" value="POST" /></form>
+
+     </td>
+
+  </tr>
+</table>
+
+</div>
+    </div>
+
+    <div class="item">
+      <!-- Default dynamic content for the first option -->
+      <h4>Associations/Memberships</h4>
+      <div class="table-responsive">
+                        <table class="table table-striped" id="datatable_1">
+                            <thead class="table-dark">
+ <tr>
+   <th>Professional Body</th>
+ </tr>
+</thead>
+  <tr>
+    <td></td>
+    <td>
+    
+    <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
+       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+                                            <form method="POST" action="{{ route('members.index', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
+                                            {{ csrf_field() }}
+                                            <input name="_method" type="hidden" value="POST" /></form>
+
+     </td>
+
+  </tr>
+</table>
+
+</div>
+    </div>
+
+    </div>
+    
+
+    
 </div>
 
 @endsection

@@ -126,4 +126,11 @@ class HobbyController extends Controller
         return redirect()->route('hobbies.index')
             ->with('success', 'Hobby deleted successfully');
     }
+
+    public function fetchHobbies()
+    {
+        $hobbies = Hobby::all();
+
+        return response()->json($hobbies);
+    }
 }

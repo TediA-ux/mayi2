@@ -14,7 +14,8 @@ class ProfessionalBodyMembership extends Model
     protected $fillable = [
         'member_id',
         'professional_body_id',
-        'membership_type'
+        'created_by',
+        'updated_by'
     ];
     protected $table = 'professional_body_memberships';
 }

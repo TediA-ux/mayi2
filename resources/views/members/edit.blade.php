@@ -23,7 +23,7 @@
             <h2>Edit Member of Parliament</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('members.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('members.show',Crypt::encrypt($member->id)) }}"> Back</a>
         </div>
     </div>
 </div>

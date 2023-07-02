@@ -58,14 +58,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/edit/constituency/{id}', [DistrictController::class, 'editConstituency']);
     Route::post('/update/district/constituency{id}', [DistrictController::class, 'updateConstituency']);
     Route::resource('hobbies', HobbyController::class);
+    Route::get('/all-hobbies', [HobbyController::class, 'fetchHobbies'])->name('fetch.hobbies');
     Route::resource('committees', CommitteeController::class);
     Route::resource('professions', ProfessionController::class);
     Route::resource('professional-bodies', ProfessionalBodyController::class);
     Route::resource('members', MemberController::class);
     Route::get('/district-constituencies/{id}', [MemberController::class, 'get_district_constituencies']);
-    Route::get('/add/more-details', [MemberController::class, 'add_member_info'])->name("members.addmore");
+    Route::get('/add/more-details/{id}', [MemberController::class, 'add_member_info'])->name("members.addmore");
+    Route::post('/store/member/hobbies', [MemberController::class, 'storeHobbies'])->name("store.hobbies");
+    Route::post('/store/professional/memberships', [MemberController::class, 'storeMemberships'])->name("store.memberships");
+    Route::post('/store/work/experience', [MemberController::class, 'store_work_experience'])->name("store.experience");
+    Route::post('/store/member/education', [MemberController::class, 'store_member_qualifications'])->name("store.education");
     Route::resource('qualifications', QualificationController::class);
     Route::resource('parliaments', ParliamentController::class);
+    
 
 });
 

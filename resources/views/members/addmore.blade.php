@@ -17,12 +17,28 @@
             <h2> Update Info</h2>
         </div>
         <div class="pull-right">
-                <a class="btn btn-danger" href="{{ route('members.index') }}"> Back</a>
+                <a class="btn btn-danger" href="{{ route('members.show',Crypt::encrypt($member->id)) }}"> Back</a>
                 
       
         </div>
     </div>
 </div>
+@if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (count($errors) > 0)
+  <div class="alert alert-danger">
+    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    <ul>
+       @foreach ($errors->all() as $error)
+         <li>{{ $error }}</li>
+       @endforeach
+    </ul>
+  </div>
+@endif
 
 <br>
 <div>
@@ -97,50 +113,57 @@
       switch (option) {
         case 1:
             dynamicContent.innerHTML = `
-            <div id="education-formContainer">
-                <h4>Qualifications/Education</h3>
-                <div class="education-form-container">
-                <input type="text" hidden name="member_id" required>
-                
-                <label >Education:</label>
-                <select name="qualification_id" required>
-                    <option value="">Select</option>
-                    @foreach($qualifications as $qualification)
-                <option value="{{$qualification->id}}">{{$qualification->award_type}}</option>
-              @endforeach
-                </select>
+            <form action="{{ route('store.education') }}" method="POST">
+              @csrf
+                <div id="education-formContainer">
+                    <h4>Qualifications/Education</h3>
+                    <div class="education-form-container form-control">
+                    <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
+                    
+                    <label >Education:</label>
+                    <select class="form-select" name="award_id[]" required>
+                        <option value="">Select</option>
+                        @foreach($qualifications as $qualification)
+                    <option value="{{$qualification->id}}">{{$qualification->award_type}}</option>
+                  @endforeach
+                    </select>
 
-                <label >Institution:</label>
-                  <input type="text" name="institution">
+                    <label >Institution:</label>
+                      <input class="form-control" type="text" name="institution[]">
 
-                  <label >Year Attained:</label>
-                  <input type="number" id="year" name="year" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
+                      <label >Year Attained:</label>
+                      <input class="form-control" type="number" id="year" name="year[]" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
 
-                
+                    
+                    
+                    <div class="add-remove-buttons">
+                        <button class="remove" onclick="removeeducationForm(this)">Remove</button>
+                    </div>
+                    </div>
+                </div>
                 
                 <div class="add-remove-buttons">
-                    <button class="remove" onclick="removeeducationForm(this)">Remove</button>
+                    <button onclick="addEducationForm()">Add</button>
                 </div>
-                </div>
+                <br>
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-danger float-end">Submit</button>
             </div>
-            
-            <div class="add-remove-buttons">
-                <button onclick="addEducationForm()">Add</button>
-            </div>
-            <br>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-danger float-end">Submit</button>
+        </form>
+       </div>
             `;
           break;
         case 2:
           dynamicContent.innerHTML = `
+          <form action="{{ route('store.experience') }}" method="POST">
+              @csrf
               <div id="employment-formContainer">
                   <h4>Employment Record</h3>
-                  <div class="employment-form-container">
-                  <input type="text" hidden name="member_id" required>
+                  <div class="employment-form-container form-group">
+                  <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
                   
                   <label >Profession:</label>
-                  <select name="professtion_id" required>
+                  <select class="form-select" name="profession_id[]" required>
                       <option value="">Select</option>
                       @foreach($professions as $profession)
                   <option value="{{$profession->id}}">{{$profession->name}}</option>
@@ -148,13 +171,13 @@
                   </select>
 
                   <label >Organization:</label>
-            <input type="text" name="organisation">
+            <input type="text" name="organization[]" class="form-control">
 
             <label >From:</label>
-            <input type="number" id="year" name="year_start" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
+            <input class="form-control" type="number" id="year" name="year_from[]" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
 
             <label >To:</label>
-            <input type="number" id="year" name="year_end" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
+            <input class="form-control" type="number" id="year" name="year_to[]" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
                   
                   
                   <div class="add-remove-buttons">
@@ -168,69 +191,79 @@
               </div>
               <br>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-danger float-end">Submit</button>
+          <button type="submit" class="btn btn-danger float-end">Submit</button>
+          </div>
+        </form>
+       </div>
                 `;
 
           break;
         case 3:
             dynamicContent.innerHTML = `
-            <div id="hobby-formContainer">
-                <h4>Special Interests</h3>
-                <div class="hobby-form-container">
-                <input type="text" hidden name="member_id" required>
-                
-                <label >Hobby:</label>
-                <select name="hobby_id" required>
-                    <option value="">Select</option>
-                    @foreach($hobbies as $hobby)
-                <option value="{{$hobby->id}}">{{$hobby->hobbies}}</option>
-              @endforeach
-                </select>
-                
+            <form action="{{ route('store.hobbies') }}" method="POST">
+              @csrf
+              <div id="hobby-formContainer">
+                  <h4>Special Interests</h3>
+                  <div class="hobby-form-container form-group">
+                  <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
+                  
+                  <label >Hobby:</label>
+                  <select class="form-select" name="hobby_id[]" required>
+                      <option value="">Select</option>
+                      @foreach($hobbies as $hobby)
+                  <option value="{{$hobby->id}}">{{$hobby->hobbies}}</option>
+                @endforeach
+                  </select>
+                  
+                  
+                    <div class="add-remove-buttons">
+                        <button class="remove" onclick="removehobbyForm(this)">Remove</button>
+                    </div>
+                    </div>
+                </div>
                 
                 <div class="add-remove-buttons">
-                    <button class="remove" onclick="removehobbyForm(this)">Remove</button>
+                    <button onclick="addHobbyForm()">Add</button>
                 </div>
-                </div>
-            </div>
-            
-            <div class="add-remove-buttons">
-                <button onclick="addHobbyForm()">Add</button>
-            </div>
-            <br>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-danger float-end">Submit</button>
+                <br>
+              <button type="submit" class="btn btn-danger float-end">Submit</button>
+            </form>
+          </div>
                 `;
 
           break;
         case 4:
             dynamicContent.innerHTML = `
-            <div id="formContainer">
-                <h4>Professional Memberships/Associations</h3>
-                <div class="form-container">
-                <input type="text" hidden name="member_id" required>
-                
-                <label >Professional Body:</label>
-                <select name="professional_body_id" required>
-                    <option value="">Select</option>
-                    @foreach($professionalbodies as $professionalbodie)
-                <option value="{{$professionalbodie->id}}">{{$professionalbodie->name}}</option>
-              @endforeach
-                </select>
-                
-                
-                <div class="add-remove-buttons">
-                    <button class="remove" onclick="removeForm(this)">Remove</button>
-                </div>
-                </div>
-            </div>
-            
-            <div class="add-remove-buttons">
-                <button onclick="addForm()">Add</button>
-            </div>
-            <br>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-danger float-end">Submit</button>
+            <form action="{{ route('store.memberships') }}" method="POST">
+              @csrf
+                  <div id="formContainer">
+                      <h4>Professional Memberships/Associations</h3>
+                      <div class="form-container form-group">
+                      <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
+                      
+                      <label >Professional Body:</label>
+                      <select class="form-select" name="professional_body_id[]" required>
+                          <option value="">Select</option>
+                          @foreach($professionalbodies as $professionalbodie)
+                      <option value="{{$professionalbodie->id}}">{{$professionalbodie->name}}</option>
+                    @endforeach
+                      </select>
+                      
+                      
+                      <div class="add-remove-buttons">
+                          <button class="remove" onclick="removeForm(this)">Remove</button>
+                      </div>
+                      </div>
+                  </div>
+                  
+                  <div class="add-remove-buttons">
+                      <button onclick="addForm()">Add</button>
+                  </div>
+                  <br>
+                  <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-danger float-end">Submit</button>
+                </form>
+          </div>
                 `;
 
           break;
@@ -243,28 +276,27 @@
 
   <!-- Education -->
   <script>
+    var qualifications = <?php echo json_encode($qualifications); ?>;
     function addEducationForm() {
       var formContainer = document.getElementById('education-formContainer');
       
       var newForm = document.createElement('div');
-      newForm.className = 'education-form-container';
+      newForm.className = 'education-form-container form-control';
       
       newForm.innerHTML = `
-            <input type="text" hidden name="member_id" required>
+            <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
             
             <label >Award Type:</label>
-            <select name="award_id" required>
+            <select class="form-select" name="award_id[]" required>
                 <option value="">Select</option>
-                    @foreach($qualifications as $qualification)
-                        <option value="{{$qualification->id}}">{{$qualification->award_type}}</option>
-                    @endforeach
+                ${generateQualificationOptions(qualifications)}
             </select>
 
             <label >Institution:</label>
-            <input type="text" name="institution">
+            <input type="text" class="form-control" name="institution[]">
 
             <label >Year Attained:</label>
-            <input type="number" id="year" name="year" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
+            <input type="number" class="form-control" id="year" name="year[]" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
 
                 
                 
@@ -274,6 +306,14 @@
       `;
       
       formContainer.appendChild(newForm);
+    }
+
+    function generateQualificationOptions(qualifications) {
+        var options = '';
+        qualifications.forEach(qualification => {
+            options += `<option value="${qualification.id}">${qualification.award_type}</option>`;
+        });
+        return options;
     }
     
     function removeeducationForm(button) {
@@ -287,31 +327,30 @@
 
       <!-- Employment Record -->
   <script>
+    var professions = <?php echo json_encode($professions); ?>;
     function addEmploymentForm() {
       var formContainer = document.getElementById('employment-formContainer');
       
       var newForm = document.createElement('div');
-      newForm.className = 'employment-form-container';
+      newForm.className = 'employment-form-container form-control';
       
       newForm.innerHTML = `
-            <input type="text" hidden name="member_id" required>
+            <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
 
             <label>Profession:</label>
-            <select name="award_id" required>
+            <select class="form-select" name="profession_id[]" required>
                 <option value="">Select</option>
-                    @foreach($professions as $profession)
-                        <option value="{{$profession->id}}">{{$profession->name}}</option>
-                    @endforeach
+                ${generateEmploymentOptions(professions)}
             </select>
 
             <label >Organization:</label>
-            <input type="text" name="organisation">
+            <input type="text" name="organization[]">
 
             <label >From:</label>
-            <input type="number" id="year" name="year_start" min="1900" max="2099" step="1" placeholder="YYYY" oninput="limitDigits(this, 4)" required>
+            <input class="form-control" type="number" id="year" name="year_from[]" min="1900" max="2099" step="1" placeholder="YYYY" oninput="limitDigits(this, 4)" required>
 
             <label >To:</label>
-            <input type="number" id="year" name="year_end" min="1900" max="2099" step="1" placeholder="YYYY" oninput="limitDigits(this, 4)" required>
+            <input class="form-control" type="number" id="year" name="year_to[]" min="1900" max="2099" step="1" placeholder="YYYY" oninput="limitDigits(this, 4)" required>
 
                 
                 
@@ -321,6 +360,14 @@
       `;
       
       formContainer.appendChild(newForm);
+    }
+
+    function generateEmploymentOptions(professions) {
+        var options = '';
+        professions.forEach(profession => {
+            options += `<option value="${profession.id}">${profession.name}</option>`;
+        });
+        return options;
     }
     
     function removeemploymentForm(button) {
@@ -337,21 +384,20 @@
     <!-- hobby script -->
 
 <script>
+    var hobby = <?php echo json_encode($hobbies); ?>;
     function addHobbyForm() {
       var formContainer = document.getElementById('hobby-formContainer');
       
       var newForm = document.createElement('div');
-      newForm.className = 'hobby-form-container';
+      newForm.className = 'hobby-form-container form-group';
       
       newForm.innerHTML = `
-      <input type="text" hidden name="member_id" required>
+      <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
       
       <label >Hobby:</label>
-      <select name="hobby_id" required>
+      <select class="form-select" name="hobby_id[]" required>
         <option value="">Select</option>
-        @foreach($hobbies as $hobby)
-                <option value="{{$hobby->id}}">{{$hobby->hobbies}}</option>
-              @endforeach
+        ${generateHobbyOptions(hobby)}
       </select>
         
         
@@ -361,6 +407,15 @@
       `;
       
       formContainer.appendChild(newForm);
+    }
+
+    // Generate the hobby options dynamically
+    function generateHobbyOptions(hobby) {
+        var options = '';
+        hobby.forEach(hob => {
+            options += `<option value="${hob.id}">${hob.hobbies}</option>`;
+        });
+        return options;
     }
     
     function removehobbyForm(button) {
@@ -382,14 +437,12 @@
       newForm.className = 'form-container';
       
       newForm.innerHTML = `
-      <input type="text" hidden name="member_id" required>
+      <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
       
       <label >Professional Body:</label>
-      <select name="professional_body_id" required>
+      <select class="form-select" name="professional_body_id[]" required>
         <option value="">Select</option>
-        @foreach($professionalbodies as $professionalbodie)
-                <option value="{{$professionalbodie->id}}">{{$professionalbodie->name}}</option>
-              @endforeach
+        ${generateBodyOptions(bodies)}
       </select>
         
         
@@ -399,6 +452,14 @@
       `;
       
       formContainer.appendChild(newForm);
+    }
+
+    function generateBodyOptions(bodies) {
+        var options = '';
+        bodies.forEach(body => {
+            options += `<option value="${body.id}">${body.name}</option>`;
+        });
+        return options;
     }
     
     function removeForm(button) {
