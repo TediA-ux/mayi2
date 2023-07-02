@@ -136,14 +136,31 @@ class MemberController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $member = Member::find($id);
-        $parties = PoliticalParty::all();
-        $districts = District::all();
-        $hobbies = Hobby::all();
-        $committees = Committee::all();
-        $qualifications = Qualification::all();
+
+        $member = Member::select('member_info.*','member_info.id','districts.name AS district','political_party.name AS party','constituencies.name AS constituency')
+        ->LeftJoin('districts','districts.id','member_info.district_id')
+        ->LeftJoin('political_party','political_party.id','member_info.party_id')
+        ->LeftJoin('constituencies','constituencies.id','member_info.constituency_id')
+        ->where("member_info.id", $id)->first();
+
+        $hobbies = MemberHobby::select('members_hobbies.*','hobbies.hobbies AS name')
+        ->LeftJoin('hobbies','hobbies.id','members_hobbies.hobby_id')
+        ->where("member_id", $id)->get();
+
+        $memberships = ProfessionalBodyMembership::select('professional_body_memberships.*','professional_bodies.name AS body')
+        ->LeftJoin('professional_bodies','professional_bodies.id','professional_body_memberships.professional_body_id')
+        ->where("member_id", $id)->get();
+
+        $qualifications = MemberQualification::select('member_qualifications.*','qualifications.award_type AS award')
+        ->LeftJoin('qualifications','qualifications.id','member_qualifications.award_id')
+        ->where("member_id", $id)->get();
+
+        $jobs = WorkExperience::select('mp_work_experience.*','profession.name AS work')
+        ->LeftJoin('profession','profession.id','mp_work_experience.profession_id')
+        ->where("member_id", $id)->get();
+      
         
-        return view('members.show', compact('member','qualifications','parties','districts','committees','hobbies','user_role', 'log_user', 'roles'))->with('i');
+        return view('members.show', compact('member','qualifications','jobs','memberships','hobbies','user_role', 'log_user', 'roles'))->with('i');
     }
 
     /**

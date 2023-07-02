@@ -149,17 +149,18 @@
         <div class="form-group">
             <div class="flex-container">
             <strong>District:</strong>
-            {{ $member->name }}
+            {{ $member->district }}
          </div>
             
         </div>
+</div>
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
         <div class="flex-container">
         <strong>Constituency:</strong>
-            {{ $member->name }}
+            {{ $member->constituency }}
          </div>
             
         </div>
@@ -168,11 +169,12 @@
         <div class="form-group">
         <div class="flex-container">
         <strong>Political Party:</strong>
-            {{ $member->name }}
+            {{ $member->party }}
          </div>
            
         </div>
     </div>
+</div>
     <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6 mb-2">
         <div class="form-group">
@@ -210,10 +212,11 @@
    <th >Action</th>
  </tr>
 </thead>
+@foreach ($qualifications as $key => $qualification)
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>{{ $qualification->year }}</td>
+    <td>{{ $qualification->award }}</td>
+    <td>{{ $qualification->institution }}</td>
     <td>
     
     <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
@@ -225,6 +228,7 @@
      </td>
 
   </tr>
+  @endforeach
 </table>
 
 </div>
@@ -242,12 +246,15 @@
    <th>Organization</th>
    <th>From</th>
    <th>To</th>
+   <th >Action</th>
  </tr>
 </thead>
+@foreach ($jobs as $key => $job)
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>{{ $job->work }}</td>
+    <td>{{ $job->organization }}</td>
+    <td>{{ $job->year_from }}</td>
+    <td>{{ $job->year_to }}</td>
     <td>
     
     <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
@@ -259,6 +266,7 @@
      </td>
 
   </tr>
+  @endforeach
 </table>
 
 </div>
@@ -271,12 +279,13 @@
     <div class="three-sections" style="display:flex">
         <div class="item">
       <!-- Default dynamic content for the first option -->
-      <h4>Parliament</h4>
+      <h4>Parliaments</h4>
       <div class="table-responsive">
                         <table class="table table-striped" id="datatable_1">
                             <thead class="table-dark">
  <tr>
    <th>Types</th>
+   <th>Action</th>
  
  </tr>
 </thead>
@@ -306,10 +315,12 @@
                             <thead class="table-dark">
  <tr>
    <th>Hobbies</th>
+   <th>Action</th>
  </tr>
 </thead>
+@foreach ($hobbies as $key => $hobby)
   <tr>
-    <td></td>
+    <td>{{ $hobby->name}}</td>
     <td>
     
     <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
@@ -321,6 +332,7 @@
      </td>
 
   </tr>
+  @endforeach
 </table>
 
 </div>
@@ -334,10 +346,12 @@
                             <thead class="table-dark">
  <tr>
    <th>Professional Body</th>
+   <th>Action</th>
  </tr>
 </thead>
+@foreach ($memberships as $key => $membership)
   <tr>
-    <td></td>
+    <td>{{ $membership->body}}</td>
     <td>
     
     <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
@@ -349,6 +363,7 @@
      </td>
 
   </tr>
+  @endforeach
 </table>
 
 </div>
