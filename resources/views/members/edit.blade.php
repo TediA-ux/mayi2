@@ -75,8 +75,7 @@
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>DOB:</strong>
-            <input class="form-control"  min=<?php
-            echo date('Y-m-d'); ?> type="datetime-local" name="dob" value="" id="datetime-local-input">
+            <input class="form-control" type="date" id="date-input" name="dob">
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
@@ -138,6 +137,11 @@
         <div class="form-group">
             <strong>Photo:</strong><br>
             <input type="file" name="photo" class="form-group" placeholder="image">
+            @if (isset($member->photo))
+            <img width="250px" src="{{ asset('identification_photos/'. $member->photo) }}" alt="">
+            @else
+            no.image.png
+        @endif
         </div>
     </div>
 </div>

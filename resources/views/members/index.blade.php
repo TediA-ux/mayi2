@@ -44,7 +44,7 @@
    <th>Surname</th>
    <th>Other Names</th>
    <th>Email</th>
-   <th>DOB</th>
+   <th>Photo</th>
    <th>Gender</th>
    <th>Religion</th>
    <th >Action</th>
@@ -56,7 +56,7 @@
     <td>{{ $member->surname }}</td>
     <td>{{ $member->other_names }}</td>
     <td>{{ $member->email }}</td>
-    <td>{{ $member->dob }}</td>
+    <td><img src="{{ asset('identification_photos/'.$member->photo) }}" alt="" /></td>
     <td>{{ $member->gender }}</td>
     <td>{{ $member->religion }}</td>
     <td>

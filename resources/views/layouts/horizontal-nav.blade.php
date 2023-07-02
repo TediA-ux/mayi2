@@ -276,7 +276,7 @@
                                 <a class="dropdown-item" href="/parties">Political Parties</a>
                             </li><!--end /li-->
                             <li>
-                                <a class="dropdown-item" href="/members">Members</a>
+                                <a class="dropdown-item" href="/members">Cabinet Members</a>
                             </li><!--end /li-->
                             
                                            

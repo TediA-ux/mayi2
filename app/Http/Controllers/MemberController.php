@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Image; 
 use App\Models\User;
 use App\Models\Member;
 use App\Models\District;
@@ -12,6 +14,8 @@ use App\Models\Constituency;
 use App\Models\Qualification;
 use App\Models\PoliticalParty;
 use App\Models\ProfessionalBody;
+use App\Models\Profession;
+use Carbon\Carbon;
 use DB;
 use Hash;
 use Validator;
@@ -72,6 +76,7 @@ class MemberController extends Controller
             'email'=> 'required',
             'dob' => 'required',
             'religion' => 'required',
+            'photo' => 'required',
             'marital_status' => 'required',
             'phone_number' => 'required',
             'postal_address' => 'required',
@@ -79,9 +84,30 @@ class MemberController extends Controller
             'gender' => 'required',
             'district_id' => 'required',
             'party_id' => 'required',
-            'constituency_id' => 'required'
+            'constituency_id' => 'required',
+            'photo' => 'required'
             
         ]);
+
+        if ($request->hasFile('photo')) {
+            // Get File Name With Extension
+            $filenameWithExt = $request->file('photo')->getClientOriginalName();
+            // Get just file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //Get just Extension
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // upload image
+            // $path = $request->file('companylogo')->move('public/company_images', $fileNameToStore);
+            $path = $request->file('photo')->move('identification_photos', $fileNameToStore);
+
+            //$request->image->move(public_path('cover_images'), $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+        $input['photo'] = $fileNameToStore;
 
         $input = ($request->all()+['created_by' => Auth::User()->id]);
 
@@ -139,22 +165,42 @@ class MemberController extends Controller
     {
         
         $this->validate($request, [
-            'title' => 'required',
-            'surname' => 'required',
-            'other_names' => 'required',
-            'email'=> 'required',
-            'dob' => 'required',
-            'religion' => 'required',
-            'marital_status' => 'required',
-            'phone_number' => 'required',
-            'postal_address' => 'required',
-            'landline' => 'required',
-            'gender' => 'required',
-            'district_id' => 'required',
-            'party_id' => 'required',
-            'constituency_id' => 'required'
+            // 'title' => 'required',
+            // 'surname' => 'required',
+            // 'other_names' => 'required',
+            // 'email'=> 'required',
+            // 'dob' => 'required',
+            // 'religion' => 'required',
+            // 'marital_status' => 'required',
+            // 'phone_number' => 'required',
+            // 'postal_address' => 'required',
+            // 'landline' => 'required',
+            // 'gender' => 'required',
+            // 'district_id' => 'required',
+            // 'party_id' => 'required',
+            // 'constituency_id' => 'required'
 
         ]);
+
+        if ($request->hasFile('photo')) {
+            // Get File Name With Extension
+            $filenameWithExt = $request->file('photo')->getClientOriginalName();
+            // Get just file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //Get just Extension
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            //filename to store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // upload image
+            // $path = $request->file('companylogo')->move('public/company_images', $fileNameToStore);
+            $path = $request->file('photo')->move('identification_photos', $fileNameToStore);
+
+            //$request->image->move(public_path('cover_images'), $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+        $input['photo'] = $fileNameToStore;
 
         $input = $request->all();
 
@@ -194,7 +240,8 @@ class MemberController extends Controller
         $hobbies = Hobby::all();
         $committees = Committee::all();
         $qualifications = Qualification::all();
+        $professions = Profession::all();
         $professionalbodies = ProfessionalBody::all();
-        return view('members.addmore', compact('hobbies','professionalbodies','committees','qualifications','user_role', 'log_user', 'roles'));
+        return view('members.addmore', compact('hobbies','professions','professionalbodies','committees','qualifications','user_role', 'log_user', 'roles'));
     }
 }

@@ -30,20 +30,6 @@
 <br>
 <div>
 <div class = "body">
-<div id="sidebar">
-    <div id="options">
-      <ul>
-        <li><a href="#" onclick="changeContent(1)">Qualifications/Education</a></li>
-        <li><a href="#" onclick="changeContent(2)">Employment Record</a></li>
-        <li><a href="#" onclick="changeContent(3)">Special Interests</a></li>
-        <li><a href="#" onclick="changeContent(4)">Next of kin</a></li>
-        <!-- <li><a href="#" onclick="changeContent(3)">Option 3</a></li>
-        <li><a href="#" onclick="changeContent(4)">Option 4</a></li>
-        <li><a href="#" onclick="changeContent(5)">Option 5</a></li>
-        <li><a href="#" onclick="changeContent(6)">Option 6</a></li> -->
-      </ul>
-    </div>
-  </div>
 
   <div id="content">
     <div id="bio-data">
