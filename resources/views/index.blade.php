@@ -88,7 +88,7 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-12 ms-auto align-self-center">
-                                    <h3 class="text-dark my-0 font-22 fw-bold"></h3>
+                                    <h3 class="text-dark my-0 font-22 fw-bold">{{ $usersCount }}</h3>
                                     <p class="text-muted mb-0 fw-semibold">Users</p>
                                 </div>
                                 <!--end col-->
@@ -114,8 +114,8 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-12 ms-auto align-self-center">
-                                    <h3 class="text-dark my-0 font-22 fw-bold"></h3>
-                                    <p class="text-muted mb-0 fw-semibold">Total Transactions</p>
+                                    <h3 class="text-dark my-0 font-22 fw-bold">{{ $membersCount }}</h3>
+                                    <p class="text-muted mb-0 fw-semibold">Total MPs</p>
                                 </div>
                                 <!--end col-->
                             </div>
@@ -139,8 +139,8 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-12 ms-auto align-self-center">
-                                    <h3 class="text-dark my-0 font-22 fw-bold"></h3>
-                                    <p class="text-muted mb-0 fw-semibold">Total Amount Given</p>
+                                    <h3 class="text-dark my-0 font-22 fw-bold">{{ $districtsSum }}</h3>
+                                    <p class="text-muted mb-0 fw-semibold">Total Districts</p>
                                 </div>
                                 <!--end col-->
                             </div>
@@ -161,7 +161,7 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-auto ms-auto align-self-center">
-                                    <span class="badge badge-soft-success px-2 py-1 font-11">Successful</span>
+                                    <span class="badge badge-soft-success px-2 py-1 font-11"></span>
                                 </div>
                                 <!--end col-->
                                 <!--end col-->
@@ -173,8 +173,8 @@
                                 </div>
                                 <!--end col-->
                                 <div class="col-12 ms-auto align-self-center">
-                                    <h3 class="text-dark my-0 font-22 fw-bold"></h3>
-                                    <p class="text-muted mb-0 fw-semibold">Total Amount Topped up</p>
+                                    <h3 class="text-dark my-0 font-22 fw-bold">{{ $constituenciesSum }}</h3>
+                                    <p class="text-muted mb-0 fw-semibold">Total Constituencies</p>
                                 </div>
                                 <!--end col-->
                             </div>
@@ -193,9 +193,22 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h4 class="card-title">parliament</h4>
+                                    <h4 class="card-title">Percentage of Male and Female MPs</h4>
                                 </div>
                                 <!--end col-->
+                                <div class="container">
+   
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                        </div>
+                                        <div class="panel-body" align="center">
+                                        <div id="pie_chart" style="width:750px; height:450px;">
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                    
+                                    </div>
 
                                 <!--end col-->
                             </div>
@@ -203,8 +216,11 @@
                         </div>
                         <!--end card-header-->
                         <div class="card-body">
-                            <div style="height: 400px" class="">
-                                <canvas id="lineChart"></canvas>
+                            <div  class="">
+                                <canvas ></canvas>
+
+                                
+                                
 
                             </div>
                         </div>
@@ -222,8 +238,32 @@
 
     @endsection
     @section('script')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+
+    </style>
+    <script type="text/javascript">
+    var analytics = <?php echo $gender; ?>
+
+    google.charts.load('current', {'packages':['corechart']});
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(analytics);
+        var options = {
+            legend: 'none', // Hide the legend
+            slices: {
+                0: { color: '#3490dc' }, // Color for Male
+                1: { color: '#9561e2' }  // Color for Female
+            }
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+        chart.draw(data, options);
+    }
+</script>
 
 <script type="text/javascript">
 

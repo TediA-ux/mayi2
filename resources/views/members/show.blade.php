@@ -37,8 +37,15 @@
 <div class = "body">
 
   <div id="content">
+    
     <div id="bio-data">
+      <div style="display:flex;align-items: center;">
+         <div class="profile-img">
+      <img src="path/to/profile-image.jpg" alt="Profile Image">
+    </div>
         <h3>Summary</h3>
+      </div>
+   <br>
     <div class="row ">
     <div class="col-xs-6 col-sm-6 col-md-6">
         <div class="form-group faint-border-bottom pb-1">

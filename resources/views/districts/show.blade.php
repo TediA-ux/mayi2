@@ -110,7 +110,7 @@
                                     <div class="card-body">
                                         @can('create-constituency')
                                         <a class="btn btn-sm btn-danger"
-                                            href="{{ url('/add/district/constituency/' . $district->id) }}"><b>Add Constituency</b></a>
+                                            href="/add/district/constituency/<?php echo Crypt::encrypt($district->id) ?>"><b>Add Constituency</b></a>
                                             @endcan
                                         <div class="table-responsive">
                                             <table class="table table-striped" id="datatable_1">

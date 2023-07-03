@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/add/district/constituency/{id}', [DistrictController::class, 'addConstituency']);
     Route::post('/post/district/constituency', [DistrictController::class, 'postConstituency']);
     Route::get('/edit/constituency/{id}', [DistrictController::class, 'editConstituency']);
-    Route::post('/update/district/constituency{id}', [DistrictController::class, 'updateConstituency']);
+    Route::post('/update/district/constituency/{id}', [DistrictController::class, 'updateConstituency'])->name("update.constituency");
     Route::resource('hobbies', HobbyController::class);
     Route::get('/all-hobbies', [HobbyController::class, 'fetchHobbies'])->name('fetch.hobbies');
     Route::resource('committees', CommitteeController::class);
