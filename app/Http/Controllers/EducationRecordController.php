@@ -99,6 +99,6 @@ class EducationRecordController extends Controller
     {
         $record = MemberQualification::find($id)->delete();
 
-        return redirect()->back()->with('success', 'Record deleted successfully.');
+        return redirect()->back()->with('success', 'Education record deleted successfully.');
     }
 }

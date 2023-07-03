@@ -122,7 +122,7 @@ class ProfessionalBodyController extends Controller
         
         ProfessionalBody::find($id)->delete();
          return redirect()->route('professional-bodies.index')
-             ->with('success', 'Professiona lBody deleted successfully');
+             ->with('success', 'Professional body deleted successfully');
      }
  }
  

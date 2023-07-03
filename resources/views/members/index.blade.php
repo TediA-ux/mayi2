@@ -62,10 +62,11 @@
     <td>
     <a class="btn btn-sm btn-secondary" href="{{ route('members.show',Crypt::encrypt($member->id)) }}"><i class="fas fa-list-ul"></i></a>
     
-       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
-                                            <form method="POST" action="{{ route('members.index', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
-                                            {{ csrf_field() }}
-                                            <input name="_method" type="hidden" value="POST" /></form>
+    <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+    <form method="POST" action="{{ route('members.destroy', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
+    @csrf
+    @method('delete')
+</form>
 
      </td>
 

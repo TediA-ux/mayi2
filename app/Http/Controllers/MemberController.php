@@ -244,6 +244,11 @@ class MemberController extends Controller
     {
        
         Member::find($id)->delete();
+        MemberHobby::where('member_id',$id)->delete();
+        MemberQualification::where('member_id',$id)->delete();
+        ProfessionalBodyMembership::where('member_id',$id)->delete();
+        MemberParliament::where('member_id',$id)->delete();
+        WorkExperience::where('member_id',$id)->delete();
         return redirect()->route('members.index')
             ->with('success', 'Member deleted successfully');
     }

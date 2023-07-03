@@ -86,7 +86,7 @@ class MemberHobbyController extends Controller
      */
     public function destroy(string $id)
     {
-        ProfessionalBodyMembership::find($id)->delete();
+        MemberHobby::find($id)->delete();
         return redirect()->back()->with('success', 'Hobby deleted successfully.');
     }
 }

@@ -92,6 +92,6 @@ class MembershipController extends Controller
     public function destroy($id)
     {
         ProfessionalBodyMembership::find($id)->delete();
-        return redirect()->back()->with('success', 'Member work experience deleted successfully.');
+        return redirect()->back()->with('success', 'Membership deleted successfully.');
     }
 }
