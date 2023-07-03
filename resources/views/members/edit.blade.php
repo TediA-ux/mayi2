@@ -20,7 +20,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Member of Parliament</h2>
+            <h2>Edit MP</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('members.show',Crypt::encrypt($member->id)) }}"> Back</a>
@@ -81,7 +81,18 @@
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>Religion:</strong>
-            {!! Form::text('religion', null, array('placeholder' => 'Enter Religion','class' => 'form-control')) !!}
+            <select class="form-select input-sm" name="religion">
+             <option value="{{ $member->religion}}">{{ $member->religion}}</option>
+             <option value="Catholic">Catholic</option>
+             <option value="Anglican">Anglican</option>
+             <option value="Pentecostal">Pentecostal</option>
+             <option value="Muslim">Muslim</option>
+             <option value="Born Again">Born Again</option>
+             <option value="Seventh Day Adventist">Seventh Day Adventist</option>
+             <option value="Orthodox">Orthodox</option>
+             <option value="Other">Other</option>
+
+            </select>
         </div>
     </div>
 </div>
@@ -90,7 +101,7 @@
         <div class="form-group">
             <strong>Gender:</strong>
             <select class="form-select input-sm" name="gender">
-             <option value="">--Select Gender --</option>
+             <option value="{{ $member->gender}}">{{ $member->gender}}</option>
              <option value="Male">Male</option>
              <option value="Female">Female</option>
 
@@ -123,12 +134,9 @@
         <div class="form-group">
             <strong>Marital Status:</strong>
             <select class="form-select input-sm" name="marital_status">
-             <option value="">--Select Status --</option>
+             <option value="{{ $member->marital_status}}">{{ $member->marital_status}}</option>
              <option value="Married">Married</option>
              <option value="Single">Single</option>
-             <option value="Divorced">Divorced</option>
-             <option value="Separated">Separated</option>
-             <option value="Widowed">Widowed</option>
 
             </select>
         </div>

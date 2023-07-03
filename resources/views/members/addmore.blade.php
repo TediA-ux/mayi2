@@ -50,48 +50,51 @@
         <li><a href="#" onclick="changeContent(2)">Employment Record</a></li>
         <li><a href="#" onclick="changeContent(3)">Special Interests</a></li>
         <li><a href="#" onclick="changeContent(4)">Professional Memberships</a></li>
+        <li><a href="#" onclick="changeContent(5)">Parliament Responsibilities</a></li>
       </ul>
     </div>
   </div>
 
       <div id="dynamic-content">
       <!-- Default dynamic content for the first option -->
-      <div id="education-formContainer">
-                <h4>Qualifications/Education</h3>
-                <div class="education-form-container">
-                <input type="text" hidden name="member_id" required>
-                
-                <label >Education:</label>
-                <select name="qualification_id" required>
-                    <option value="">Select</option>
-                    @foreach($qualifications as $qualification)
-                <option value="{{$qualification->id}}">{{$qualification->award_type}}</option>
-              @endforeach
-                </select>
+      <form action="{{ route('store.education') }}" method="POST">
+              @csrf
+                <div id="education-formContainer">
+                    <h4>Qualifications/Education</h3>
+                    <div class="education-form-container form-control">
+                    <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
+                    
+                    <label >Education:</label>
+                    <select class="form-select" name="award_id[]" required>
+                        <option value="">Select</option>
+                        @foreach($qualifications as $qualification)
+                    <option value="{{$qualification->id}}">{{$qualification->award_type}}</option>
+                  @endforeach
+                    </select>
 
-                <label >Institution:</label>
-                  <input type="text" name="institution">
+                    <label >Institution:</label>
+                      <input class="form-control" type="text" name="institution[]">
 
-                  <label >Year Attained:</label>
-                  <input type="number" id="year" name="year" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
+                      <label >Year Attained:</label>
+                      <input class="form-control" type="number" id="year" name="year[]" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
 
-                
+                    
+                    
+                    <div class="add-remove-buttons">
+                        <button class="remove" onclick="removeeducationForm(this)">Remove</button>
+                    </div>
+                    </div>
+                </div>
                 
                 <div class="add-remove-buttons">
-                    <button class="remove" onclick="removeeducationForm(this)">Remove</button>
+                    <button onclick="addEducationForm()">Add</button>
                 </div>
-                </div>
+                <br>
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            <button type="submit" class="btn btn-danger float-end">Submit</button>
             </div>
-            
-            <div class="add-remove-buttons">
-                <button onclick="addEducationForm()">Add</button>
-            </div>
-            
-            <br>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        <button type="submit" class="btn btn-danger float-end">Submit</button>
-    </div>
-    </div>
+        </form>
+      
 </div>
 
 @endsection
@@ -208,12 +211,7 @@
                   <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
                   
                   <label >Hobby:</label>
-                  <select class="form-select" name="hobby_id[]" required>
-                      <option value="">Select</option>
-                      @foreach($hobbies as $hobby)
-                  <option value="{{$hobby->id}}">{{$hobby->hobbies}}</option>
-                @endforeach
-                  </select>
+                <input type="text" name="hobby[]" class="form-control" placeholder ="Reading" >
                   
                   
                     <div class="add-remove-buttons">
@@ -263,6 +261,44 @@
                   <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-danger float-end">Submit</button>
                 </form>
+          </div>
+                `;
+
+          break;
+
+        case 5:
+            dynamicContent.innerHTML = `
+            <form action="{{ route('store.parliaments') }}" method="POST">
+              @csrf
+              <div id="parliament-formContainer">
+                  <h4>Parliament Type</h3>
+                  <div class="parliament-form-container form-group">
+                  <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
+                  
+                  <label >Parliament:</label>
+                  <select class="form-select" name="parliament_id[]" required>
+                      <option value="">Select</option>
+                      @foreach($parliaments as $parliament)
+                  <option value="{{$parliament->id}}">{{$parliament->type}}</option>
+                @endforeach
+                  </select>
+
+                <label >Responsibility:</label>
+                <input type="text" name="responsibility[]" class="form-control" placeholder ="Chairman..." >
+                  
+                  
+                    <div class="add-remove-buttons">
+                        <button class="remove" onclick="removeparliamentForm(this)">Remove</button>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="add-remove-buttons">
+                    <button type="button" onclick="addParliamentForm()">Add</button>
+                </div>
+                <br>
+              <button type="submit" class="btn btn-danger float-end">Submit</button>
+            </form>
           </div>
                 `;
 
@@ -395,10 +431,7 @@
       <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
       
       <label >Hobby:</label>
-      <select class="form-select" name="hobby_id[]" required>
-        <option value="">Select</option>
-        ${generateHobbyOptions(hobby)}
-      </select>
+      <input type="text" name="hobby[]" class="form-control" placeholder ="Reading" >
         
         
         <div class="add-remove-buttons">
@@ -465,6 +498,54 @@
     function removeForm(button) {
       var formContainer = document.getElementById('formContainer');
       var form = button.closest('.form-container');
+      
+      formContainer.removeChild(form);
+    }
+  </script>
+
+      <!-- parliament script -->
+
+<script>
+    var parliaments = <?php echo json_encode($parliaments); ?>;
+    function addParliamentForm() {
+      var formContainer = document.getElementById('parliament-formContainer');
+      
+      var newForm = document.createElement('div');
+      newForm.className = 'parliament-form-container form-group';
+      
+      newForm.innerHTML = `
+      <input type="text" value="{{$member->id}}" hidden name="member_id[]" required>
+      
+      <label >Parliament:</label>
+      <select class="form-select" name="parliament_id[]" required>
+        <option value="">Select</option>
+        ${generateParliamentOptions(parliaments)}
+      </select>
+
+      <label >Responsibility:</label>
+                <input type="text" name="responsibility[]" class="form-control" placeholder ="Chairman..." required>
+        
+        
+        <div class="add-remove-buttons">
+          <button class="remove" onclick="removeparliamentForm(this)">Remove</button>
+        </div>
+      `;
+      
+      formContainer.appendChild(newForm);
+    }
+
+    // Generate the generateParliamentOptions options dynamically
+    function generateParliamentOptions(parliaments) {
+        var options = '';
+        parliaments.forEach(parliament => {
+            options += `<option value="${parliament.id}">${parliament.type}</option>`;
+        });
+        return options;
+    }
+    
+    function removeparliamentForm(button) {
+      var formContainer = document.getElementById('parliament-formContainer');
+      var form = button.closest('.parliament-form-container');
       
       formContainer.removeChild(form);
     }

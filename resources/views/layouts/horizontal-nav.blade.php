@@ -33,11 +33,11 @@
                 </div>
             </li>                      
 
-            <li class="notification-list">
+            <!-- <li class="notification-list">
                 <a class="nav-link arrow-none nav-icon offcanvas-btn" href="#" data-bs-toggle="offcanvas" data-bs-target="#Appearance" role="button" aria-controls="Rightbar">
                     <i class="ti ti-settings ti-spin"></i>
                 </a>
-            </li>                       
+            </li>                        -->
             
             <li class="dropdown notification-list">
                 <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
@@ -256,7 +256,7 @@
                         
                     </li><!--end nav-item-->    
                     <li class="nav-item dropdown parent-menu-item">
-                        <a class="nav-link " href="/dashboard" id="navbarDashboards" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                        <a class="nav-link " href="/dashboard" id="navbarDashboards"  aria-haspopup="true" aria-expanded="false" data-display="static">
                             <span><i class="ti ti-smart-home menu-icon"></i>Dashboard</span>
                         </a>
                         <!--  -->
@@ -276,7 +276,7 @@
                                 <a class="dropdown-item" href="/parties">Political Parties</a>
                             </li><!--end /li-->
                             <li>
-                                <a class="dropdown-item" href="/members">Cabinet Members</a>
+                                <a class="dropdown-item" href="/members">MPs</a>
                             </li><!--end /li-->
                             
                                            
@@ -287,7 +287,7 @@
                     @can('view-districts')
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarUI_Kit" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><i class="ti ti-planet menu-icon"></i>Territorial</span>
+                            <span><i class="ti ti-planet menu-icon"></i>Constituencies</span>
                         </a>
                         <ul class="dropdown-menu animate slideIn" aria-labelledby="navbarApps"> 
                        
@@ -295,9 +295,9 @@
                                     <a class="dropdown-item" href="/districts">Districts</a>
                                 </li><!--end nav-item-->
 
-                                <li>
+                                <!-- <li>
                                 <a class="dropdown-item" href="/constituencies">View Constituencies</a>
-                            </li><!--end nav-item-->
+                            </li>end nav-item -->
                             
                         </ul><!--end submenu-->
                     </li><!--end nav-item-->
@@ -306,7 +306,7 @@
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarPages" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><i class="ti ti-file-diff menu-icon"></i>Proficiencies</span>
+                            <span><i class="ti ti-file-diff menu-icon"></i>Education</span>
                         </a>
                             <ul class="dropdown-menu  animate slideIn" aria-labelledby="navbarPages">
                             <li>
@@ -322,11 +322,11 @@
                                 <a class="dropdown-item" href="/professional-bodies">Professional Bodies</a>
                             </li><!--end /li-->
                             @endcan
-                            @can('view-hobbies')
+                            <!-- @can('view-hobbies')
                             <li">
                                     <a class="dropdown-item" href="/hobbies">Hobbies</a>
-                            </li><!--end nav-item-->
-                            @endcan
+                            </li>
+                            @endcan -->
                             </ul><!--end nav-->
                     </li><!--end nav-item-->
                   

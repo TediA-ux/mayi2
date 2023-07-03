@@ -18,7 +18,9 @@ use App\Models\ProfessionalBody;
 use App\Models\WorkExperience;
 use App\Models\ProfessionalBodyMembership;
 use App\Models\Profession;
+use App\Models\Parliament;
 use App\Models\MemberQualification;
+use App\Models\MemberParliament;
 use Carbon\Carbon;
 use DB;
 use Hash;
@@ -137,15 +139,18 @@ class MemberController extends Controller
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
 
+        $ptypes = MemberParliament::select('member_parliaments.*','parliaments.type AS type')
+        ->LeftJoin('parliaments','parliaments.id','member_parliaments.parliament_id')
+        ->where("member_id", $id)->get();
+        
+
         $member = Member::select('member_info.*','member_info.id','districts.name AS district','political_party.name AS party','constituencies.name AS constituency')
         ->LeftJoin('districts','districts.id','member_info.district_id')
         ->LeftJoin('political_party','political_party.id','member_info.party_id')
         ->LeftJoin('constituencies','constituencies.id','member_info.constituency_id')
         ->where("member_info.id", $id)->first();
 
-        $hobbies = MemberHobby::select('members_hobbies.*','hobbies.hobbies AS name')
-        ->LeftJoin('hobbies','hobbies.id','members_hobbies.hobby_id')
-        ->where("member_id", $id)->get();
+        $hobbies = MemberHobby::where("member_id", $id)->get();
 
         $memberships = ProfessionalBodyMembership::select('professional_body_memberships.*','professional_bodies.name AS body')
         ->LeftJoin('professional_bodies','professional_bodies.id','professional_body_memberships.professional_body_id')
@@ -160,7 +165,7 @@ class MemberController extends Controller
         ->where("member_id", $id)->get();
       
         
-        return view('members.show', compact('member','qualifications','jobs','memberships','hobbies','user_role', 'log_user', 'roles'))->with('i');
+        return view('members.show', compact('member','ptypes','qualifications','jobs','memberships','hobbies','user_role', 'log_user', 'roles'))->with('i');
     }
 
     /**
@@ -263,19 +268,20 @@ class MemberController extends Controller
         $committees = Committee::all();
         $qualifications = Qualification::all();
         $professions = Profession::all();
+        $parliaments = Parliament::all();
         $professionalbodies = ProfessionalBody::all();
-        return view('members.addmore', compact('hobbies','member','professions','professionalbodies','committees','qualifications','user_role', 'log_user', 'roles'));
+        return view('members.addmore', compact('hobbies','parliaments','member','professions','professionalbodies','committees','qualifications','user_role', 'log_user', 'roles'));
     }
 
     public function storeHobbies(Request $request)
     {   
         $this->validate($request, [
-            'hobby_id' => 'required',
+            'hobby' => 'required',
 
         ]);
 
         $memberIds = $request->input('member_id');
-        $hobbyIds = $request->input('hobby_id');
+        $hobby = $request->input('hobby');
 
         $data = [];
 
@@ -283,7 +289,7 @@ class MemberController extends Controller
         foreach ($memberIds as $index => $memberId) {
             $data[] = [
                 'member_id' => $memberId,
-                'hobby_id' => $hobbyIds[$index],
+                'hobby' => $hobby[$index],
                 'created_by'=> Auth::User()->id
             ];
         }
@@ -398,4 +404,37 @@ class MemberController extends Controller
             return redirect()->back()->with('success', 'Member Qualifications saved successfully.');
 
     }
+
+    public function store_member_parliaments(Request $request)
+    {   
+        $this->validate($request, [
+            'parliament_id' => 'required',
+            'responsibility' => 'required'
+
+        ]);
+
+        $memberIds = $request->input('member_id');
+        $parliamentIds = $request->input('parliament_id');
+        $responsibilities = $request->input('responsibility');
+
+        $data = [];
+
+        // Combine member IDs and hobby IDs into an array
+        foreach ($memberIds as $index => $memberId) {
+            $data[] = [
+                'member_id' => $memberId,
+                'parliament_id' => $parliamentIds[$index],
+                'responsibility' => $responsibilities[$index],
+                'created_by'=> Auth::User()->id
+            ];
+        }
+
+        // Store the data in the database
+        MemberParliament::insert($data);
+
+        // Additional code as per your requirements
+
+        return redirect()->back()->with('success', 'Member Qualifications saved successfully.');
+
+}
 }

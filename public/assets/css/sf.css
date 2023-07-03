@@ -118,7 +118,7 @@ body.dark-sidebar .left-sidebar .brand {
 
   #bio-data, .item {
     padding: 20px;
-    background-color: #f7f4f4;
+    background-color: white;
     /* border: 1px solid rgb(0, 157, 255); */
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -127,6 +127,10 @@ body.dark-sidebar .left-sidebar .brand {
   .item {
     margin-right: 10px; /* Adjust the value to set the desired horizontal space */
     flex: 1;
+  }
+
+  .faint-border-bottom {
+    border-bottom: 1px solid #ddd; /* Change the color or other border properties as desired */
   }
 
   #dynamic-content {
@@ -160,7 +164,7 @@ body.dark-sidebar .left-sidebar .brand {
   }
 
   /* dynamic forms*/
-  .form-container, .hobby-form-container, .education-form-container, .employment-form-container{
+  .form-container, .hobby-form-container, .education-form-container, .employment-form-container, .parliament-form-container{
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
@@ -168,18 +172,18 @@ body.dark-sidebar .left-sidebar .brand {
     margin-bottom: 20px;
   }
   
-  .form-container:last-child, .hobby-form-container:last-child, .education-form-container:last-child, .employment-form-container:last-child {
+  .form-container:last-child, .hobby-form-container:last-child, .education-form-container:last-child, .employment-form-container:last-child, .parliament-form-container:last-child {
     margin-bottom: 0;
   }
   
-  .form-container label, .hobby-form-container label, .education-form-container label, .employment-form-container label {
+  .form-container label, .hobby-form-container label, .education-form-container label, .employment-form-container label , .parliament-form-container label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
   }
   
-  .form-container input[type="text"],.hobby-form-container input[type="text"],.employment-form-container input[type="text"],.employment-form-container input[type="number"],.education-form-container input[type="text"],.education-form-container input[type="number"],
-  .form-container select, .hobby-form-container select , .education-form-container select, .employment-form-container select{
+  .form-container input[type="text"],.hobby-form-container input[type="text"],.employment-form-container input[type="text"],.parliament-form-container input[type="text"],.employment-form-container input[type="number"],.education-form-container input[type="text"],.education-form-container input[type="number"],
+  .form-container select, .hobby-form-container select , .education-form-container select, .employment-form-container select, .parliament-form-container select{
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -189,7 +193,7 @@ body.dark-sidebar .left-sidebar .brand {
     margin-bottom: 10px;
   }
   
-  .form-container select, .hobby-form-container select, .education-form-container select, .employment-form-container select{
+  .form-container select, .hobby-form-container select, .education-form-container select, .employment-form-container select, .parliament-form-container select{
     height: 36px;
   }
   

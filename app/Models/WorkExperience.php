@@ -14,6 +14,7 @@ class WorkExperience extends Model
     protected $fillable = [
         'member_id',
         'organization',
+        'profession_id',
         'year_from',
         'year_to',
         'created_by',
@@ -21,5 +22,4 @@ class WorkExperience extends Model
     ];
 
     protected $table = 'mp_work_experience';
-    public $timestamps = true;
 }

@@ -16,6 +16,8 @@ use App\Http\Controllers\ProfessionalBodyController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ParliamentController;
+use App\Http\Controllers\EducationRecordController;
+use App\Http\Controllers\WorkExperienceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,11 +71,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/store/professional/memberships', [MemberController::class, 'storeMemberships'])->name("store.memberships");
     Route::post('/store/work/experience', [MemberController::class, 'store_work_experience'])->name("store.experience");
     Route::post('/store/member/education', [MemberController::class, 'store_member_qualifications'])->name("store.education");
+    Route::post('/store/member/parliament', [MemberController::class, 'store_member_parliaments'])->name("store.parliaments");
     Route::resource('qualifications', QualificationController::class);
     Route::resource('parliaments', ParliamentController::class);
     Route::get('/profile/view', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile/update', [ProfileController::class, 'update']);
     Route::post('/profile/password', [ProfileController::class, 'password']);
+    Route::resource('education', EducationRecordController::class);
+    Route::resource('work', WorkExperienceController::class);
     
 
 });

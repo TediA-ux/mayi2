@@ -65,7 +65,7 @@
     <td>
       
        <a class="btn btn-sm btn-primary" href="{{ route('parliaments.edit',Crypt::encrypt($parliament->id)) }}"><i class="fas fa-pencil-alt"></i></a>
-       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$parliament->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+       <!-- <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$parliament->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a> -->
                                             <form method="POST" action="{{ route('parliaments.index', $parliament->id) }}" class="pull-right" id="delete-form-{{ $parliament->id }}" >
                                             {{ csrf_field() }}
                                             <input name="_method" type="hidden" value="POST" /></form>

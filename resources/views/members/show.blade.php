@@ -34,9 +34,9 @@
   <div id="content">
     <div id="bio-data">
         <h3>Summary</h3>
-    <div class="row">
+    <div class="row ">
     <div class="col-xs-6 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
           <div class="flex-container">
             <strong>Title:</strong>
             {{ $member->title }}
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Surname:</strong>
             {{ $member->surname }}
@@ -56,7 +56,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Other Names:</strong>
             {{ $member->other_names }}
@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Email:</strong>
             {{ $member->email }}
@@ -76,7 +76,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>DOB:</strong>
             {{ $member->dob }}
@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Religion:</strong>
             {{ $member->religion }}
@@ -96,7 +96,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Gender:</strong>
             {{ $member->gender }}
@@ -104,7 +104,7 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Landline:</strong>
             {{ $member->landline }}
@@ -115,7 +115,7 @@
 </div>
 <div class="row">
 <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Phone Contact:</strong>
             {{ $member->phone_number }}
@@ -124,7 +124,7 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Other Contact:</strong>
             {{ $member->alt_contact }}
@@ -137,7 +137,7 @@
 
 <div class="row">
 <div class="col-xs-12 col-sm-6 col-md-6 mb-2">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Postal Address:</strong>
             {{ $member->postal_address }}
@@ -146,7 +146,7 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
             <div class="flex-container">
             <strong>District:</strong>
             {{ $member->district }}
@@ -157,7 +157,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Constituency:</strong>
             {{ $member->constituency }}
@@ -166,7 +166,7 @@
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6 mb-2">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Political Party:</strong>
             {{ $member->party }}
@@ -177,7 +177,7 @@
 </div>
     <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-6 mb-2">
-        <div class="form-group">
+        <div class="form-group faint-border-bottom pb-1">
         <div class="flex-container">
         <strong>Marital Status:</strong>
             {{ $member->marital_status }}
@@ -219,9 +219,9 @@
     <td>{{ $qualification->institution }}</td>
     <td>
     
-    <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
-       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
-                                            <form method="POST" action="{{ route('members.index', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
+    <a class="btn btn-sm btn-primary" href="{{ route('education.edit',Crypt::encrypt($qualification->id)) }}"><i class="fas fa-pencil-alt"></i></a>
+       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$qualification->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+                                            <form method="POST" action="{{ route('members.index', $qualification->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
                                             {{ csrf_field() }}
                                             <input name="_method" type="hidden" value="POST" /></form>
 
@@ -257,7 +257,7 @@
     <td>{{ $job->year_to }}</td>
     <td>
     
-    <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
+    <a class="btn btn-sm btn-primary" href="{{ route('work.edit',Crypt::encrypt($job->id)) }}"><i class="fas fa-pencil-alt"></i></a>
        <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
                                             <form method="POST" action="{{ route('members.index', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
                                             {{ csrf_field() }}
@@ -284,13 +284,16 @@
                         <table class="table table-striped" id="datatable_1">
                             <thead class="table-dark">
  <tr>
-   <th>Types</th>
+   <th>Type</th>
+   <th>Responsibility</th>
    <th>Action</th>
  
  </tr>
 </thead>
+@foreach($ptypes as $key => $ptype)
   <tr>
-    <td></td>
+    <td>{{ $ptype->type }}</td>
+    <td>{{ $ptype->responsibility }}</td>
     <td>
     
     <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
@@ -302,6 +305,7 @@
      </td>
 
   </tr>
+  @endforeach
 </table>
 
 </div>
@@ -320,7 +324,7 @@
 </thead>
 @foreach ($hobbies as $key => $hobby)
   <tr>
-    <td>{{ $hobby->name}}</td>
+    <td>{{ $hobby->hobby}}</td>
     <td>
     
     <a class="btn btn-sm btn-primary" href="{{ route('members.edit',Crypt::encrypt($member->id)) }}"><i class="fas fa-pencil-alt"></i></a>
@@ -367,12 +371,14 @@
 </table>
 
 </div>
-    </div>
 
     </div>
     
 
+    </div>
     
+
+    <br><br>
 </div>
 
 @endsection

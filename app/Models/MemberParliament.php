@@ -7,18 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class MemberQualification extends Model
+class MemberParliament extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
         'member_id',
-        'institution',
-        'award_id',
-        'year',
+        'parliament_id',
+        'responsibility',
         'created_by',
         'updated_by'
     ];
-    protected $table = 'member_qualifications';
-    public $timestamps = true;
+
+    protected $table = 'member_parliaments';
 }
