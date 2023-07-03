@@ -28,10 +28,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Work Experience</h2>
+            <h2>Edit Membership/Association</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('members.show',Crypt::encrypt($job->member_id)) }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('members.show',Crypt::encrypt($membership->member_id)) }}"> Back</a>
             <br>
         </div>
     </div>
@@ -56,38 +56,37 @@
 @endif
 
 
-{!! Form::model($job, ['method' => 'PATCH','route' => ['work.update', $job->id]]) !!}
-<div id="employment-formContainer">
-                  <div class="employment-form-container form-group">
-                  <input type="text" value="{{$job->member_id}}" hidden name="member_id" required>
-                  
-                  <label >Profession:</label>
-                  <select class="form-select" name="profession_id" required>
-                      <option value="{{$job->id}}">{{$job->work}}</option>
-                      @foreach($professions as $profession)
-                  <option value="{{$profession->id}}">{{$profession->name}}</option>
-                @endforeach
-                  </select>
-
-                  <label >Organization:</label>
-            <input value="{{$job->organization}}" type="text" name="organization" class="form-control">
-
-            <label >From:</label>
-            <input value="{{$job->year_from}}" class="form-control" type="number" id="year" name="year_from" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
-
-            <label >To:</label>
-            <input value="{{$job->year_to}}" class="form-control" type="number" id="year" name="year_to" min="1900" max="2099" step="1" placeholder="YYYY" required oninput="limitDigits(this, 4)">
-                  
-                  
-                 
+{!! Form::model($membership, ['method' => 'PATCH','route' => ['memberships.update', $membership->id]]) !!}
+<div id="formContainer">
+                      <div class="form-container form-group">
+                      <input type="text" value="{{$membership->member_id}}" hidden name="member_id" required>
+                      
+                      <label >Professional Body:</label>
+                      <select class="form-select" name="professional_body_id" required>
+                          <option value="{{$membership->id}}">{{$membership->body}}</option>
+                          @foreach($bodies as $body)
+                      <option value="{{$body->id}}">{{$body->name}}</option>
+                    @endforeach
+                      </select>
+                      
+                      
+                   
+                      </div>
                   </div>
-              </div>
-              
-             
-              <br>
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-          <button type="submit" class="btn btn-danger float-end">Submit</button>
+                  
+                
+                  <br>
+                  <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                <button type="submit" class="btn btn-danger float-end">Submit</button>
+</div>
           </div>
+                
+               
+                <br>
+                <div>
+
+                </div>
+             
 <div></div>
 
 </div></div>

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\WorkExperience;
-use App\Models\Profession;
+use App\Models\ProfessionalBody;
+use App\Models\ProfessionalBodyMembership;
 use DB;
 use Hash;
 use Validator;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Spatie\Permission\Models\Role;
 
-class WorkExperienceController extends Controller
+class MembershipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -58,43 +58,40 @@ class WorkExperienceController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $professions = Profession::all();
+        $bodies = ProfessionalBody::all();
 
-        $job = WorkExperience::select('mp_work_experience.*','profession.name AS work')
-        ->LeftJoin('profession','profession.id','mp_work_experience.profession_id')
-        ->where("mp_work_experience.id", $id)->first();
+        $membership = ProfessionalBodyMembership::select('professional_body_memberships.*','professional_bodies.name AS body')
+        ->LeftJoin('professional_bodies','professional_bodies.id','professional_body_memberships.professional_body_id')
+        ->where("professional_body_memberships.id", $id)->first();
 
-
-        return view('work.edit', compact('job','professions', 'user_role', 'log_user', 'roles'));
+        return view('memberships.edit', compact('membership','bodies', 'user_role', 'log_user', 'roles'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'profession_id' => 'required',
-            'year_from' => 'required',
-            'year_to' => 'required',
+            'professional_body_id' => 'required',
 
         ]);
 
         $input = ($request->all()+['updated_by' => Auth::User()->id]);
 
-        $work = WorkExperience::find($id);
-        $work->update($input);
+        $membership = ProfessionalBodyMembership::find($id);
+        $membership->update($input);
 
 
-        return redirect()->back()->with('success', 'Member work experience updated successfully.');
+        return redirect()->back()->with('success', 'Membership updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        WorkExperience::find($id)->delete();
+        ProfessionalBodyMembership::find($id)->delete();
         return redirect()->back()->with('success', 'Member work experience deleted successfully.');
     }
 }

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\WorkExperience;
-use App\Models\Profession;
+use App\Models\MemberHobby;
 use DB;
 use Hash;
 use Validator;
@@ -14,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Spatie\Permission\Models\Role;
 
-class WorkExperienceController extends Controller
+class MemberHobbyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -58,14 +57,9 @@ class WorkExperienceController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $professions = Profession::all();
+        $hobby = MemberHobby::find($id);
 
-        $job = WorkExperience::select('mp_work_experience.*','profession.name AS work')
-        ->LeftJoin('profession','profession.id','mp_work_experience.profession_id')
-        ->where("mp_work_experience.id", $id)->first();
-
-
-        return view('work.edit', compact('job','professions', 'user_role', 'log_user', 'roles'));
+        return view('member-hobbies.edit', compact('hobby','user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -74,19 +68,17 @@ class WorkExperienceController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
-            'profession_id' => 'required',
-            'year_from' => 'required',
-            'year_to' => 'required',
+            'hobby' => 'required',
 
         ]);
 
         $input = ($request->all()+['updated_by' => Auth::User()->id]);
 
-        $work = WorkExperience::find($id);
-        $work->update($input);
+        $hobby = MemberHobby::find($id);
+        $hobby->update($input);
 
 
-        return redirect()->back()->with('success', 'Member work experience updated successfully.');
+        return redirect()->back()->with('success', 'Hobby updated successfully.');
     }
 
     /**
@@ -94,7 +86,7 @@ class WorkExperienceController extends Controller
      */
     public function destroy(string $id)
     {
-        WorkExperience::find($id)->delete();
-        return redirect()->back()->with('success', 'Member work experience deleted successfully.');
+        ProfessionalBodyMembership::find($id)->delete();
+        return redirect()->back()->with('success', 'Hobby deleted successfully.');
     }
 }

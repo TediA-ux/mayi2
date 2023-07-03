@@ -87,7 +87,7 @@ body.dark-sidebar .left-sidebar .brand {
 
   #sidebar {
     width: 200px;
-    background-color: #f1f1f1;
+    background-color: #230043;
     padding: 20px;
     /* border: 1px solid rgb(0, 157, 255); */
     border-radius: 5px;
@@ -112,7 +112,7 @@ body.dark-sidebar .left-sidebar .brand {
   }
 
   a{
-    color: black;
+    color: rgb(215, 212, 212);
   }
   
 

@@ -13,7 +13,7 @@ class MemberHobby extends Model
 
     protected $fillable = [
         'member_id',
-        'hobby_id',
+        'hobby',
         'created_by',
         'updated_by'
     ];

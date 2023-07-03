@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\WorkExperience;
-use App\Models\Profession;
+use App\Models\Parliament;
+use App\Models\MemberParliament;
 use DB;
 use Hash;
 use Validator;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Spatie\Permission\Models\Role;
 
-class WorkExperienceController extends Controller
+class MemberParliamentTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -58,14 +58,14 @@ class WorkExperienceController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $professions = Profession::all();
+        $parliaments = Parliament::all();
 
-        $job = WorkExperience::select('mp_work_experience.*','profession.name AS work')
-        ->LeftJoin('profession','profession.id','mp_work_experience.profession_id')
-        ->where("mp_work_experience.id", $id)->first();
+        $ptype = MemberParliament::select('member_parliaments.*','parliaments.type AS type')
+        ->LeftJoin('parliaments','parliaments.id','member_parliaments.parliament_id')
+        ->where("member_parliaments.id", $id)->first();
 
 
-        return view('work.edit', compact('job','professions', 'user_role', 'log_user', 'roles'));
+        return view('member-parliament-type.edit', compact('ptype','parliaments', 'user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -74,19 +74,17 @@ class WorkExperienceController extends Controller
     public function update(Request $request, string $id)
     {
         $this->validate($request, [
-            'profession_id' => 'required',
-            'year_from' => 'required',
-            'year_to' => 'required',
+            'parliament_id' => 'required',
 
         ]);
 
         $input = ($request->all()+['updated_by' => Auth::User()->id]);
 
-        $work = WorkExperience::find($id);
-        $work->update($input);
+        $type = MemberParliament::find($id);
+        $type->update($input);
 
 
-        return redirect()->back()->with('success', 'Member work experience updated successfully.');
+        return redirect()->back()->with('success', 'Parliament type updated successfully.');
     }
 
     /**
@@ -94,7 +92,7 @@ class WorkExperienceController extends Controller
      */
     public function destroy(string $id)
     {
-        WorkExperience::find($id)->delete();
-        return redirect()->back()->with('success', 'Member work experience deleted successfully.');
+        MemberParliament::find($id)->delete();
+        return redirect()->back()->with('success', 'Parliament type deleted successfully.');
     }
 }
