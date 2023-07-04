@@ -41,7 +41,7 @@
     <div id="bio-data">
       <div style="display:flex;align-items: center;">
          <div class="profile-img">
-      <img src="path/to/profile-image.jpg" alt="Profile Image">
+      <img src="{{ asset('identification_photos/'.$member->photo) }}" alt="Profile Image">
     </div>
         <h3>Summary</h3>
       </div>

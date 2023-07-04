@@ -79,7 +79,7 @@ class MemberController extends Controller
             'title' => 'required',
             'surname' => 'required',
             'other_names' => 'required',
-            'email'=> 'required',
+            'email'=> 'required|email|unique:users,email',
             'dob' => 'required',
             'religion' => 'required',
             'photo' => 'required',
@@ -93,6 +93,9 @@ class MemberController extends Controller
             'photo' => 'required'
             
         ]);
+
+        $input = $request->all();
+        $input['created_by'] = Auth::User()->id;
 
         if ($request->hasFile('photo')) {
             // Get File Name With Extension
@@ -112,9 +115,12 @@ class MemberController extends Controller
             $fileNameToStore = 'noimage.jpg';
         }
 
-        $input['photo'] = $fileNameToStore;
+       
 
-        $input = ($request->all()+['created_by' => Auth::User()->id]);
+        $image = base64_encode(file_get_contents($path));
+        $input['base64_image'] = $image;
+
+        $input['photo'] = $fileNameToStore;
 
         //return $input;
 
@@ -177,9 +183,13 @@ class MemberController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $member = Member::find($id);
         $parties = PoliticalParty::all();
         $districts = District::all();
+        $member = Member::select('member_info.*','member_info.id','districts.name AS district','political_party.name AS party','constituencies.name AS constituency')
+        ->LeftJoin('districts','districts.id','member_info.district_id')
+        ->LeftJoin('political_party','political_party.id','member_info.party_id')
+        ->LeftJoin('constituencies','constituencies.id','member_info.constituency_id')
+        ->where("member_info.id", $id)->first();
         return view('members.edit', compact('member','parties','districts', 'user_role', 'log_user', 'roles'));
     }
 
@@ -193,7 +203,7 @@ class MemberController extends Controller
             'title' => 'required',
             'surname' => 'required',
             'other_names' => 'required',
-            'email'=> 'required',
+            'email'=> 'required|email|unique:users,email',
             'dob' => 'required',
             'religion' => 'required',
             'marital_status' => 'required',
@@ -205,6 +215,8 @@ class MemberController extends Controller
             'constituency_id' => 'required'
 
         ]);
+
+        $input = $request->all();
 
         if ($request->hasFile('photo')) {
             // Get File Name With Extension
@@ -224,9 +236,12 @@ class MemberController extends Controller
             $fileNameToStore = 'noimage.jpg';
         }
 
+        $image = base64_encode(file_get_contents($path));
+        $input['base64_image'] = $image;
+
         $input['photo'] = $fileNameToStore;
 
-        $input = $request->all();
+       
 
         $member = Member::find($id);
         $member->update($input);
@@ -255,8 +270,12 @@ class MemberController extends Controller
 
     public function get_district_constituencies($id)
     {
-        $constituencies = Constituency::where('district_id', $id)->get();
-        return $constituencies;
+       
+
+        $constituencies = DB::table('constituencies')->select(DB::raw('name, id'))->where('district_id', $id)->pluck('name', 'id');
+
+
+    	return json_encode($constituencies);
     }
 
     public function add_member_info($id){

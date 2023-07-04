@@ -71,7 +71,7 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-3 col-md-6">
-                    <div class="card overflow-hidden">
+                    <div class="card overflow-hidden index-card">
                         <div class="card-body">
                             <div class="row d-flex">
                                 <div class="col-3">
@@ -102,7 +102,7 @@
                 </div>
                 <!--end col-->
                 <div class="col-lg-3 col-md-6">
-                    <div class="card overflow-hidden">
+                    <div class="card overflow-hidden index-card">
                         <div class="card-body">
                             <div class="row d-flex">
                                 <div class="col-3">
@@ -127,7 +127,7 @@
                 </div>
                 <!--end col-->
                 <div class="col-lg-3 col-md-6">
-                    <div class="card overflow-hidden">
+                    <div class="card overflow-hidden index-card">
                         <div class="card-body">
                             <div class="row d-flex">
                                 <div class="col-3">
@@ -153,8 +153,8 @@
                 <!--end col-->
 
                 <div class="col-lg-3 col-md-6">
-                    <div class="card overflow-hidden">
-                        <div class="card-body">
+                    <div class="card overflow-hidden index-card">
+                        <div class="card-body ">
                             <div class="row d-flex">
                                 <div class="col-3">
                                     <i class="ti ti-confetti font-36 align-self-center text-dark"></i>
@@ -190,7 +190,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header index-card">
                             <div class="row align-items-center">
                                 <div class="col">
                                     <h4 class="card-title">Percentage of Male and Female MPs</h4>

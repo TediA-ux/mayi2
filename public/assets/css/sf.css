@@ -231,3 +231,22 @@ body.dark-sidebar .left-sidebar .brand {
     height: 100%;
     object-fit: cover;
   }
+
+  /* dashboard */
+  .index-card{
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  /* log in */
+
+  .login-card {
+    transition: transform 0.2s ease;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .login-card:hover {
+    transform: rotateY(10deg);
+  }
+  
