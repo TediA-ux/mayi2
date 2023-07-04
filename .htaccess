@@ -1,7 +1,7 @@
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} ^code316.prophetelvis.com$ [NC,OR]
-RewriteCond %{HTTP_HOST} ^www.code316.prophetelvis.com$
+RewriteCond %{HTTP_HOST} ^mpsug.nwtdemos.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.mpsug.nwtdemos.com.com$
 RewriteCond %{REQUEST_URI} !public/
 RewriteRule (.*) /public/$1 [L]
 #RewriteCond %{HTTP:Authorization} ^(.+)$

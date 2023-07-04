@@ -43,12 +43,12 @@
                
                 <!--end card-header-->
                 <div class="card-body">
-{!! Form::open(array('url' => '/update/district/constituency/','method'=>'POST')) !!}
+                {!! Form::model($constituency, ['method' => 'POST','route' => ['update.constituency', $constituency->id]]) !!}
 <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>Constituency Name:</strong>
-            {!! Form::text('name', $constituency->name, array('placeholder' => 'Constituency Name','class' => 'form-control')) !!}
+            {!! Form::text('name',null,  array('placeholder' => 'Constituency Name','class' => 'form-control')) !!}
            
             
         </div>

@@ -48,25 +48,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function department()
-    {
-        return $this->belongsTo('App\Models\Department', 'department_id');
-    }
 
-    public function getDepartment($id)
-    {
 
-        $department = Department::find($id);
-
-        if (!empty($department)) {
-            $name = $department->name;
-        } else {
-
-            $name = 'Not Set';
-        }
-
-        return $name;
-
-    }
+  
 
 }

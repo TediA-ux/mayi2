@@ -135,7 +135,7 @@ class DistrictController extends Controller
     public function addConstituency($id)
     {
 
-        //$id = Crypt::decrypt($id);
+        $id = Crypt::decrypt($id);
         $roles = Auth::user()->roles()->first();
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
@@ -179,7 +179,7 @@ class DistrictController extends Controller
         return view('districts.editConstituency', compact('constituency', 'user_role', 'log_user', 'roles'));
     }
 
-    public function updateConstituency()
+    public function updateConstituency(Request $request,  $id)
     {
         
         $this->validate($request, [

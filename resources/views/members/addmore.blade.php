@@ -43,14 +43,14 @@
 <br>
 <div>
 <div class = "flex-container">
-<div id="sidebar">
+<div id="sidebar" >
     <div id="options">
       <ul>
-        <li><a href="#" onclick="changeContent(1)">Qualifications/Education</a></li>
-        <li><a href="#" onclick="changeContent(2)">Employment Record</a></li>
-        <li><a href="#" onclick="changeContent(3)">Special Interests</a></li>
-        <li><a href="#" onclick="changeContent(4)">Professional Memberships</a></li>
-        <li><a href="#" onclick="changeContent(5)">Parliament Responsibilities</a></li>
+        <li><a class ="link" href="#" onclick="changeContent(1)">Qualifications/Education</a></li>
+        <li><a class ="link" href="#" onclick="changeContent(2)">Employment Record</a></li>
+        <li><a class ="link" href="#" onclick="changeContent(3)">Special Interests</a></li>
+        <li><a class ="link" href="#" onclick="changeContent(4)">Professional Memberships</a></li>
+        <li><a class ="link" href="#" onclick="changeContent(5)">Parliament Responsibilities</a></li>
       </ul>
     </div>
   </div>
@@ -215,13 +215,13 @@
                   
                   
                     <div class="add-remove-buttons">
-                        <button class="remove" onclick="removehobbyForm(this)">Remove</button>
+                        <button type="button" class="remove" onclick="removehobbyForm(this)">Remove</button>
                     </div>
                     </div>
                 </div>
                 
                 <div class="add-remove-buttons">
-                    <button onclick="addHobbyForm()">Add</button>
+                    <button type="button" onclick="addHobbyForm()">Add</button>
                 </div>
                 <br>
               <button type="submit" class="btn btn-danger float-end">Submit</button>

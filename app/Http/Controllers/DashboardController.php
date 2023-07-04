@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bills;
-use App\Models\Giving;
-use App\Models\Transaction;
+use App\Models\Constituency;
 use App\Models\User;
+use App\Models\District;
+use App\Models\Member;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DB;
@@ -30,9 +30,37 @@ class DashboardController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
+        //total number of users
+        $users = User::all();
+        $usersCount = $users->count();
+
+        //total number of mps
+        $members = Member::all();
+        $membersCount = $members->count();
+
+        $districts = District::all();
+        $districtsSum = $districts->count();
+
+        $constituencies = Constituency::all();
+        $constituenciesSum = $constituencies->count();
+
+        $data = DB::table('member_info')
+    ->select(
+        DB::raw("CASE WHEN gender = 'male' THEN 'Male' ELSE 'Female' END as gender"),
+        DB::raw('count(*) as number')
+    )
+    ->groupBy('gender')
+    ->get();
+
+$array[] = ['Gender', 'Number'];
+
+foreach ($data as $key => $value) {
+    $array[++$key] = [$value->gender, $value->number];
+}
+
 
        
-        return view('index', compact('user_role', 'log_user'));
+        return view('index', compact('user_role', 'log_user', 'constituenciesSum', 'districtsSum', 'membersCount', 'usersCount'))->with('gender', json_encode($array));
     }
 
 }

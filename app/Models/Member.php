@@ -26,6 +26,7 @@ class Member extends Model
         'district_id',
         'party_id',
         'constituency_id',
+        'base64_image',
         'updated_by',
         'created_by'
     ];

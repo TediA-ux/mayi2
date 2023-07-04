@@ -3,7 +3,7 @@
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
 @endsection
-@section('body-start') <body id="body" class="dark-sidebar"> @endsection
+@section('body-start') <body id="body" class="dark-sidebar" data-layout="horizontal"> @endsection
     @section('content')
     <!-- page title-->
     @section('breadcrumb')
@@ -106,9 +106,9 @@
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="mb-3 row">
-                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end ">First Name</label>
+                                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end ">Full Name</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control @error('firstname') is-invalid @enderror" type="text" name="firstname" value="{{ $log_user->firstname }}" id="example-text-input">
+                                                        <input class="form-control @error('firstname') is-invalid @enderror" type="text" name="name" value="{{ $log_user->name }}" id="example-text-input">
                                                         @error('firstname')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -124,42 +124,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
-                                                    <label for="example-tel-input" class="col-sm-2 col-form-label text-end">Alt Phone Number</label>
+                                                    <label for="example-tel-input" class="col-sm-2 col-form-label text-end"> Phone Number</label>
                                                     <div class="col-sm-10">
-                                                        <input class="form-control" type="text" name="alt_contact" value="{{ $log_user->alt_contact }}" id="example-tel-input">
+                                                        <input class="form-control" type="text" name="contact" value="{{ $log_user->contact }}" id="example-tel-input">
                                                     </div>
                                                 </div>
-
-
 
                                             </div>
 
-
-                                            <div class="col-lg-6">
-                                                <div class="mb-3 row">
-                                                    <label for="example-url-input" class="col-sm-2 col-form-label text-end">Last Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control @error('lastname') is-invalid @enderror" type="text" name="lastname" value="{{ $log_user->lastname }}" id="example-url-input">
-                                                        @error('lastname')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="example-date-input" class="col-sm-2 col-form-label text-end">Phone Number</label>
-                                                    <div class="col-sm-10">
-                                                        <input class="form-control @error('contact') is-invalid @enderror" type="text" name="contact" value="{{ $log_user->contact }}" id="example-date-input">
-                                                        @error('contact')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end card-body-->
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-1 ms-auto">

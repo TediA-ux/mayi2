@@ -35,13 +35,11 @@ class ProfileController extends Controller
 
 
         $validatedData = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'name' => 'required',
             'contact' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
         ], [
-            'firstname.required' => 'First Name field is required.',
-            'last.required' => 'Last Name field is required.',
+            'name.required' => 'First Name field is required.',
             'contact.required' => 'Phone Contact field is required.',
             'email.required' => 'Email field is required.',
             'email.email' => 'Email field must be email address.'
@@ -50,10 +48,8 @@ class ProfileController extends Controller
 
 
         $user = User::find($id);
-        $user->firstname = $request->firstname;
-        $user->lastname = $request->lastname;
+        $user->name = $request->name;
         $user->contact = $request->contact;
-        $user->alt_contact = $request->alt_contact;
         $user->email = $request->email;
         $user->save();
 

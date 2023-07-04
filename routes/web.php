@@ -14,10 +14,13 @@ use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfessionalBodyController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\MemberHobbyController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ParliamentController;
 use App\Http\Controllers\EducationRecordController;
 use App\Http\Controllers\WorkExperienceController;
+use App\Http\Controllers\MemberParliamentTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +61,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/add/district/constituency/{id}', [DistrictController::class, 'addConstituency']);
     Route::post('/post/district/constituency', [DistrictController::class, 'postConstituency']);
     Route::get('/edit/constituency/{id}', [DistrictController::class, 'editConstituency']);
-    Route::post('/update/district/constituency{id}', [DistrictController::class, 'updateConstituency']);
+    Route::post('/update/district/constituency/{id}', [DistrictController::class, 'updateConstituency'])->name("update.constituency");
     Route::resource('hobbies', HobbyController::class);
     Route::get('/all-hobbies', [HobbyController::class, 'fetchHobbies'])->name('fetch.hobbies');
     Route::resource('committees', CommitteeController::class);
@@ -79,6 +82,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/password', [ProfileController::class, 'password']);
     Route::resource('education', EducationRecordController::class);
     Route::resource('work', WorkExperienceController::class);
+    Route::resource('member-parliament-type', MemberParliamentTypeController::class);
+    Route::resource('memberships', MembershipController::class);
+    Route::resource('member-hobbies', MemberHobbyController::class);
     
 
 });

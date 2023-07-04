@@ -65,7 +65,7 @@ class WorkExperienceController extends Controller
         ->where("mp_work_experience.id", $id)->first();
 
 
-        return view('work.edit', compact('job','qualifications', 'user_role', 'log_user', 'roles'));
+        return view('work.edit', compact('job','professions', 'user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -73,7 +73,20 @@ class WorkExperienceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'profession_id' => 'required',
+            'year_from' => 'required',
+            'year_to' => 'required',
+
+        ]);
+
+        $input = ($request->all()+['updated_by' => Auth::User()->id]);
+
+        $work = WorkExperience::find($id);
+        $work->update($input);
+
+
+        return redirect()->back()->with('success', 'Member work experience updated successfully.');
     }
 
     /**
@@ -81,6 +94,7 @@ class WorkExperienceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        WorkExperience::find($id)->delete();
+        return redirect()->back()->with('success', 'Member work experience deleted successfully.');
     }
 }

@@ -28,10 +28,10 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Edit Education Record</h2>
+            <h2>Edit Work Experience</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('members.show',Crypt::encrypt($record->member_id)) }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('members.show',Crypt::encrypt($job->member_id)) }}"> Back</a>
             <br>
         </div>
     </div>
@@ -58,7 +58,6 @@
 
 {!! Form::model($job, ['method' => 'PATCH','route' => ['work.update', $job->id]]) !!}
 <div id="employment-formContainer">
-                  <h4>Employment Record</h3>
                   <div class="employment-form-container form-group">
                   <input type="text" value="{{$job->member_id}}" hidden name="member_id" required>
                   

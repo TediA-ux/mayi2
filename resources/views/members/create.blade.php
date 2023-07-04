@@ -1,8 +1,10 @@
 @extends('layouts.master')
 @section('title')Manage MPs @endsection
 @section('css')
-<link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
+
 @section('body-start') <body id="body" class="dark-sidebar" data-layout="horizontal"> @endsection
     @section('content')
     <!-- page title-->
@@ -43,7 +45,7 @@
                 </div>
                 <!--end card-header-->
                 <div class="card-body">
-{!! Form::open(array('route' => 'members.store','method'=>'POST')) !!}
+{!! Form::open(array('route' => 'members.store','method'=>'POST', 'enctype' =>'multipart/form-data')) !!}
 <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6">
         <div class="form-group">
@@ -162,7 +164,7 @@
     <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>District:</strong>
-            <select id="district" class="form-select" name="district_id">
+            <select id="district"  class="form-control select"  name="district_id">
                 <option value="" selected>Select</option>
                 @foreach($districts as $district)
                 <option value="{{$district->id}}">{{$district->name}}</option>
@@ -208,35 +210,53 @@
 @endsection
     @section('script')
 
-    <!-- Javascript -->
-    <script src="{{ URL::asset('assets/pages/form-wizard.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/app.js') }}"></script>
+    
 
 
-<script>
-  const districtDropdown = document.getElementById('district');
-  const constDropdown = document.getElementById('constituency');
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-  districtDropdown.addEventListener('change', () => {
-      const id = districtDropdown.value;
-      constDropdown.innerHTML = '<option value="">Loading...</option>';
-      constDropdown.disabled = true;
-
-      fetch(`/district-constituencies/${id}`)
-          .then(response => response.json())
-          .then(constituencies => {
-            constDropdown.innerHTML = '<option value="">Select a constituency</option>';
-            constituencies.forEach(constituency => {
-                  const option = document.createElement('option');
-                  option.value = constituency.id;
-                  option.textContent = constituency.name;
-                  constDropdown.appendChild(option);
-              });
-              constDropdown.disabled = false;
-          })
-          .catch(error => console.error(error));
-  });
+  <script>
+    $(document).ready(function () {
+        $('#district').select2();
+        
+    });
 </script>
+
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ()
+    {
+            jQuery('select[name="district_id"]').on('change',function(){
+               var d_id = jQuery(this).val();
+               console.log(d_id);
+               if(d_id)
+               {
+                  jQuery.ajax({
+                     url : '/district-constituencies/'+ d_id,
+                     type : "GET",
+                     dataType : "json",
+                     success:function(data)
+                     {
+                        console.log(data);
+                        jQuery('select[name="constituency_id"]').empty();
+                        jQuery.each(data, function(key,value){
+                           $('select[name="constituency_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                     }
+                  });
+               }
+               else
+               {
+                  $('select[name="constituency_id"]').empty();
+               }
+            });
+    });
+    </script>
+
+
+
 
 
 

@@ -84,7 +84,7 @@
 
          <a class="btn btn-sm btn-info" href="#" title="Delete User" onClick="if(confirm('Are you sure you want to Delete this user?')){document.getElementById('deletes-form-{{$user->id}}').submit();}else{event.preventDefault();}" href="#"><i class="fas fa-trash
             "></i></a>
-         <a class="btn btn-sm btn-success" title="Send Mail"  data-bs-toggle="modal" data-bs-target="#Sendmail-{{ $user->id }}"><i class="fas fa-envelope"></i></a>
+         <!-- <a class="btn btn-sm btn-success" title="Send Mail"  data-bs-toggle="modal" data-bs-target="#Sendmail-{{ $user->id }}"><i class="fas fa-envelope"></i></a> -->
 
          <form method="POST" action="{{ url('/user/deactivate/'.$user->id) }}" class="pull-right" id="delete-form-{{ $user->id }}" >
                                             {{ csrf_field() }}
