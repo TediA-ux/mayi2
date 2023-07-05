@@ -41,9 +41,44 @@ class MemberController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $data = Member::orderBy('id', 'DESC')->paginate(5);
-        return view('members.index', compact('data', 'user_role', 'log_user', 'roles'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $districts = District::all();
+        $parties = PoliticalParty::all();
+        $parliaments = Parliament::all();
+
+        $data = Member::orderBy('id', 'DESC')
+            ->get();
+
+        return view('members.index', compact('data', 'parties', 'parliaments', 'parliaments', 'user_role', 'log_user', 'roles', 'districts'))
+        ;
+    }
+
+    public function memberfilter(Request $request)
+    {
+        $membersData = new Member();
+
+        $roles = Auth::user()->roles()->first();
+        $user_role = $roles->name;
+        $user_id = Auth::user()->id;
+        $log_user = User::find($user_id);
+        $parties = PoliticalParty::all();
+        $districts = District::all();
+        $parliaments = Parliament::all();
+
+        $district_id = $request->district_id;
+        $fullName = $request->input('full_name');
+        $action = $request->action;
+
+        $datas = Member::select('member_info.*', 'member_info.id', 'districts.name AS district', 'political_party.name AS party', 'constituencies.name AS constituency')
+            ->LeftJoin('districts', 'districts.id', 'member_info.district_id')
+            ->where('member_info.district_id', $district_id)
+            ->where(("CONCAT(member_info.surname, ' ', member_info.other_names)"), 'LIKE', '%' . $fullName . '%')
+            ->LeftJoin('constituencies', 'constituencies.id', 'member_info.constituency_id')
+            ->orderBy('member_info.created_at', 'DESC');
+
+        $data = $datas->get();
+
+        return view('members.memberfilter', compact('data', 'parties', 'parliaments', 'datas', 'user_role', 'log_user', 'roles', 'districts'))
+        ;
     }
 
     /**

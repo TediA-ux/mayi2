@@ -1,26 +1,26 @@
 <?php
 
+use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\EducationRecordController;
+use App\Http\Controllers\HobbyController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MemberHobbyController;
+use App\Http\Controllers\MemberParliamentTypeController;
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\ParliamentController;
+use App\Http\Controllers\PartyController;
+use App\Http\Controllers\ProfessionalBodyController;
+use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PartyController;
-use App\Http\Controllers\DistrictController;
-use App\Http\Controllers\HobbyController;
-use App\Http\Controllers\CommitteeController;
-use App\Http\Controllers\ProfessionController;
-use App\Http\Controllers\ProfessionalBodyController;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\MembershipController;
-use App\Http\Controllers\MemberHobbyController;
-use App\Http\Controllers\QualificationController;
-use App\Http\Controllers\ParliamentController;
-use App\Http\Controllers\EducationRecordController;
-use App\Http\Controllers\WorkExperienceController;
-use App\Http\Controllers\MemberParliamentTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,7 +85,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('member-parliament-type', MemberParliamentTypeController::class);
     Route::resource('memberships', MembershipController::class);
     Route::resource('member-hobbies', MemberHobbyController::class);
-    
+
+//filter members route
+    Route::get('/members/filter', [MemberController::class, 'memberfilter']);
 
 });
 

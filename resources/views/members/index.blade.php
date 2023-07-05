@@ -2,6 +2,7 @@
 @section('title')Manage MPs @endsection
 @section('css')
 <link href="{{ URL::asset('assets/plugins/datatables/datatable.css') }}" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 @section('body-start') <body id="body" class="dark-sidebar" data-layout="horizontal"> @endsection
     @section('content')
@@ -33,7 +34,114 @@
   <p>{{ $message }}</p>
 </div>
 @endif
+<br>
 
+<form action="{{ url('/members/filter') }}" id="filterAccountsOpenned" role="form" method="GET">
+@csrf
+
+<div class="row all_entries_row  mb-3">
+
+    <div class="col-md-2 ">
+
+        <div class="form-group">
+                <Strong for="">Name</Strong>
+                <input type="text" name="fullName" class="form-select" placeholder="">
+             </div>
+    </div>
+   
+    <div class="col-md-3 ">
+
+        <div class="form-group">
+            <strong for="">District</strong>
+            <select id="district"  class="form-select"  name="district_id">
+              <option value="" selected>Select</option>
+              @foreach($districts as $district)
+              <option value="{{$district->id}}">{{$district->name}}</option>
+            @endforeach
+
+          </select>
+        </div>
+    </div>
+    <div class="col-md-2 ">
+        <div class="form-group">
+            <strong>Constituency:</strong>
+            <select id="constituency" class="form-control select" name="constituency_id">
+                <option value=""></option>
+            
+
+            </select>
+        </div> 
+    </div> 
+    <div class="col-md-2 ">
+        <div class="form-group">
+            <strong>Political Party:</strong>
+            <select id="party" class="form-select" name="party_id">
+                <option value="" selected>Select</option>
+                @foreach($parties as $party)
+                <option value="{{$party->id}}">{{$party->name}}</option>
+              @endforeach
+
+            </select>
+        </div>
+    </div> 
+    
+    <div class="col-md-2 ">
+        <div class="form-group">
+                <strong >Parliament:</strong>
+                  <select class="form-select" name="parliament_id" required>
+                      
+                      @foreach($parliaments as $parliament)
+                  <option value="{{$parliament->id}}">{{$parliament->type}}</option>
+                 @endforeach
+                  </select>
+        </div>
+    </div>
+        <div class="col-md-2" >
+            <button type="submit" style="margin-top: 25px;" class="btn btn-danger btn-sm journal-search-btn" > Filter</button>
+        
+    </div>
+    
+</div>
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#district').select2();
+        
+    });
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function ()
+    {
+            jQuery('select[name="district_id"]').on('change',function(){
+               var d_id = jQuery(this).val();
+               console.log(d_id);
+               if(d_id)
+               {
+                  jQuery.ajax({
+                     url : '/district-constituencies/'+ d_id,
+                     type : "GET",
+                     dataType : "json",
+                     success:function(data)
+                     {
+                        console.log(data);
+                        jQuery('select[name="constituency_id"]').empty();
+                        jQuery.each(data, function(key,value){
+                           $('select[name="constituency_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                        });
+                     }
+                  });
+               }
+               else
+               {
+                  $('select[name="constituency_id"]').empty();
+               }
+            });
+    });
+    </script>
+</form>
 
 <div class="card-body ">
                     <div class="table-responsive">
@@ -62,11 +170,11 @@
     <td>
     <a class="btn btn-sm btn-secondary" href="{{ route('members.show',Crypt::encrypt($member->id)) }}"><i class="fas fa-list-ul"></i></a>
     
-    <!-- <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
-    <form method="POST" action="{{ route('members.destroy', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" >
+    {{-- <!-- <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a> --}}
+    {{-- <form method="POST" action="{{ route('members.destroy', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" > --}}
     @csrf
     @method('delete')
-</form> -->
+</form> 
 
      </td>
 
