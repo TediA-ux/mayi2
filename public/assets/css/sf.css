@@ -201,7 +201,9 @@ body.dark-sidebar .left-sidebar .brand {
     text-align: right;
     margin-top: 10px;
   }
-  
+  #filter2 .select2 {
+    width: 263px !important;
+  }
   .add-remove-buttons button {
     padding: 8px 16px;
     border: none;

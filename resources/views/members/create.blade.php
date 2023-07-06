@@ -80,7 +80,29 @@
         <div class="form-group">
             <strong>DOB:</strong>
     
-            <input class="form-control" type="date" id="date-input" name="dob">
+            <input class="form-control" type="date" id="dob" name="dob">
+            <script>
+                // get the date of birth input field
+                var dob = document.getElementById("dob");
+    
+                // add an event listener to validate the date of birth
+                dob.addEventListener("change", function() {
+                    // get the value of the date of birth input field
+                    var dobValue = new Date(this.value);
+    
+                    // calculate the age of the user
+                    var age = new Date(Date.now() - dobValue.getTime()).getFullYear() - 1970;
+    
+                    // check if the user is less than 18 years old
+                    if (age < 18) {
+                        // show an error message
+                        alert("You must be 18 years or older");
+    
+                        // clear the value of the date of birth input field
+                        this.value = "";
+                    }
+                });
+            </script>
         </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-6">

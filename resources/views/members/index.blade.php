@@ -36,37 +36,36 @@
 @endif
 <br>
 
-<form action="{{ url('/members/filter') }}" id="filterAccountsOpenned" role="form" method="GET">
+<form action="{{ url('/members/filter/mps') }}" id="filterAccountsOpenned" role="form" method="get">
 @csrf
 
-<div class="row all_entries_row  mb-3">
+<div id="filter2" class="row all_entries_row  mb-3">
 
     <div class="col-md-2 ">
 
         <div class="form-group">
                 <Strong for="">Name</Strong>
-                <input type="text" name="fullName" class="form-select" placeholder="">
+                <input type="text" name="name" class="form-control select" value="<?php echo request()->query('name'); ?>" placeholder="">
              </div>
     </div>
    
     <div class="col-md-3 ">
 
         <div class="form-group">
-            <strong for="">District</strong>
-            <select id="district"  class="form-select"  name="district_id">
-              <option value="" selected>Select</option>
-              @foreach($districts as $district)
-              <option value="{{$district->id}}">{{$district->name}}</option>
-            @endforeach
-
-          </select>
+            <label for="district">District</label>
+            <select id="district" class="form-control select" name="district_id">
+                <option value="" @if(!request()->has('district_id')) selected @endif>Select</option>
+                @foreach($districts as $district)
+                    <option value="{{ $district->id }}" @if(request()->input('district_id') == $district->id) selected @endif>{{ $district->name }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
     <div class="col-md-2 ">
         <div class="form-group">
             <strong>Constituency:</strong>
             <select id="constituency" class="form-control select" name="constituency_id">
-                <option value=""></option>
+                <option value="<?php echo request()->query('constituency_id'); ?>"></option>
             
 
             </select>
@@ -74,28 +73,31 @@
     </div> 
     <div class="col-md-2 ">
         <div class="form-group">
-            <strong>Political Party:</strong>
-            <select id="party" class="form-select" name="party_id">
-                <option value="" selected>Select</option>
-                @foreach($parties as $party)
-                <option value="{{$party->id}}">{{$party->name}}</option>
-              @endforeach
+            <div class="form-group">
+                <label for="party">Political Party</label>
+                <select id="party" class="form-control select" name="party_id">
+                    <option value="" @if(!request()->has('party_id')) selected @endif>Select</option>
+                    @foreach($parties as $party)
+                        <option value="{{ $party->id }}" @if(request()->input('party_id') == $party->id) selected @endif>{{ $party->name }}</option>
+                    @endforeach
+                </select>
+            </div> 
 
-            </select>
+            
         </div>
-    </div> 
+    </div>  
     
-    <div class="col-md-2 ">
+    {{-- <div class="col-md-2 ">
         <div class="form-group">
                 <strong >Parliament:</strong>
                   <select class="form-select" name="parliament_id" required>
-                      
+                    <option value="" selected>Select</option>
                       @foreach($parliaments as $parliament)
                   <option value="{{$parliament->id}}">{{$parliament->type}}</option>
                  @endforeach
                   </select>
         </div>
-    </div>
+    </div> --}}
         <div class="col-md-2" >
             <button type="submit" style="margin-top: 25px;" class="btn btn-danger btn-sm journal-search-btn" > Filter</button>
         
@@ -145,7 +147,7 @@
 
 <div class="card-body ">
                     <div class="table-responsive">
-                        <table class="table table-striped" id="datatable_1">
+                        <table class="table table-striped">
                             <thead class="table-dark">
  <tr>
    <th>Title</th>
@@ -164,7 +166,7 @@
     <td>{{ $member->surname }}</td>
     <td>{{ $member->other_names }}</td>
     <td>{{ $member->email }}</td>
-    <td><img width="50px"  src="{{ asset('identification_photos/'.$member->photo) }}" width="70px" height="70px" alt="" /></td>
+    <td><img width="50px"  src="{{ asset('identification_photos/'.$member->photo) }}" /></td>
     <td>{{ $member->gender }}</td>
     <td>{{ $member->religion }}</td>
     <td>

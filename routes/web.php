@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('member-hobbies', MemberHobbyController::class);
 
 //filter members route
-    Route::get('/members/filter', [MemberController::class, 'memberfilter']);
+    Route::get('/members/filter/mps', [MemberController::class, 'memberfilter']);
 
 });
 

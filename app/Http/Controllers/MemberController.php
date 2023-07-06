@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Committee;
+use App\Models\Constituency;
 use App\Models\District;
 use App\Models\Hobby;
 use App\Models\Member;
@@ -20,6 +21,7 @@ use App\Models\WorkExperience;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
@@ -44,17 +46,18 @@ class MemberController extends Controller
         $districts = District::all();
         $parties = PoliticalParty::all();
         $parliaments = Parliament::all();
+        $constituencies = Constituency::all();
 
         $data = Member::orderBy('id', 'DESC')
             ->get();
 
-        return view('members.index', compact('data', 'parties', 'parliaments', 'parliaments', 'user_role', 'log_user', 'roles', 'districts'))
+        return view('members.index', compact('data', 'parties', 'constituencies', 'parliaments', 'parliaments', 'user_role', 'log_user', 'roles', 'districts'))
         ;
     }
 
     public function memberfilter(Request $request)
     {
-        $membersData = new Member();
+        // return 'hi';
 
         $roles = Auth::user()->roles()->first();
         $user_role = $roles->name;
@@ -65,20 +68,50 @@ class MemberController extends Controller
         $parliaments = Parliament::all();
 
         $district_id = $request->district_id;
-        $fullName = $request->input('full_name');
+        $party_id = $request->party_id;
+        $surname = $request->surname;
+        $constituency_id = $request->constituency_id;
+        $fullName = $request->fullName;
+        $name = $request->name;
         $action = $request->action;
 
-        $datas = Member::select('member_info.*', 'member_info.id', 'districts.name AS district', 'political_party.name AS party', 'constituencies.name AS constituency')
+        $constituencies = Constituency::where('district_id', $district_id)->get();
+
+        $datas = Member::select('member_info.*', 'member_info.id', 'district_id', 'party_id', 'constituency_id')
+            ->when($name, function ($query) use ($name) {
+                $query->where(function ($query) use ($name) {
+                    $query->where('member_info.surname', 'LIKE', '%' . $name . '%')
+                        ->orWhere('member_info.other_names', 'LIKE', '%' . $name . '%');
+                });
+            })
             ->LeftJoin('districts', 'districts.id', 'member_info.district_id')
-            ->where('member_info.district_id', $district_id)
-            ->where(("CONCAT(member_info.surname, ' ', member_info.other_names)"), 'LIKE', '%' . $fullName . '%')
-            ->LeftJoin('constituencies', 'constituencies.id', 'member_info.constituency_id')
             ->orderBy('member_info.created_at', 'DESC');
+
+        if (isset($name)) {
+
+            $datas->where(DB::raw("CONCAT(member_info.surname, ' ', member_info.other_names)"), 'LIKE', '%' . $name . '%');
+        }
+        // return $name;
+        if (isset($surname)) {
+
+            $datas->where('member_info.surname', $surname);
+        }
+        if (isset($district_id)) {
+
+            $datas->where('member_info.district_id', $district_id);
+        }
+        if (isset($party_id)) {
+
+            $datas->where('member_info.party_id', $party_id);
+        }
+        if (isset($constituency_id)) {
+
+            $datas->where('member_info.constituency_id', $constituency_id);
+        }
 
         $data = $datas->get();
 
-        return view('members.memberfilter', compact('data', 'parties', 'parliaments', 'datas', 'user_role', 'log_user', 'roles', 'districts'))
-        ;
+        return view('members.memberfilter', compact('data', 'parties', 'constituencies', 'parliaments', 'datas', 'user_role', 'log_user', 'roles', 'districts'));
     }
 
     /**
