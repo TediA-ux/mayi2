@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Qualification;
-use DB;
-use Hash;
-use Validator;
-use Illuminate\Support\Arr;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Spatie\Permission\Models\Role;
 
 class QualificationController extends Controller
 {
@@ -31,7 +26,7 @@ class QualificationController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $data = Qualification::orderBy('id', 'DESC')->paginate(5);
+        $data = Qualification::orderBy('id', 'DESC')->paginate(10);
         return view('qualifications.index', compact('data', 'user_role', 'log_user', 'roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -56,10 +51,10 @@ class QualificationController extends Controller
     {
         $validator = $request->validate([
             'award_type' => 'required',
-            
+
         ]);
 
-        $input = ($request->all()+['created_by' => Auth::User()->id]);
+        $input = ($request->all() + ['created_by' => Auth::User()->id]);
 
         //return $input;
 
@@ -94,9 +89,9 @@ class QualificationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
-        
+
         $this->validate($request, [
             'award_type' => 'required',
 
@@ -110,7 +105,6 @@ class QualificationController extends Controller
         return redirect()->route('qualifications.index')
             ->with('success', 'Qualification updated successfully');
 
-        
     }
 
     /**
@@ -118,7 +112,7 @@ class QualificationController extends Controller
      */
     public function destroy($id)
     {
-       
+
         Qualification::find($id)->delete();
         return redirect()->route('qualifications.index')
             ->with('success', 'Qualification deleted successfully');

@@ -80,7 +80,7 @@
 <div></div>
 
 
-{!! $data->render() !!}
+{{-- {!! $data->render() !!} --}}
 
 @endsection
     @section('script')

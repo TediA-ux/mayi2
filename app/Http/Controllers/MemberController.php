@@ -48,8 +48,7 @@ class MemberController extends Controller
         $parliaments = Parliament::all();
         $constituencies = Constituency::all();
 
-        $data = Member::orderBy('id', 'DESC')
-            ->get();
+        $data = Member::orderBy('id', 'DESC')->get();
 
         return view('members.index', compact('data', 'parties', 'constituencies', 'parliaments', 'parliaments', 'user_role', 'log_user', 'roles', 'districts'))
         ;
