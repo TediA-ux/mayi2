@@ -204,6 +204,10 @@ body.dark-sidebar .left-sidebar .brand {
   #filter2 .select2 {
     width: 263px !important;
   }
+
+  .select2-container--default .select2-selection--single  {
+   height: 35px;
+  }
   .add-remove-buttons button {
     padding: 8px 16px;
     border: none;

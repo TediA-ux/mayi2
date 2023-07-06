@@ -49,11 +49,11 @@
              </div>
     </div>
    
-    <div class="col-md-3 ">
+    <div class="col-md-3">
 
-        <div class="form-group">
-            <label for="district">District</label>
-            <select id="district" class="form-control select" name="district_id">
+        <div class="form-group" id="district4">
+            <strong for="district">District</strong>
+            <select id="district" class="form-select" name="district_id">
                 <option value="" @if(!request()->has('district_id')) selected @endif>Select</option>
                 @foreach($districts as $district)
                     <option value="{{ $district->id }}" @if(request()->input('district_id') == $district->id) selected @endif>{{ $district->name }}</option>
@@ -64,7 +64,7 @@
     <div class="col-md-2 ">
         <div class="form-group">
             <strong>Constituency:</strong>
-            <select id="constituency" class="form-control select" name="constituency_id">
+            <select id="constituency" class="form-select" name="constituency_id">
                 <option value="<?php echo request()->query('constituency_id'); ?>"></option>
             
 
@@ -74,8 +74,8 @@
     <div class="col-md-2 ">
         <div class="form-group">
             <div class="form-group">
-                <label for="party">Political Party</label>
-                <select id="party" class="form-control select" name="party_id">
+                <strong for="party">Political Party</strong>
+                <select id="party" class="form-select" name="party_id">
                     <option value="" @if(!request()->has('party_id')) selected @endif>Select</option>
                     @foreach($parties as $party)
                         <option value="{{ $party->id }}" @if(request()->input('party_id') == $party->id) selected @endif>{{ $party->name }}</option>
