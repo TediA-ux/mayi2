@@ -67,7 +67,7 @@
     <td>
       
        <a class="btn btn-sm btn-primary" href="{{ route('professions.edit',Crypt::encrypt($profession->id)) }}"><i class="fas fa-pencil-alt"></i></a>
-       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$profession->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+       {{-- <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$profession->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a> --}}
     {{-- <form method="POST" action="{{ route('professions.destroy', $profession->id) }}" class="pull-right" id="delete-form-{{ $profession->id }}" > --}}
     @csrf
     @method('delete')
