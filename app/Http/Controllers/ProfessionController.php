@@ -114,7 +114,7 @@ class ProfessionController extends Controller
     public function destroy($id)
     {
 
-        Hobby::find($id)->delete();
+        Profession::find($id)->delete();
         return redirect()->route('professions.index')
             ->with('success', 'Profession deleted successfully');
     }
