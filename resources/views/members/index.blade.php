@@ -52,13 +52,14 @@
     <div class="col-md-3">
 
         <div class="form-group" id="district4">
-            <strong for="district">District</strong>
+            <div class="col-md-12" for="district"><strong >District</strong>
             <select id="district" class="form-select" name="district_id">
                 <option value="" @if(!request()->has('district_id')) selected @endif>Select</option>
                 @foreach($districts as $district)
                     <option value="{{ $district->id }}" @if(request()->input('district_id') == $district->id) selected @endif>{{ $district->name }}</option>
                 @endforeach
             </select>
+        </div>
         </div>
     </div>
     <div class="col-md-2 ">

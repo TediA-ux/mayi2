@@ -49,8 +49,8 @@
         <div class="col-md-3 ">
 
             <div class="form-group">
-                <strong for="district">District</strong>
-                <select id="district" class="form-control select" name="district_id">
+                <div class="col-md-12" for="district"><strong >District</strong></div>
+                <select id="district" class="form-select" name="district_id">
                     <option value="" @if(!request()->has('district_id')) selected @endif>Select</option>
                     @foreach($districts as $district)
                         <option value="{{ $district->id }}" @if(request()->input('district_id') == $district->id) selected @endif>{{ $district->name }}</option>

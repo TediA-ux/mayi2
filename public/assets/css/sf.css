@@ -202,7 +202,7 @@ body.dark-sidebar .left-sidebar .brand {
     margin-top: 10px;
   }
   #filter2 .select2 {
-    width: 263px !important;
+    width: 100% !important;
   }
 
   .select2-container--default .select2-selection--single  {
