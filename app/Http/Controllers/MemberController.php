@@ -48,7 +48,8 @@ class MemberController extends Controller
         $parliaments = Parliament::all();
         $constituencies = Constituency::all();
 
-        $data = Member::orderBy('id', 'DESC')->get();
+        $data = Member::join('political_party', 'political_party.id', 'member_info.party_id')->select('member_info.*', 'political_party.name AS pname', 'political_party.color')->orderBy('id', 'DESC')
+            ->get();
 
         return view('members.index', compact('data', 'parties', 'constituencies', 'parliaments', 'parliaments', 'user_role', 'log_user', 'roles', 'districts'))
         ;
@@ -204,12 +205,11 @@ class MemberController extends Controller
             ->LeftJoin('parliaments', 'parliaments.id', 'member_parliaments.parliament_id')
             ->where("member_id", $id)->get();
 
-        $member = Member::select('member_info.*', 'member_info.id', 'districts.name AS district', 'political_party.name AS party', 'constituencies.name AS constituency')
+        $member = Member::select('member_info.*', 'member_info.id', 'districts.name AS district', 'political_party.name AS party', 'political_party.name AS pname', 'political_party.color', 'constituencies.name AS constituency')
             ->LeftJoin('districts', 'districts.id', 'member_info.district_id')
             ->LeftJoin('political_party', 'political_party.id', 'member_info.party_id')
             ->LeftJoin('constituencies', 'constituencies.id', 'member_info.constituency_id')
             ->where("member_info.id", $id)->first();
-
         $hobbies = MemberHobby::where("member_id", $id)->get();
 
         $memberships = ProfessionalBodyMembership::select('professional_body_memberships.*', 'professional_bodies.name AS body')

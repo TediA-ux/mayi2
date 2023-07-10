@@ -52,14 +52,13 @@
     <div class="col-md-3">
 
         <div class="form-group" id="district4">
-            <div class="col-md-12" for="district"><strong >District</strong>
+            <div class="col-md-12" for="district"><strong >District</strong></div>
             <select id="district" class="form-select" name="district_id">
                 <option value="" @if(!request()->has('district_id')) selected @endif>Select</option>
                 @foreach($districts as $district)
                     <option value="{{ $district->id }}" @if(request()->input('district_id') == $district->id) selected @endif>{{ $district->name }}</option>
                 @endforeach
             </select>
-        </div>
         </div>
     </div>
     <div class="col-md-2 ">
@@ -157,7 +156,7 @@
    <th>Email</th>
    <th>Photo</th>
    <th>Gender</th>
-   <th>Religion</th>
+   <th>Political Party</th>
    <th >Action</th>
  </tr>
 </thead>
@@ -167,11 +166,11 @@
     <td>{{ $member->surname }}</td>
     <td>{{ $member->other_names }}</td>
     <td>{{ $member->email }}</td>
-    <td><img width="50px"  src="{{ asset('identification_photos/'.$member->photo) }}" /></td>
+    <td><img width="50px" src="{{ asset('identification_photos/'.$member->photo) }}" style='border:3px solid {{$member->color}}'/></td>
     <td>{{ $member->gender }}</td>
-    <td>{{ $member->religion }}</td>
+    <td>{{ $member->pname }}</td>
     <td>
-    <a class="btn btn-sm btn-secondary" href="{{ route('members.show',Crypt::encrypt($member->id)) }}"><i class="fas fa-list-ul"></i></a>
+    <a style='background: {{$member->color}}' class="btn btn-sm btn-secondary" href="{{ route('members.show',Crypt::encrypt($member->id)) }}"><i class="fas fa-list-ul"></i></a>
     
     {{-- <!-- <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$member->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a> --}}
     {{-- <form method="POST" action="{{ route('members.destroy', $member->id) }}" class="pull-right" id="delete-form-{{ $member->id }}" > --}}

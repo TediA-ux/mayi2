@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\MemberHobby;
-use DB;
-use Hash;
-use Validator;
-use Illuminate\Support\Arr;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Spatie\Permission\Models\Role;
 
 class MemberHobbyController extends Controller
 {
@@ -59,7 +54,7 @@ class MemberHobbyController extends Controller
         $log_user = User::find($user_id);
         $hobby = MemberHobby::find($id);
 
-        return view('member-hobbies.edit', compact('hobby','user_role', 'log_user', 'roles'));
+        return view('member-hobbies.edit', compact('hobby', 'user_role', 'log_user', 'roles'));
     }
 
     /**
@@ -72,11 +67,10 @@ class MemberHobbyController extends Controller
 
         ]);
 
-        $input = ($request->all()+['updated_by' => Auth::User()->id]);
+        $input = ($request->all() + ['updated_by' => Auth::User()->id]);
 
         $hobby = MemberHobby::find($id);
         $hobby->update($input);
-
 
         return redirect()->back()->with('success', 'Hobby updated successfully.');
     }

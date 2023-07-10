@@ -41,9 +41,9 @@
     <div id="bio-data">
       <div style="display:flex;align-items: center;">
          <div class="profile-img">
-      <img src="{{ asset('identification_photos/'.$member->photo) }}" alt="Profile Image">
+      <img src="{{ asset('identification_photos/'.$member->photo) }}" style='border:3px solid; color:{{$member->color}}' alt="Profile Image">
     </div>
-        <h3>Summary</h3>
+        <h3></h3>
       </div>
    <br>
     <div class="row ">
