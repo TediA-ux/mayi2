@@ -27,7 +27,7 @@ class ProfessionController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $data = Profession::orderBy('id', 'DESC')->paginate(5);
+        $data = Profession::orderBy('id', 'DESC')->get();
         return view('professions.index', compact('data', 'user_role', 'log_user', 'roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }

@@ -81,7 +81,6 @@
 <div></div>
 
 
-{!! $data->render() !!}
 
 @endsection
     @section('script')

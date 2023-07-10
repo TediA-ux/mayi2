@@ -26,7 +26,7 @@ class QualificationController extends Controller
         $user_role = $roles->name;
         $user_id = Auth::user()->id;
         $log_user = User::find($user_id);
-        $data = Qualification::orderBy('id', 'DESC')->paginate(10);
+        $data = Qualification::orderBy('id', 'DESC')->get();
         return view('qualifications.index', compact('data', 'user_role', 'log_user', 'roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
