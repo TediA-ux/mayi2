@@ -77,7 +77,7 @@ class MemberController extends Controller
 
         $constituencies = Constituency::where('district_id', $district_id)->get();
 
-        $datas = Member::select('member_info.*', 'member_info.id', 'district_id', 'party_id', 'constituency_id')
+        $datas = Member::join('political_party', 'political_party.id', 'member_info.party_id')->select('member_info.*', 'member_info.id', 'district_id', 'party_id', 'constituency_id', 'political_party.name AS pname', 'political_party.color')
             ->when($name, function ($query) use ($name) {
                 $query->where(function ($query) use ($name) {
                     $query->where('member_info.surname', 'LIKE', '%' . $name . '%')

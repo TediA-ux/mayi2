@@ -166,7 +166,7 @@
     <td>{{ $member->surname }}</td>
     <td>{{ $member->other_names }}</td>
     <td>{{ $member->email }}</td>
-    <td><img width="50px"  src="{{ asset('identification_photos/'.$member->photo) }}"  /></td>
+    <td><img width="50px" src="{{ asset('identification_photos/'.$member->photo) }}" style='border:3px solid {{$member->color}}'/></td>
     <td>{{ $member->gender }}</td>
     <td>{{ $member->religion }}</td>
     
