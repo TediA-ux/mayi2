@@ -68,7 +68,7 @@
       
        <a class="btn btn-sm btn-primary" href="{{ route('districts.edit',Crypt::encrypt($district->id)) }}"><i class="fas fa-pencil-alt"></i></a>
        <a class="btn btn-sm btn-secondary" href="{{ route('districts.show',Crypt::encrypt($district->id)) }}"><i class="fas fa-plus"></i></a>
-       <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$district->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a>
+       {{-- <a class="btn btn-sm btn-danger" onClick="if(confirm('Are you sure you want to delete this?')){document.getElementById('delete-form-{{$district->id}}').submit();}else{event.preventDefault();}" href="#"><i class="far fa-trash-alt"></i></a> --}}
     <form method="POST" action="{{ route('districts.destroy', $district->id) }}" class="pull-right" id="delete-form-{{ $district->id }}" >
     @csrf
     @method('delete')
@@ -82,7 +82,6 @@
 <div></div>
 
 
-{!! $data->render() !!}
 
 @endsection
     @section('script')

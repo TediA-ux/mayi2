@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Hobby;
-use DB;
-use Hash;
-use Validator;
-use Illuminate\Support\Arr;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
-use Spatie\Permission\Models\Role;
 
 class HobbyController extends Controller
 {
@@ -19,14 +14,13 @@ class HobbyController extends Controller
      * Display a listing of the resource.
      */
 
-     public function __construct()
-     {
-         $this->middleware('permission:view-hobbies|create-hobby|edit-hobby|delete-hobby', ['only' => ['index', 'store']]);
-         $this->middleware('permission:create-hobby', ['only' => ['create', 'store']]);
-         $this->middleware('permission:edit-hobby', ['only' => ['edit', 'update']]);
-         $this->middleware('permission:delete-hobby', ['only' => ['destroy']]);
-     }
-
+    public function __construct()
+    {
+        $this->middleware('permission:view-hobbies|create-hobby|edit-hobby|delete-hobby', ['only' => ['index', 'store']]);
+        $this->middleware('permission:create-hobby', ['only' => ['create', 'store']]);
+        $this->middleware('permission:edit-hobby', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:delete-hobby', ['only' => ['destroy']]);
+    }
 
     public function index(Request $request)
     {
@@ -59,10 +53,10 @@ class HobbyController extends Controller
     {
         $validator = $request->validate([
             'hobbies' => 'required',
-            
+
         ]);
 
-        $input = ($request->all()+['created_by' => Auth::User()->id]);
+        $input = ($request->all() + ['created_by' => Auth::User()->id]);
 
         //return $input;
 
@@ -97,9 +91,9 @@ class HobbyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
-        
+
         $this->validate($request, [
             'hobbies' => 'required',
 
@@ -113,7 +107,6 @@ class HobbyController extends Controller
         return redirect()->route('hobbies.index')
             ->with('success', 'Hobby updated successfully');
 
-        
     }
 
     /**
@@ -121,7 +114,7 @@ class HobbyController extends Controller
      */
     public function destroy($id)
     {
-       
+
         Hobby::find($id)->delete();
         return redirect()->route('hobbies.index')
             ->with('success', 'Hobby deleted successfully');
