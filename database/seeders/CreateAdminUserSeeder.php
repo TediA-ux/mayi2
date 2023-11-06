@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\User;
@@ -16,13 +15,13 @@ class CreateAdminUserSeeder extends Seeder
      */
     public function run()
     {
+        //Admin Seeder
         $user = User::create([
-
-            'name' => 'Super Admin',
-            'email' => 'admin@parliament.com',
+            'name' => 'Admin',
+            'email' => 'admin@mayi.com',
             'password' => bcrypt('password'),
-            'status' => "1",
             'role' => 'Admin',
+            'status' => '1',
         ]);
 
         $role = Role::where('name', 'Admin')->first();

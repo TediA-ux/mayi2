@@ -55,7 +55,14 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+          "laravel": {
+              "providers": [
+                  "DaveJamesMiller\\Breadcrumbs\\BreadcrumbsServiceProvider"
+              ],
+              "aliases": {
+                  "Breadcrumbs": "DaveJamesMiller\\Breadcrumbs\\Facades\\Breadcrumbs"
+              }
+          }
         }
     },
     "config": {
@@ -69,4 +76,6 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true
+
+    
 }

@@ -1,24 +1,13 @@
 <?php
 
-use App\Http\Controllers\CommitteeController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DistrictController;
-use App\Http\Controllers\EducationRecordController;
-use App\Http\Controllers\HobbyController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\MemberHobbyController;
-use App\Http\Controllers\MemberParliamentTypeController;
-use App\Http\Controllers\MembershipController;
-use App\Http\Controllers\ParliamentController;
-use App\Http\Controllers\PartyController;
-use App\Http\Controllers\ProfessionalBodyController;
-use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\UserAuthenticationController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WorkExperienceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,43 +40,23 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', UserController::class);
     Route::post('/user/activate/{id}', [UserController::class, 'activate']);
     Route::post('/user/deactivate/{id}', [UserController::class, 'deactivate']);
-
+    Route::get('/', [SiteController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/profile/view', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile/update', [ProfileController::class, 'update']);
     Route::post('/profile/password', [ProfileController::class, 'password']);
-    Route::resource('parties', PartyController::class);
-    Route::resource('districts', DistrictController::class);
-    Route::get('/add/district/constituency/{id}', [DistrictController::class, 'addConstituency']);
-    Route::post('/post/district/constituency', [DistrictController::class, 'postConstituency']);
-    Route::get('/edit/constituency/{id}', [DistrictController::class, 'editConstituency']);
-    Route::post('/update/district/constituency/{id}', [DistrictController::class, 'updateConstituency'])->name("update.constituency");
-    Route::resource('hobbies', HobbyController::class);
-    Route::get('/all-hobbies', [HobbyController::class, 'fetchHobbies'])->name('fetch.hobbies');
-    Route::resource('committees', CommitteeController::class);
-    Route::resource('professions', ProfessionController::class);
-    Route::resource('professional-bodies', ProfessionalBodyController::class);
-    Route::resource('members', MemberController::class);
-    Route::get('/district-constituencies/{id}', [MemberController::class, 'get_district_constituencies']);
-    Route::get('/add/more-details/{id}', [MemberController::class, 'add_member_info'])->name("members.addmore");
-    Route::post('/store/member/hobbies', [MemberController::class, 'storeHobbies'])->name("store.hobbies");
-    Route::post('/store/professional/memberships', [MemberController::class, 'storeMemberships'])->name("store.memberships");
-    Route::post('/store/work/experience', [MemberController::class, 'store_work_experience'])->name("store.experience");
-    Route::post('/store/member/education', [MemberController::class, 'store_member_qualifications'])->name("store.education");
-    Route::post('/store/member/parliament', [MemberController::class, 'store_member_parliaments'])->name("store.parliaments");
-    Route::resource('qualifications', QualificationController::class);
-    Route::resource('parliaments', ParliamentController::class);
     Route::get('/profile/view', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile/update', [ProfileController::class, 'update']);
     Route::post('/profile/password', [ProfileController::class, 'password']);
-    Route::resource('education', EducationRecordController::class);
-    Route::resource('work', WorkExperienceController::class);
-    Route::resource('member-parliament-type', MemberParliamentTypeController::class);
-    Route::resource('memberships', MembershipController::class);
-    Route::resource('member-hobbies', MemberHobbyController::class);
 
 //filter members route
     Route::get('/members/filter/mps', [MemberController::class, 'memberfilter']);
+
+    //pages routes
+    Route::get('/about', [PageController::class, 'about']);
+    Route::get('/archive', [PageController::class, 'archive']);
+    Route::get('/contact', [PageController::class, 'contact']);
+    Route::get('/contact/form', [PageController::class, 'contact_form']);
 
 });
 
