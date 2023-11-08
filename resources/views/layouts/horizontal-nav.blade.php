@@ -126,27 +126,27 @@
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarPages" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span><i class="ti ti-file-diff menu-icon"></i>Education</span>
+                            <span><i class="ti ti-file-diff menu-icon"></i>What we do</span>
                         </a>
                             <ul class="dropdown-menu  animate slideIn" aria-labelledby="navbarPages">
                             <li>
-                                <a class="dropdown-item" href="/qualifications">Qualifications</a>
+                                <a class="dropdown-item" href="/qualifications">Projects</a>
                             </li><!--end /li-->
-                            @can('view-professions')
+                            @can('create-post')
                             <li>
-                                <a class="dropdown-item" href="/professions">Professions</a>
+                                <a class="dropdown-item" href="/posts">Posts</a>
                             </li><!--end /li-->
                             @endcan
                             @can('view-professional-bodies')
                             <li>
-                                <a class="dropdown-item" href="/professional-bodies">Professional Bodies</a>
+                                <a class="dropdown-item" href="/professional-bodies">CBO Data</a>
                             </li><!--end /li-->
                             @endcan
-                            <!-- @can('view-hobbies')
+                            @can('view-hobbies')
                             <li">
-                                    <a class="dropdown-item" href="/hobbies">Hobbies</a>
+                                    <a class="dropdown-item" href="/hobbies">Team</a>
                             </li>
-                            @endcan -->
+                            @endcan
                             </ul><!--end nav-->
                     </li><!--end nav-item-->
                   

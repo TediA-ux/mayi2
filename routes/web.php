@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Auth::routes();
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
 Route::get('/home', function () {
@@ -38,6 +38,7 @@ Route::post('/user/logout', [UserAuthenticationController::class, 'logOutUser'])
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+    Route::resource('posts', PostController::class);
     Route::post('/user/activate/{id}', [UserController::class, 'activate']);
     Route::post('/user/deactivate/{id}', [UserController::class, 'deactivate']);
     Route::get('/', [SiteController::class, 'index']);
@@ -49,7 +50,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/update', [ProfileController::class, 'update']);
     Route::post('/profile/password', [ProfileController::class, 'password']);
 
-//filter members route
+    //Resource routes
+
+    //filter members route
     Route::get('/members/filter/mps', [MemberController::class, 'memberfilter']);
 
     //pages routes
