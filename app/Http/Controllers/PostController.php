@@ -28,7 +28,7 @@ class PostController extends Controller
         $log_user = User::find($user_id);
         $data = Post::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('post.index', compact('data', 'user_role', 'log_user'));
+        return view('posts.index', compact('data', 'user_role', 'log_user'));
     }
     /**
      * Show the form for creating a new resource.
@@ -41,7 +41,7 @@ class PostController extends Controller
         $log_user = User::find($user_id);
         $posts = Post::all();
 
-        return view('post.create', compact('user_role', 'log_user', 'posts'));
+        return view('posts.create', compact('user_role', 'log_user', 'posts'));
     }
 
     /**
@@ -93,7 +93,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('post.show')->with('post', $post);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
@@ -107,7 +107,7 @@ class PostController extends Controller
         $log_user = User::find($user_id);
         $posts = Post::find($id);
 
-        return view('post.edit', compact('user_role', 'log_user', 'posts'));
+        return view('posts.edit', compact('user_role', 'log_user', 'posts'));
     }
 
     /**
