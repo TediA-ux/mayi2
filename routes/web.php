@@ -30,6 +30,7 @@ Route::get('/login', function () {
 Route::get('/home', function () {
     return view('reset');
 });
+Route::get('/', [SiteController::class, 'index']);
 
 Route::post('/user/login', [UserAuthenticationController::class, 'loginUser'])
     ->name('login.custom');
@@ -42,7 +43,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('posts', PostController::class);
     Route::post('/user/activate/{id}', [UserController::class, 'activate']);
     Route::post('/user/deactivate/{id}', [UserController::class, 'deactivate']);
-    Route::get('/', [SiteController::class, 'index']);
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/profile/view', [ProfileController::class, 'index'])->name('user.profile');
     Route::post('/profile/update', [ProfileController::class, 'update']);
