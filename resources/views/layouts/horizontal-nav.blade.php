@@ -130,7 +130,7 @@
                         </a>
                             <ul class="dropdown-menu  animate slideIn" aria-labelledby="navbarPages">
                             <li>
-                                <a class="dropdown-item" href="/qualifications">Projects</a>
+                                <a class="dropdown-item" href="/posts">Posts</a>
                             </li><!--end /li-->
                             @can('create-post')
                             <li>
@@ -170,7 +170,10 @@
                         </ul><!--end submenu-->
                     </li><!--end nav-item-->     
                               
-                </ul><!-- End navigation menu -->
+                </ul>
+                <ul>
+                  
+                <ul><!-- End navigation menu -->
             </div> <!-- end navigation -->
         </div>
         <!-- Navbar -->

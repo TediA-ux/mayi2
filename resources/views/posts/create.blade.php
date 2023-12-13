@@ -8,7 +8,7 @@
     <!-- page title-->
     @section('breadcrumb')
     @component('components.breadcrumb')
-    @slot('title') Users @endslot
+    @slot('title') Posts @endslot
     @endcomponent
     @endsection
     <div class="card">

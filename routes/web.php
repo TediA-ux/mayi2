@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/profile/password', [ProfileController::class, 'password']);
 
     //Resource routes
+    Route::post('/posts/create', [PostController::class, 'create']);
 
     //filter members route
     Route::get('/members/filter/mps', [MemberController::class, 'memberfilter']);
