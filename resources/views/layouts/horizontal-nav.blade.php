@@ -129,9 +129,7 @@
                             <span><i class="ti ti-file-diff menu-icon"></i>What we do</span>
                         </a>
                             <ul class="dropdown-menu  animate slideIn" aria-labelledby="navbarPages">
-                            <li>
-                                <a class="dropdown-item" href="/posts">Posts</a>
-                            </li><!--end /li-->
+                            <!--end /li-->
                             @can('create-post')
                             <li>
                                 <a class="dropdown-item" href="/posts">Posts</a>

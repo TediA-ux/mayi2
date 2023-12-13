@@ -10,8 +10,8 @@
                 <!---Hero Content--->
                 <div class="hero-content-wrapper">
                   <div class="hero-content">
-                    <h4 class="h-alt hero-subheading wow fadeIn" data-wow-duration="2s" data-wow-delay=".7s">Latest blog posts</h4>
-                    <h1 class="hero-lead wow fadeInLeft" data-wow-duration="1.5s">Blog</h1>
+                    <h4 class="h-alt hero-subheading wow fadeIn" data-wow-duration="2s" data-wow-delay=".7s">CBO's Posts</h4>
+                    <h1 class="hero-lead wow fadeInLeft" data-wow-duration="1.5s">CBO</h1>
                   </div>
                 </div>
             </div>
