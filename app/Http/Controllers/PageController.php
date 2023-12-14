@@ -8,7 +8,8 @@ class PageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        //this line is commented out because i'd like to have these pages appear without having to login
+        // $this->middleware('auth');
     }
 
     /**

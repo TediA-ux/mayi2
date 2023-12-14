@@ -32,6 +32,12 @@ Route::get('/home', function () {
 });
 Route::get('/', [SiteController::class, 'index']);
 
+ //pages routes
+ Route::get('/about', [PageController::class, 'about']);
+ Route::get('/archive', [PageController::class, 'archive']);
+ Route::get('/contact', [PageController::class, 'contact']);
+ Route::get('/contact/form', [PageController::class, 'contact_form']);
+
 Route::post('/user/login', [UserAuthenticationController::class, 'loginUser'])
     ->name('login.custom');
 Route::post('/user/logout', [UserAuthenticationController::class, 'logOutUser'])
@@ -57,13 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
     //filter members route
     Route::get('/members/filter/mps', [MemberController::class, 'memberfilter']);
 
-    //pages routes
-    Route::get('/about', [PageController::class, 'about']);
-    Route::get('/archive', [PageController::class, 'archive']);
-    Route::get('/contact', [PageController::class, 'contact']);
-    Route::get('/contact/form', [PageController::class, 'contact_form']);
-
 });
+   
 
 Route::get('/php-info', function () {
     echo phpinfo();
